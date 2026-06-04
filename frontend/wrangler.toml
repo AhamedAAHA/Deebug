@@ -1,0 +1,5 @@
+name = "deebug"
+pages_build_output_dir = "./dist"
+
+[vars]
+VITE_API_BASE_URL = "https://deebug.onrender.com/api"

@@ -1,4 +1,4 @@
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 const UPLOAD_TIMEOUT_MS = 25_000;
 
 async function parseErrorMessage(res) {
