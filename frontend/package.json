@@ -1,0 +1,37 @@
+{
+  "name": "daiboq-ai",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "postinstall": "node scripts/copy-libredwg-wasm.js",
+    "build": "node scripts/copy-libredwg-wasm.js && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mlightcad/libredwg-web": "^0.7.1",
+    "@react-three/drei": "^9.117.3",
+    "@react-three/fiber": "^8.17.10",
+    "framer-motion": "^12.40.0",
+    "gsap": "^3.15.0",
+    "jimp": "^1.6.1",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "recharts": "^2.13.3",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/react": "^19.2.16",
+    "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.184.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3",
+    "vite": "^6.0.3"
+  }
+}
