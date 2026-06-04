@@ -1,0 +1,204 @@
+.assistant-fab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 300;
+  width: 58px;
+  height: 58px;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, #172231, #7166ee 58%, #65d8d0);
+  box-shadow: 0 20px 48px rgba(105, 96, 230, 0.28);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 820;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.assistant-fab:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+
+.assistant-fab.open {
+  color: var(--accent-indigo);
+  border: 1px solid rgba(123, 112, 239, 0.24);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.assistant-engine-badge {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-indigo);
+  background: rgba(123, 112, 239, 0.12);
+}
+
+.assistant-msg--loading {
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.assistant-panel {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 5.6rem;
+  z-index: 299;
+  display: flex;
+  width: 390px;
+  max-width: calc(100vw - 2rem);
+  max-height: 500px;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease;
+}
+
+.assistant-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(125, 139, 168, 0.13);
+}
+
+.assistant-header strong {
+  display: block;
+  color: #263344;
+  font-size: 0.96rem;
+}
+
+.assistant-header span {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.assistant-avatar {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, #172231, #7166ee);
+  font-size: 0.8rem;
+  font-weight: 780;
+}
+
+.assistant-messages {
+  display: flex;
+  min-height: 210px;
+  max-height: 290px;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.assistant-msg {
+  max-width: 90%;
+  padding: 0.68rem 0.9rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.assistant-msg--user {
+  align-self: flex-end;
+  color: #fff;
+  background: linear-gradient(135deg, #7166ee, #5b8dff);
+}
+
+.assistant-msg--assistant {
+  align-self: flex-start;
+  color: var(--text-primary);
+  border: 1px solid rgba(125, 139, 168, 0.13);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.assistant-input-row {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(125, 139, 168, 0.13);
+}
+
+.assistant-input-row .input {
+  flex: 1;
+  padding: 0.52rem 0.78rem;
+  font-size: 0.84rem;
+}
+
+.btn.listening {
+  border-color: rgba(123, 112, 239, 0.45);
+  animation: pulse-glow 1s infinite;
+}
+
+.assistant-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0 1rem 1rem;
+}
+
+.suggestion-chip {
+  padding: 0.34rem 0.7rem;
+  border: 1px solid rgba(125, 139, 168, 0.16);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.58);
+  cursor: pointer;
+  font-size: 0.7rem;
+  transition: color var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.suggestion-chip:hover {
+  color: var(--accent-indigo);
+  border-color: rgba(123, 112, 239, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Dark enterprise theme layer */
+.assistant-fab,
+.assistant-avatar {
+  color: #06111a;
+  background: var(--gradient-primary);
+  box-shadow: 0 20px 48px rgba(53, 231, 255, 0.24);
+}
+
+.assistant-fab.open {
+  color: var(--accent-cyan);
+  border-color: rgba(53, 231, 255, 0.24);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.assistant-header,
+.assistant-input-row {
+  border-color: rgba(165, 177, 210, 0.13);
+}
+
+.assistant-header strong,
+.assistant-msg--assistant {
+  color: var(--text-primary);
+}
+
+.assistant-msg--user {
+  color: #06111a;
+  background: linear-gradient(135deg, #35e7ff, #4b8cff);
+}
+
+.assistant-msg--assistant,
+.suggestion-chip {
+  border-color: rgba(165, 177, 210, 0.13);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.suggestion-chip:hover {
+  color: var(--accent-cyan);
+  border-color: rgba(53, 231, 255, 0.3);
+}

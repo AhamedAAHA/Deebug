@@ -1,0 +1,1274 @@
+/* ─── Hub layout ─── */
+.page-viz {
+  max-width: 100%;
+}
+
+.viz-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.viz-header-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.viz-status-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.viz-status-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.viz-status-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.viz-status-item strong {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--accent-cyan);
+}
+
+.viz-status-warn strong {
+  color: #b45309;
+  font-size: 0.8rem;
+}
+
+.viz-callout {
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.viz-callout-warning {
+  border-color: rgba(250, 204, 21, 0.35);
+}
+
+.viz-callout-warning h3 {
+  color: #b45309;
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+}
+
+.viz-hub {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.viz-hub-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.viz-stat-chip {
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+.viz-stat-label {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.viz-stat-value {
+  display: block;
+  font-size: 1.15rem;
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+}
+
+.viz-stat-sub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Stage: 3D on top, dock below */
+.viz-hub-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+}
+
+.viz-hub--fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--bg-deep);
+  padding: 0.5rem;
+}
+
+.viz-hub-canvas--hero {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.viz-hub-canvas--hero .viz-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.viz-hub-canvas--hero .viz-canvas-wrap {
+  flex: 1;
+  height: auto !important;
+  min-height: min(72vh, 720px);
+}
+
+.viz-container--fullscreen {
+  height: 100%;
+}
+
+.viz-canvas-wrap--fullscreen {
+  height: calc(100vh - 1rem) !important;
+  min-height: 0 !important;
+  border-radius: var(--radius-md);
+}
+
+.viz-fs-modes {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 999px;
+  border: 1px solid var(--border-glass);
+}
+
+.viz-fs-modes button {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.72rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.viz-fs-modes button.active {
+  background: rgba(34, 211, 238, 0.2);
+  color: var(--accent-cyan);
+}
+
+.viz-fs-btn {
+  border-color: rgba(34, 211, 238, 0.4) !important;
+}
+
+/* Bottom dock */
+.viz-dock {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  margin-top: 0.5rem;
+}
+
+.viz-dock--collapsed {
+  height: auto;
+}
+
+.viz-dock--open {
+  height: auto;
+}
+
+.viz-dock-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border-glass);
+  user-select: none;
+}
+
+.viz-dock-chevron {
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+}
+
+.viz-dock-bar-title {
+  flex: 1;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.viz-dock-quick {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.viz-dock-quick-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.58);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.viz-dock-quick-btn.active {
+  border-color: var(--accent-cyan);
+  background: rgba(34, 211, 238, 0.15);
+}
+
+.viz-dock-body {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.viz-dock-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem 0;
+  flex-shrink: 0;
+}
+
+.viz-dock-tab {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.viz-dock-tab.active {
+  background: rgba(34, 211, 238, 0.12);
+  color: var(--accent-cyan);
+}
+
+.viz-dock-content {
+  overflow: visible;
+  padding: 0.75rem 1rem 1rem;
+}
+
+.viz-dock-subtitle {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.viz-dock-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.viz-mode-grid--horizontal {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.viz-insights--row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.65rem;
+}
+
+.viz-dock-inspector-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.viz-hub-stats {
+  position: relative;
+}
+
+.viz-stat-hide {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+/* Legacy side panels — removed from layout */
+.viz-panel {
+  padding: 1rem;
+  max-height: 640px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.viz-panel-section {
+  margin-bottom: 1.25rem;
+}
+
+.viz-panel-section-scroll {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  margin-bottom: 0;
+  padding-right: 0.25rem;
+}
+
+.viz-panel-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.viz-ai-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-cyan);
+  animation: pulse-glow 2s infinite;
+}
+
+.viz-panel-empty {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.viz-panel-note {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* View modes */
+.viz-mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.viz-mode-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.65rem 0.75rem;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+  color: var(--text-secondary);
+}
+
+.viz-mode-btn:hover {
+  border-color: var(--border-glow);
+  color: var(--text-primary);
+}
+
+.viz-mode-btn.active {
+  border-color: var(--accent-cyan);
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+}
+
+.viz-mode-icon {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.viz-mode-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.viz-mode-desc {
+  font-size: 0.65rem;
+  opacity: 0.75;
+  margin-top: 0.15rem;
+}
+
+/* Layers */
+.viz-layer-list,
+.viz-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.viz-layer-row {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto auto;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0.35rem 0.4rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.viz-type-list .viz-layer-row {
+  grid-template-columns: auto auto 1fr auto auto;
+}
+
+.viz-layer-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.viz-layer-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+.viz-layer-count {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+.viz-layer-pct {
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  font-size: 0.65rem;
+}
+
+.viz-type-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--accent-cyan);
+}
+
+.viz-type-dot[data-type='wall'] { background: #94a3b8; }
+.viz-type-dot[data-type='column'] { background: #818cf8; }
+.viz-type-dot[data-type='slab'] { background: #0ea5e9; }
+.viz-type-dot[data-type='cad'] { background: #38bdf8; }
+.viz-type-dot[data-type='door'] { background: #d97706; }
+.viz-type-dot[data-type='window'] { background: #22d3ee; }
+.viz-type-dot[data-type='roof'] { background: #475569; }
+
+/* Insights */
+.viz-insights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.viz-insight {
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent-cyan);
+  background: rgba(255, 255, 255, 0.58);
+  font-size: 0.78rem;
+}
+
+.viz-insight strong {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.viz-insight p {
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.viz-insight--success { border-left-color: #4ade80; }
+.viz-insight--warning { border-left-color: #d97706; }
+.viz-insight--info { border-left-color: #38bdf8; }
+
+/* Inspector */
+.viz-inspector-head h4 {
+  font-size: 0.9rem;
+  margin: 0.35rem 0 0;
+}
+
+.viz-inspector-dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.3rem 0.65rem;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+}
+
+.viz-inspector-dl dt {
+  color: var(--text-muted);
+}
+
+.viz-inspector-dl dd {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  margin: 0;
+}
+
+.viz-qty-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.viz-qty-cell {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.58);
+  border-radius: 8px;
+  font-size: 0.7rem;
+}
+
+.viz-qty-cell span {
+  display: block;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.viz-qty-cell strong {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+}
+
+/* ─── Canvas ─── */
+.viz-container {
+  width: 100%;
+}
+
+.viz-container-embedded:not(.viz-container--fullscreen) .viz-canvas-wrap:not(.viz-canvas-wrap--fullscreen) {
+  min-height: min(72vh, 720px);
+}
+
+.viz-canvas-wrap {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.viz-canvas-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.viz-canvas-topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 12;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 1rem;
+  background: linear-gradient(180deg, rgba(3, 7, 18, 0.92), transparent);
+  pointer-events: none;
+}
+
+.viz-canvas-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.viz-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+  animation: pulse-glow 2s infinite;
+}
+
+.viz-canvas-file {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.viz-canvas-mode-badge {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.15);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  color: var(--accent-cyan);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.viz-controls {
+  position: absolute;
+  top: 3rem;
+  left: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+
+.viz-compass {
+  position: absolute;
+  top: 3.5rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  pointer-events: none;
+}
+
+.viz-compass-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.66);
+}
+
+.viz-scale-bar {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.viz-scale-line {
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-cyan), transparent);
+  border-radius: 2px;
+}
+
+.viz-heatmap-legend {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 999px;
+  border: 1px solid var(--border-glass);
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+}
+
+.viz-heatmap-gradient {
+  width: 80px;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, hsl(200, 85%, 55%), hsl(0, 85%, 55%));
+}
+
+.viz-hint {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.cost-highlight {
+  color: var(--accent-cyan) !important;
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .viz-mode-grid--horizontal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .viz-dock-split {
+    grid-template-columns: 1fr;
+  }
+  .viz-hub-stage {
+    min-height: calc(100vh - 180px);
+  }
+}
+
+@media (max-width: 768px) {
+  .viz-hub-canvas--hero .viz-canvas-wrap {
+    min-height: 50vh;
+  }
+  .viz-mode-grid,
+  .viz-mode-grid--horizontal {
+    grid-template-columns: 1fr;
+  }
+  .viz-fs-modes {
+    flex-wrap: wrap;
+    max-width: 95vw;
+    border-radius: 12px;
+  }
+}
+
+/* ─── BIM Digital Twin Viewer ─── */
+.bim-viewer-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: min(72vh, 720px);
+  min-height: 420px;
+  max-height: 720px;
+}
+
+.bim-viewer {
+  position: relative;
+  flex: 1;
+  min-height: 360px;
+  height: 100%;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+
+.bim-viewer canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.bim-viewer--fs {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  min-height: 100vh;
+}
+
+.bim-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-top: 0.75rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(34, 211, 238, 0.15);
+  border-radius: 12px;
+}
+
+.bim-toolbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.bim-toolbar-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  min-width: 4.5rem;
+}
+
+.bim-toolbar-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.bim-toolbar-btns button {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.72rem;
+  border-radius: 6px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.bim-toolbar-btns button:hover,
+.bim-toolbar-btns button.active {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  background: rgba(34, 211, 238, 0.1);
+}
+
+.bim-floor-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
+  padding-left: 5.5rem;
+}
+
+.bim-floor-check {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.bim-toolbar-construction {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.bim-construction-range {
+  width: 100%;
+  max-width: 480px;
+  accent-color: var(--accent-cyan);
+}
+
+.bim-construction-stages {
+  display: flex;
+  gap: 4px;
+}
+
+.bim-construction-stages button {
+  flex: 1;
+  height: 6px;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  background: rgba(148, 163, 184, 0.25);
+  cursor: pointer;
+}
+
+.bim-construction-stages button.done {
+  background: linear-gradient(90deg, #22d3ee, #6366f1);
+}
+
+.bim-section-slider {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  z-index: 10;
+}
+
+.bim-section-slider input {
+  width: 160px;
+  accent-color: var(--accent-cyan);
+}
+
+.bim-construction-badge {
+  position: absolute;
+  top: 4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.4rem 1rem;
+  background: rgba(99, 102, 241, 0.25);
+  border: 1px solid rgba(129, 140, 248, 0.4);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #c4b5fd;
+  z-index: 10;
+}
+
+.bim-construction-badge--warn {
+  border-color: rgba(53, 231, 255, 0.45);
+  background: rgba(53, 231, 255, 0.12);
+  color: var(--accent-cyan);
+}
+
+.bim-construction-badge__action {
+  padding: 0.2rem 0.65rem;
+  border: 1px solid rgba(53, 231, 255, 0.5);
+  border-radius: 999px;
+  background: rgba(53, 231, 255, 0.15);
+  color: var(--accent-cyan);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bim-construction-badge__action:hover {
+  background: rgba(53, 231, 255, 0.28);
+}
+
+.bim-toolbar-complete-btn {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(53, 231, 255, 0.35);
+  border-radius: 8px;
+  background: rgba(53, 231, 255, 0.1);
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bim-toolbar-complete-btn:hover {
+  background: rgba(53, 231, 255, 0.2);
+}
+
+.bim-qs-label {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.65rem;
+  color: #e2e8f0;
+  white-space: nowrap;
+  box-shadow: 0 18px 44px rgba(83, 99, 132, 0.14);
+}
+
+.bim-qs-label strong {
+  display: block;
+  color: #22d3ee;
+  font-family: var(--font-mono);
+  margin-bottom: 0.15rem;
+}
+
+.bim-qs-label span {
+  display: block;
+  color: #94a3b8;
+}
+
+.bim-inspector {
+  padding: 0.5rem 0;
+}
+
+.bim-inspector--empty {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.bim-inspector-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.bim-inspector-cat {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-cyan);
+}
+
+.bim-inspector-layer {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.bim-inspector-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.bim-inspector-note {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.bim-inspector-dl {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.bim-inspector-dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.82rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  padding-bottom: 0.35rem;
+}
+
+.bim-inspector-dl dt {
+  color: var(--text-muted);
+}
+
+.bim-inspector-dl dd {
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .bim-toolbar-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .bim-floor-toggles {
+    padding-left: 0;
+  }
+}
+
+/* Premium light UI overrides */
+.viz-callout,
+.viz-status-bar,
+.viz-panel,
+.viz-dock,
+.bim-toolbar {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.66) !important;
+  border-color: rgba(125, 139, 168, 0.14) !important;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(22px);
+}
+
+.viz-hub--fullscreen {
+  background: #f6f8fc;
+}
+
+.viz-canvas-wrap,
+.bim-viewer {
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(123, 112, 239, 0.08), transparent 45%),
+    #f8faff;
+  box-shadow: var(--shadow-card);
+}
+
+.viz-canvas-topbar {
+  color: var(--text-primary);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+}
+
+.viz-fs-modes,
+.viz-heatmap-legend,
+.bim-section-slider,
+.bim-construction-badge,
+.bim-qs-label {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(125, 139, 168, 0.16);
+  box-shadow: 0 18px 44px rgba(83, 99, 132, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.viz-fs-modes button,
+.viz-mode-btn,
+.viz-dock-quick-btn,
+.bim-toolbar-btns button {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(125, 139, 168, 0.14);
+}
+
+.viz-fs-modes button.active,
+.viz-mode-btn.active,
+.viz-dock-quick-btn.active,
+.viz-dock-tab.active,
+.bim-toolbar-btns button:hover,
+.bim-toolbar-btns button.active {
+  color: var(--accent-indigo);
+  background: rgba(123, 112, 239, 0.1);
+  border-color: rgba(123, 112, 239, 0.28);
+  box-shadow: none;
+}
+
+.viz-layer-row:hover,
+.viz-insight,
+.viz-qty-cell {
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.viz-layer-name,
+.viz-insight strong,
+.bim-inspector-dl dd {
+  color: var(--text-primary);
+}
+
+.viz-compass-ring {
+  background: rgba(255, 255, 255, 0.66);
+  border-color: rgba(123, 112, 239, 0.24);
+}
+
+.viz-live-dot,
+.viz-ai-pulse {
+  background: #65d8d0;
+  box-shadow: 0 0 12px rgba(101, 216, 208, 0.8);
+}
+
+.bim-qs-label strong,
+.viz-status-item strong,
+.viz-stat-value,
+.viz-layer-pct,
+.viz-qty-cell strong,
+.bim-inspector-cat {
+  color: var(--accent-indigo);
+}
+
+.viz-container,
+.viz-hub,
+.bim-viewer-wrap {
+  color: var(--text-primary);
+}
+
+.viz-canvas-wrap,
+.bim-viewer,
+.viz-dock,
+.viz-status-bar,
+.viz-stat-chip,
+.bim-toolbar,
+.viz-callout {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.76), rgba(244,247,253,0.5)) !important;
+  border: 1px solid rgba(255,255,255,0.88) !important;
+  box-shadow:
+    0 28px 80px rgba(83,99,132,0.13),
+    inset 0 1px 0 rgba(255,255,255,0.94) !important;
+  backdrop-filter: blur(24px) saturate(1.08);
+  -webkit-backdrop-filter: blur(24px) saturate(1.08);
+}
+
+.viz-fs-modes,
+.viz-heatmap-legend,
+.bim-section-slider,
+.bim-construction-badge,
+.bim-qs-label,
+.viz-mode-btn,
+.viz-dock-quick-btn,
+.viz-dock-tab,
+.bim-toolbar-btns button,
+.viz-insight,
+.viz-qty-cell,
+.viz-layer-row {
+  background: rgba(255,255,255,0.58) !important;
+  border-color: rgba(255,255,255,0.8) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Dark enterprise visualization skin */
+.viz-hub--fullscreen {
+  background: var(--bg-deep);
+}
+
+.viz-callout,
+.viz-status-bar,
+.viz-panel,
+.viz-dock,
+.bim-toolbar,
+.viz-canvas-wrap,
+.bim-viewer,
+.viz-stat-chip {
+  color: var(--text-primary);
+  background:
+    linear-gradient(145deg, rgba(24, 30, 49, 0.78), rgba(10, 14, 28, 0.64)) !important;
+  border: 1px solid rgba(165, 177, 210, 0.14) !important;
+  box-shadow:
+    0 28px 88px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+.viz-canvas-topbar {
+  color: var(--text-primary);
+  background: linear-gradient(180deg, rgba(8, 13, 25, 0.9), rgba(8, 13, 25, 0));
+}
+
+.viz-fs-modes,
+.viz-heatmap-legend,
+.bim-section-slider,
+.bim-construction-badge,
+.bim-qs-label,
+.viz-mode-btn,
+.viz-dock-quick-btn,
+.viz-dock-tab,
+.bim-toolbar-btns button,
+.viz-insight,
+.viz-qty-cell,
+.viz-layer-row {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.055) !important;
+  border-color: rgba(165, 177, 210, 0.13) !important;
+}
+
+.viz-mode-btn.active,
+.viz-dock-quick-btn.active,
+.viz-dock-tab.active,
+.bim-toolbar-btns button.active,
+.bim-toolbar-btns button:hover {
+  color: var(--accent-cyan);
+  background: rgba(53, 231, 255, 0.1) !important;
+  border-color: rgba(53, 231, 255, 0.28) !important;
+}
+
+.viz-live-dot,
+.viz-ai-pulse {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 14px rgba(53, 231, 255, 0.86);
+}
+
+.bim-qs-label strong,
+.viz-status-item strong,
+.viz-stat-value,
+.viz-layer-pct,
+.viz-qty-cell strong,
+.bim-inspector-cat,
+.cost-highlight {
+  color: var(--accent-cyan) !important;
+}

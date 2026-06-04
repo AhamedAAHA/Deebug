@@ -1,0 +1,62 @@
+.workflow-finale-fallback {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 45%, rgba(53, 231, 255, 0.12), rgba(9, 13, 26, 0.95) 68%);
+}
+
+.workflow-finale-fallback__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.workflow-finale-fallback__ring--outer {
+  width: 160px;
+  height: 160px;
+  border: 2px solid rgba(53, 231, 255, 0.45);
+}
+
+.workflow-finale-fallback__ring--inner {
+  width: 120px;
+  height: 120px;
+  border: 2px dashed rgba(138, 125, 255, 0.55);
+}
+
+.workflow-finale-fallback__core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(53, 231, 255, 0.45), transparent 70%);
+  transform: translate(-50%, -50%);
+}
+
+.workflow-finale-fallback__steps {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transform: translateX(-50%);
+}
+
+.workflow-finale-fallback__steps li {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba(165, 177, 210, 0.2);
+  border-radius: 999px;
+  color: #35e7ff;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
