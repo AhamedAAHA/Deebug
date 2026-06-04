@@ -1,0 +1,192 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/upload/DrawingUploader.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=53eb6c5c"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("D:/QS/frontend/src/components/upload/DrawingUploader.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=53eb6c5c"; const useState = __vite__cjsImport3_react["useState"]; const useRef = __vite__cjsImport3_react["useRef"];
+import { uploadSteps } from "/src/data/mockData.js";
+import { delay } from "/src/utils/formatters.js";
+import { uploadDrawing } from "/src/utils/api.js";
+import { saveLatestDrawing } from "/src/utils/drawingSession.js?t=1780439286329";
+import { extractCadPreview } from "/src/utils/cadPreview.js?t=1780439230169";
+import { extractBoqFromCad } from "/src/utils/boqExtraction.js";
+export default function DrawingUploader({ onComplete, label = "Upload Construction Drawing", saveAsLatest = true }) {
+  _s();
+  const [dragging, setDragging] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [currentStep, setCurrentStep] = useState(-1);
+  const [fileName, setFileName] = useState("");
+  const inputRef = useRef(null);
+  const processFile = async (file) => {
+    if (!file) return;
+    setFileName(file.name);
+    setProcessing(true);
+    setCurrentStep(0);
+    const [uploadResult, cadPreview] = await Promise.all(
+      [
+        uploadDrawing(file),
+        extractCadPreview(file)
+      ]
+    );
+    const boqExtraction = extractBoqFromCad(cadPreview, file.name);
+    const result = { ...uploadResult, ...cadPreview, ...boqExtraction };
+    const drawing = saveAsLatest ? saveLatestDrawing(file, result) : null;
+    for (let i = 0; i < uploadSteps.length; i++) {
+      setCurrentStep(i);
+      await delay(900 + Math.random() * 600);
+    }
+    setProcessing(false);
+    onComplete?.(file, result, drawing);
+  };
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragging(false);
+    processFile(e.dataTransfer.files[0]);
+  };
+  return /* @__PURE__ */ jsxDEV("div", { className: "drawing-uploader", children: [
+    /* @__PURE__ */ jsxDEV(
+      "div",
+      {
+        className: `upload-zone ${dragging ? "dragover" : ""}`,
+        onDragOver: (e) => {
+          e.preventDefault();
+          setDragging(true);
+        },
+        onDragLeave: () => setDragging(false),
+        onDrop: handleDrop,
+        onClick: () => !processing && inputRef.current?.click(),
+        role: "button",
+        tabIndex: 0,
+        onKeyDown: (e) => e.key === "Enter" && inputRef.current?.click(),
+        children: [
+          /* @__PURE__ */ jsxDEV(
+            "input",
+            {
+              ref: inputRef,
+              type: "file",
+              accept: ".pdf,.png,.jpg,.jpeg,.dwg,.dxf",
+              hidden: true,
+              onChange: (e) => processFile(e.target.files[0])
+            },
+            void 0,
+            false,
+            {
+              fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+              lineNumber: 76,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV("div", { className: "upload-zone-icon", children: "DWG" }, void 0, false, {
+            fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+            lineNumber: 83,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("h3", { children: label }, void 0, false, {
+            fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+            lineNumber: 84,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("p", { style: { color: "var(--text-secondary)", marginTop: "0.5rem" }, children: "Drag and drop PDF, image, DWG, or DXF drawings, or click to browse." }, void 0, false, {
+            fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+            lineNumber: 85,
+            columnNumber: 9
+          }, this),
+          fileName && /* @__PURE__ */ jsxDEV("p", { style: { marginTop: "0.75rem", color: "var(--accent-cyan)" }, children: [
+            "File selected: ",
+            fileName
+          ] }, void 0, true, {
+            fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+            lineNumber: 88,
+            columnNumber: 22
+          }, this)
+        ]
+      },
+      void 0,
+      true,
+      {
+        fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+        lineNumber: 66,
+        columnNumber: 7
+      },
+      this
+    ),
+    processing && /* @__PURE__ */ jsxDEV("div", { className: "upload-steps", children: uploadSteps.map(
+      (step, i) => /* @__PURE__ */ jsxDEV(
+        "div",
+        {
+          className: `upload-step ${i < currentStep ? "done" : ""} ${i === currentStep ? "active" : ""}`,
+          children: [
+            /* @__PURE__ */ jsxDEV("span", { className: "upload-step-indicator", children: i < currentStep ? "OK" : i + 1 }, void 0, false, {
+              fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+              lineNumber: 98,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("span", { children: step }, void 0, false, {
+              fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+              lineNumber: 101,
+              columnNumber: 15
+            }, this),
+            i === currentStep && /* @__PURE__ */ jsxDEV("div", { className: "progress-bar", style: { flex: 1, marginLeft: "auto", maxWidth: 120 }, children: /* @__PURE__ */ jsxDEV("div", { className: "progress-bar-fill", style: { width: "100%", animation: "shimmer 1s infinite" } }, void 0, false, {
+              fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+              lineNumber: 104,
+              columnNumber: 19
+            }, this) }, void 0, false, {
+              fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+              lineNumber: 103,
+              columnNumber: 11
+            }, this)
+          ]
+        },
+        step,
+        true,
+        {
+          fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+          lineNumber: 94,
+          columnNumber: 9
+        },
+        this
+      )
+    ) }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+      lineNumber: 92,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/upload/DrawingUploader.jsx",
+    lineNumber: 65,
+    columnNumber: 5
+  }, this);
+}
+_s(DrawingUploader, "Rk92aDTjJuL5zT5t3oHWidu/hsw=");
+_c = DrawingUploader;
+var _c;
+$RefreshReg$(_c, "DrawingUploader");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("D:/QS/frontend/src/components/upload/DrawingUploader.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("D:/QS/frontend/src/components/upload/DrawingUploader.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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O0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLE1BYUE7QUFBQSxJQUNELEtBaEJIO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FpQkE7QUFBQSxPQTVDSjtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBOENBO0FBRUo7QUFBQ3BDLEdBckZ1QkosaUJBQWU7QUFBQSxLQUFmQTtBQUFlLElBQUE4QztBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJ1c2VTdGF0ZSIsInVzZVJlZiIsInVwbG9hZFN0ZXBzIiwiZGVsYXkiLCJ1cGxvYWREcmF3aW5nIiwic2F2ZUxhdGVzdERyYXdpbmciLCJleHRyYWN0Q2FkUHJldmlldyIsImV4dHJhY3RCb3FGcm9tQ2FkIiwiRHJhd2luZ1VwbG9hZGVyIiwib25Db21wbGV0ZSIsImxhYmVsIiwic2F2ZUFzTGF0ZXN0IiwiX3MiLCJkcmFnZ2luZyIsInNldERyYWdnaW5nIiwicHJvY2Vzc2luZyIsInNldFByb2Nlc3NpbmciLCJjdXJyZW50U3RlcCIsInNldEN1cnJlbnRTdGVwIiwiZmlsZU5hbWUiLCJzZXRGaWxlTmFtZSIsImlucHV0UmVmIiwicHJvY2Vzc0ZpbGUiLCJmaWxlIiwibmFtZSIsInVwbG9hZFJlc3VsdCIsImNhZFByZXZpZXciLCJQcm9taXNlIiwiYWxsIiwiYm9xRXh0cmFjdGlvbiIsInJlc3VsdCIsImRyYXdpbmciLCJpIiwibGVuZ3RoIiwiTWF0aCIsInJhbmRvbSIsImhhbmRsZURyb3AiLCJlIiwicHJldmVudERlZmF1bHQiLCJkYXRhVHJhbnNmZXIiLCJmaWxlcyIsImN1cnJlbnQiLCJjbGljayIsImtleSIsInRhcmdldCIsImNvbG9yIiwibWFyZ2luVG9wIiwibWFwIiwic3RlcCIsImZsZXgiLCJtYXJnaW5MZWZ0IiwibWF4V2lkdGgiLCJ3aWR0aCIsImFuaW1hdGlvbiIsIl9jIl0sImlnbm9yZUxpc3QiOltdLCJzb3VyY2VzIjpbIkRyYXdpbmdVcGxvYWRlci5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdXNlU3RhdGUsIHVzZVJlZiB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IHVwbG9hZFN0ZXBzIH0gZnJvbSAnLi4vLi4vZGF0YS9tb2NrRGF0YSc7XG5pbXBvcnQgeyBkZWxheSB9IGZyb20gJy4uLy4uL3V0aWxzL2Zvcm1hdHRlcnMnO1xuaW1wb3J0IHsgdXBsb2FkRHJhd2luZyB9IGZyb20gJy4uLy4uL3V0aWxzL2FwaSc7XG5pbXBvcnQgeyBzYXZlTGF0ZXN0RHJhd2luZyB9IGZyb20gJy4uLy4uL3V0aWxzL2RyYXdpbmdTZXNzaW9uJztcbmltcG9ydCB7IGV4dHJhY3RDYWRQcmV2aWV3IH0gZnJvbSAnLi4vLi4vdXRpbHMvY2FkUHJldmlldyc7XG5pbXBvcnQgeyBleHRyYWN0Qm9xRnJvbUNhZCB9IGZyb20gJy4uLy4uL3V0aWxzL2JvcUV4dHJhY3Rpb24nO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBEcmF3aW5nVXBsb2FkZXIoeyBvbkNvbXBsZXRlLCBsYWJlbCA9ICdVcGxvYWQgQ29uc3RydWN0aW9uIERyYXdpbmcnLCBzYXZlQXNMYXRlc3QgPSB0cnVlIH0pIHtcbiAgY29uc3QgW2RyYWdnaW5nLCBzZXREcmFnZ2luZ10gPSB1c2VTdGF0ZShmYWxzZSk7XG4gIGNvbnN0IFtwcm9jZXNzaW5nLCBzZXRQcm9jZXNzaW5nXSA9IHVzZVN0YXRlKGZhbHNlKTtcbiAgY29uc3QgW2N1cnJlbnRTdGVwLCBzZXRDdXJyZW50U3RlcF0gPSB1c2VTdGF0ZSgtMSk7XG4gIGNvbnN0IFtmaWxlTmFtZSwgc2V0RmlsZU5hbWVdID0gdXNlU3RhdGUoJycpO1xuICBjb25zdCBpbnB1dFJlZiA9IHVzZVJlZihudWxsKTtcblxuICBjb25zdCBwcm9jZXNzRmlsZSA9IGFzeW5jIChmaWxlKSA9PiB7XG4gICAgaWYgKCFmaWxlKSByZXR1cm47XG4gICAgc2V0RmlsZU5hbWUoZmlsZS5uYW1lKTtcbiAgICBzZXRQcm9jZXNzaW5nKHRydWUpO1xuICAgIHNldEN1cnJlbnRTdGVwKDApO1xuXG4gICAgY29uc3QgW3VwbG9hZFJlc3VsdCwgY2FkUHJldmlld10gPSBhd2FpdCBQcm9taXNlLmFsbChbXG4gICAgICB1cGxvYWREcmF3aW5nKGZpbGUpLFxuICAgICAgZXh0cmFjdENhZFByZXZpZXcoZmlsZSksXG4gICAgXSk7XG4gICAgY29uc3QgYm9xRXh0cmFjdGlvbiA9IGV4dHJhY3RCb3FGcm9tQ2FkKGNhZFByZXZpZXcsIGZpbGUubmFtZSk7XG4gICAgY29uc3QgcmVzdWx0ID0geyAuLi51cGxvYWRSZXN1bHQsIC4uLmNhZFByZXZpZXcsIC4uLmJvcUV4dHJhY3Rpb24gfTtcbiAgICBjb25zdCBkcmF3aW5nID0gc2F2ZUFzTGF0ZXN0ID8gc2F2ZUxhdGVzdERyYXdpbmcoZmlsZSwgcmVzdWx0KSA6IG51bGw7XG5cbiAgICBmb3IgKGxldCBpID0gMDsgaSA8IHVwbG9hZFN0ZXBzLmxlbmd0aDsgaSsrKSB7XG4gICAgICBzZXRDdXJyZW50U3RlcChpKTtcbiAgICAgIGF3YWl0IGRlbGF5KDkwMCArIE1hdGgucmFuZG9tKCkgKiA2MDApO1xuICAgIH1cblxuICAgIHNldFByb2Nlc3NpbmcoZmFsc2UpO1xuICAgIG9uQ29tcGxldGU/LihmaWxlLCByZXN1bHQsIGRyYXdpbmcpO1xuICB9O1xuXG4gIGNvbnN0IGhhbmRsZURyb3AgPSAoZSkgPT4ge1xuICAgIGUucHJldmVudERlZmF1bHQoKTtcbiAgICBzZXREcmFnZ2luZyhmYWxzZSk7XG4gICAgcHJvY2Vzc0ZpbGUoZS5kYXRhVHJhbnNmZXIuZmlsZXNbMF0pO1xuICB9O1xuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9XCJkcmF3aW5nLXVwbG9hZGVyXCI+XG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17YHVwbG9hZC16b25lICR7ZHJhZ2dpbmcgPyAnZHJhZ292ZXInIDogJyd9YH1cbiAgICAgICAgb25EcmFnT3Zlcj17KGUpID0+IHsgZS5wcmV2ZW50RGVmYXVsdCgpOyBzZXREcmFnZ2luZyh0cnVlKTsgfX1cbiAgICAgICAgb25EcmFnTGVhdmU9eygpID0+IHNldERyYWdnaW5nKGZhbHNlKX1cbiAgICAgICAgb25Ecm9wPXtoYW5kbGVEcm9wfVxuICAgICAgICBvbkNsaWNrPXsoKSA9PiAhcHJvY2Vzc2luZyAmJiBpbnB1dFJlZi5jdXJyZW50Py5jbGljaygpfVxuICAgICAgICByb2xlPVwiYnV0dG9uXCJcbiAgICAgICAgdGFiSW5kZXg9ezB9XG4gICAgICAgIG9uS2V5RG93bj17KGUpID0+IGUua2V5ID09PSAnRW50ZXInICYmIGlucHV0UmVmLmN1cnJlbnQ/LmNsaWNrKCl9XG4gICAgICA+XG4gICAgICAgIDxpbnB1dFxuICAgICAgICAgIHJlZj17aW5wdXRSZWZ9XG4gICAgICAgICAgdHlwZT1cImZpbGVcIlxuICAgICAgICAgIGFjY2VwdD1cIi5wZGYsLnBuZywuanBnLC5qcGVnLC5kd2csLmR4ZlwiXG4gICAgICAgICAgaGlkZGVuXG4gICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBwcm9jZXNzRmlsZShlLnRhcmdldC5maWxlc1swXSl9XG4gICAgICAgIC8+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidXBsb2FkLXpvbmUtaWNvblwiPkRXRzwvZGl2PlxuICAgICAgICA8aDM+e2xhYmVsfTwvaDM+XG4gICAgICAgIDxwIHN0eWxlPXt7IGNvbG9yOiAndmFyKC0tdGV4dC1zZWNvbmRhcnkpJywgbWFyZ2luVG9wOiAnMC41cmVtJyB9fT5cbiAgICAgICAgICBEcmFnIGFuZCBkcm9wIFBERiwgaW1hZ2UsIERXRywgb3IgRFhGIGRyYXdpbmdzLCBvciBjbGljayB0byBicm93c2UuXG4gICAgICAgIDwvcD5cbiAgICAgICAge2ZpbGVOYW1lICYmIDxwIHN0eWxlPXt7IG1hcmdpblRvcDogJzAuNzVyZW0nLCBjb2xvcjogJ3ZhcigtLWFjY2VudC1jeWFuKScgfX0+RmlsZSBzZWxlY3RlZDoge2ZpbGVOYW1lfTwvcD59XG4gICAgICA8L2Rpdj5cblxuICAgICAge3Byb2Nlc3NpbmcgJiYgKFxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInVwbG9hZC1zdGVwc1wiPlxuICAgICAgICAgIHt1cGxvYWRTdGVwcy5tYXAoKHN0ZXAsIGkpID0+IChcbiAgICAgICAgICAgIDxkaXZcbiAgICAgICAgICAgICAga2V5PXtzdGVwfVxuICAgICAgICAgICAgICBjbGFzc05hbWU9e2B1cGxvYWQtc3RlcCAke2kgPCBjdXJyZW50U3RlcCA/ICdkb25lJyA6ICcnfSAke2kgPT09IGN1cnJlbnRTdGVwID8gJ2FjdGl2ZScgOiAnJ31gfVxuICAgICAgICAgICAgPlxuICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ1cGxvYWQtc3RlcC1pbmRpY2F0b3JcIj5cbiAgICAgICAgICAgICAgICB7aSA8IGN1cnJlbnRTdGVwID8gJ09LJyA6IGkgKyAxfVxuICAgICAgICAgICAgICA8L3NwYW4+XG4gICAgICAgICAgICAgIDxzcGFuPntzdGVwfTwvc3Bhbj5cbiAgICAgICAgICAgICAge2kgPT09IGN1cnJlbnRTdGVwICYmIChcbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInByb2dyZXNzLWJhclwiIHN0eWxlPXt7IGZsZXg6IDEsIG1hcmdpbkxlZnQ6ICdhdXRvJywgbWF4V2lkdGg6IDEyMCB9fT5cbiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicHJvZ3Jlc3MtYmFyLWZpbGxcIiBzdHlsZT17eyB3aWR0aDogJzEwMCUnLCBhbmltYXRpb246ICdzaGltbWVyIDFzIGluZmluaXRlJyB9fSAvPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICApfVxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgKSl9XG4gICAgICAgIDwvZGl2PlxuICAgICAgKX1cbiAgICA8L2Rpdj5cbiAgKTtcbn1cbiJdLCJmaWxlIjoiRDovUVMvZnJvbnRlbmQvc3JjL2NvbXBvbmVudHMvdXBsb2FkL0RyYXdpbmdVcGxvYWRlci5qc3gifQ==

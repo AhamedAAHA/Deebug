@@ -1,0 +1,269 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/SustainabilityPage.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=53eb6c5c"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("D:/QS/frontend/src/pages/SustainabilityPage.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import { sustainabilityData } from "/src/data/mockData.js";
+export default function SustainabilityPage() {
+  const d = sustainabilityData;
+  return /* @__PURE__ */ jsxDEV("div", { className: "page", children: [
+    /* @__PURE__ */ jsxDEV("header", { className: "page-header", children: [
+      /* @__PURE__ */ jsxDEV("h1", { className: "page-title", children: "Sustainability Calculator" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+        lineNumber: 28,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("p", { className: "page-subtitle", children: "Environmental impact analysis and eco-friendly alternatives." }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+        lineNumber: 29,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+      lineNumber: 27,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "grid-4", style: { marginBottom: "1.5rem" }, children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "glass-card stat-card", style: { textAlign: "center" }, children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-icon", style: { margin: "0 auto 0.6rem" }, children: "CO2" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 34,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-value", children: d.carbonFootprint }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 35,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-unit", children: d.carbonUnit }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 36,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-title", children: "Carbon Footprint" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 37,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+        lineNumber: 33,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "glass-card stat-card", style: { textAlign: "center" }, children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-icon", style: { margin: "0 auto 0.6rem" }, children: "WST" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 40,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-value", children: [
+          d.materialWastage,
+          "%"
+        ] }, void 0, true, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 41,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-title", children: "Material Wastage" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 42,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+        lineNumber: 39,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "glass-card stat-card", style: { textAlign: "center" }, children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-icon", style: { margin: "0 auto 0.6rem" }, children: "H2O" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 45,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-value", children: d.waterUsage }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 46,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-unit", children: d.waterUnit }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 47,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-title", children: "Water Usage" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 48,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+        lineNumber: 44,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "glass-card stat-card", style: { textAlign: "center" }, children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-icon", style: { margin: "0 auto 0.6rem" }, children: "ECO" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 51,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-value", children: [
+          d.score,
+          "/100"
+        ] }, void 0, true, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 52,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "stat-card-title", children: "Sustainability Score" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 53,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+        lineNumber: 50,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+      lineNumber: 32,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "glass-card", style: { padding: "1.25rem", marginBottom: "1.5rem" }, children: [
+      /* @__PURE__ */ jsxDEV("h3", { style: { marginBottom: "1rem" }, children: "Impact Breakdown" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+        lineNumber: 58,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { style: { display: "flex", flexDirection: "column", gap: "1rem" }, children: [
+        ["Embodied Carbon", 58, "#7166ee"],
+        ["Transport Emissions", 22, "#5b8dff"],
+        ["Construction Waste", 12, "#d97706"],
+        ["Water Consumption", 8, "#65d8d0"]
+      ].map(
+        ([label, pct, color]) => /* @__PURE__ */ jsxDEV("div", { children: [
+          /* @__PURE__ */ jsxDEV("div", { style: { display: "flex", justifyContent: "space-between", marginBottom: "0.35rem", fontSize: "0.85rem" }, children: [
+            /* @__PURE__ */ jsxDEV("span", { children: label }, void 0, false, {
+              fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+              lineNumber: 68,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("span", { style: { fontFamily: "var(--font-mono)" }, children: [
+              pct,
+              "%"
+            ] }, void 0, true, {
+              fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+              lineNumber: 69,
+              columnNumber: 17
+            }, this)
+          ] }, void 0, true, {
+            fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+            lineNumber: 67,
+            columnNumber: 15
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { className: "progress-bar", children: /* @__PURE__ */ jsxDEV("div", { className: "progress-bar-fill", style: { width: `${pct}%`, background: color } }, void 0, false, {
+            fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+            lineNumber: 72,
+            columnNumber: 17
+          }, this) }, void 0, false, {
+            fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+            lineNumber: 71,
+            columnNumber: 15
+          }, this)
+        ] }, label, true, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 66,
+          columnNumber: 11
+        }, this)
+      ) }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+        lineNumber: 59,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+      lineNumber: 57,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "glass-card", style: { padding: "1.25rem" }, children: [
+      /* @__PURE__ */ jsxDEV("h3", { style: { marginBottom: "1rem" }, children: "Eco-Friendly Alternatives" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+        lineNumber: 80,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "grid-2", children: d.alternatives.map(
+        (alt) => /* @__PURE__ */ jsxDEV("div", { style: { padding: "1rem", background: "rgba(255,255,255,0.055)", borderRadius: 16, border: "1px solid rgba(34,197,94,0.16)" }, children: [
+          /* @__PURE__ */ jsxDEV("div", { style: { fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "0.25rem" }, children: "Replace" }, void 0, false, {
+            fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+            lineNumber: 84,
+            columnNumber: 15
+          }, this),
+          /* @__PURE__ */ jsxDEV("strong", { children: alt.current }, void 0, false, {
+            fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+            lineNumber: 85,
+            columnNumber: 15
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { style: { margin: "0.5rem 0", color: "var(--accent-cyan)" }, children: [
+            "Use ",
+            alt.alternative
+          ] }, void 0, true, {
+            fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+            lineNumber: 86,
+            columnNumber: 15
+          }, this),
+          /* @__PURE__ */ jsxDEV("span", { className: "badge badge-success", children: alt.saving }, void 0, false, {
+            fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+            lineNumber: 87,
+            columnNumber: 15
+          }, this)
+        ] }, alt.current, true, {
+          fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+          lineNumber: 83,
+          columnNumber: 11
+        }, this)
+      ) }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+        lineNumber: 81,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+      lineNumber: 79,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/pages/SustainabilityPage.jsx",
+    lineNumber: 26,
+    columnNumber: 5
+  }, this);
+}
+_c = SustainabilityPage;
+var _c;
+$RefreshReg$(_c, "SustainabilityPage");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("D:/QS/frontend/src/pages/SustainabilityPage.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("D:/QS/frontend/src/pages/SustainabilityPage.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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QSxhQVNBO0FBQUEsU0FYRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBWUE7QUFBQSxPQWpFRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBa0VBO0FBRUo7QUFBQ0csS0F4RXVCL0I7QUFBa0IsSUFBQStCO0FBQUEsYUFBQUEsSUFBQSIsIm5hbWVzIjpbInN1c3RhaW5hYmlsaXR5RGF0YSIsIlN1c3RhaW5hYmlsaXR5UGFnZSIsImQiLCJtYXJnaW5Cb3R0b20iLCJ0ZXh0QWxpZ24iLCJtYXJnaW4iLCJjYXJib25Gb290cHJpbnQiLCJjYXJib25Vbml0IiwibWF0ZXJpYWxXYXN0YWdlIiwid2F0ZXJVc2FnZSIsIndhdGVyVW5pdCIsInNjb3JlIiwicGFkZGluZyIsImRpc3BsYXkiLCJmbGV4RGlyZWN0aW9uIiwiZ2FwIiwibWFwIiwibGFiZWwiLCJwY3QiLCJjb2xvciIsImp1c3RpZnlDb250ZW50IiwiZm9udFNpemUiLCJmb250RmFtaWx5Iiwid2lkdGgiLCJiYWNrZ3JvdW5kIiwiYWx0ZXJuYXRpdmVzIiwiYWx0IiwiYm9yZGVyUmFkaXVzIiwiYm9yZGVyIiwiY3VycmVudCIsImFsdGVybmF0aXZlIiwic2F2aW5nIiwiX2MiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiU3VzdGFpbmFiaWxpdHlQYWdlLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBzdXN0YWluYWJpbGl0eURhdGEgfSBmcm9tICcuLi9kYXRhL21vY2tEYXRhJztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gU3VzdGFpbmFiaWxpdHlQYWdlKCkge1xuICBjb25zdCBkID0gc3VzdGFpbmFiaWxpdHlEYXRhO1xuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9XCJwYWdlXCI+XG4gICAgICA8aGVhZGVyIGNsYXNzTmFtZT1cInBhZ2UtaGVhZGVyXCI+XG4gICAgICAgIDxoMSBjbGFzc05hbWU9XCJwYWdlLXRpdGxlXCI+U3VzdGFpbmFiaWxpdHkgQ2FsY3VsYXRvcjwvaDE+XG4gICAgICAgIDxwIGNsYXNzTmFtZT1cInBhZ2Utc3VidGl0bGVcIj5FbnZpcm9ubWVudGFsIGltcGFjdCBhbmFseXNpcyBhbmQgZWNvLWZyaWVuZGx5IGFsdGVybmF0aXZlcy48L3A+XG4gICAgICA8L2hlYWRlcj5cblxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJncmlkLTRcIiBzdHlsZT17eyBtYXJnaW5Cb3R0b206ICcxLjVyZW0nIH19PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImdsYXNzLWNhcmQgc3RhdC1jYXJkXCIgc3R5bGU9e3sgdGV4dEFsaWduOiAnY2VudGVyJyB9fT5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInN0YXQtY2FyZC1pY29uXCIgc3R5bGU9e3sgbWFyZ2luOiAnMCBhdXRvIDAuNnJlbScgfX0+Q08yPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzdGF0LWNhcmQtdmFsdWVcIj57ZC5jYXJib25Gb290cHJpbnR9PC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzdGF0LWNhcmQtdW5pdFwiPntkLmNhcmJvblVuaXR9PC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzdGF0LWNhcmQtdGl0bGVcIj5DYXJib24gRm9vdHByaW50PC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImdsYXNzLWNhcmQgc3RhdC1jYXJkXCIgc3R5bGU9e3sgdGV4dEFsaWduOiAnY2VudGVyJyB9fT5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInN0YXQtY2FyZC1pY29uXCIgc3R5bGU9e3sgbWFyZ2luOiAnMCBhdXRvIDAuNnJlbScgfX0+V1NUPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzdGF0LWNhcmQtdmFsdWVcIj57ZC5tYXRlcmlhbFdhc3RhZ2V9JTwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwic3RhdC1jYXJkLXRpdGxlXCI+TWF0ZXJpYWwgV2FzdGFnZTwvZGl2PlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJnbGFzcy1jYXJkIHN0YXQtY2FyZFwiIHN0eWxlPXt7IHRleHRBbGlnbjogJ2NlbnRlcicgfX0+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzdGF0LWNhcmQtaWNvblwiIHN0eWxlPXt7IG1hcmdpbjogJzAgYXV0byAwLjZyZW0nIH19PkgyTzwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwic3RhdC1jYXJkLXZhbHVlXCI+e2Qud2F0ZXJVc2FnZX08L2Rpdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInN0YXQtY2FyZC11bml0XCI+e2Qud2F0ZXJVbml0fTwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwic3RhdC1jYXJkLXRpdGxlXCI+V2F0ZXIgVXNhZ2U8L2Rpdj5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ2xhc3MtY2FyZCBzdGF0LWNhcmRcIiBzdHlsZT17eyB0ZXh0QWxpZ246ICdjZW50ZXInIH19PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwic3RhdC1jYXJkLWljb25cIiBzdHlsZT17eyBtYXJnaW46ICcwIGF1dG8gMC42cmVtJyB9fT5FQ088L2Rpdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInN0YXQtY2FyZC12YWx1ZVwiPntkLnNjb3JlfS8xMDA8L2Rpdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInN0YXQtY2FyZC10aXRsZVwiPlN1c3RhaW5hYmlsaXR5IFNjb3JlPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ2xhc3MtY2FyZFwiIHN0eWxlPXt7IHBhZGRpbmc6ICcxLjI1cmVtJywgbWFyZ2luQm90dG9tOiAnMS41cmVtJyB9fT5cbiAgICAgICAgPGgzIHN0eWxlPXt7IG1hcmdpbkJvdHRvbTogJzFyZW0nIH19PkltcGFjdCBCcmVha2Rvd248L2gzPlxuICAgICAgICA8ZGl2IHN0eWxlPXt7IGRpc3BsYXk6ICdmbGV4JywgZmxleERpcmVjdGlvbjogJ2NvbHVtbicsIGdhcDogJzFyZW0nIH19PlxuICAgICAgICAgIHtbXG4gICAgICAgICAgICBbJ0VtYm9kaWVkIENhcmJvbicsIDU4LCAnIzcxNjZlZSddLFxuICAgICAgICAgICAgWydUcmFuc3BvcnQgRW1pc3Npb25zJywgMjIsICcjNWI4ZGZmJ10sXG4gICAgICAgICAgICBbJ0NvbnN0cnVjdGlvbiBXYXN0ZScsIDEyLCAnI2Q5NzcwNiddLFxuICAgICAgICAgICAgWydXYXRlciBDb25zdW1wdGlvbicsIDgsICcjNjVkOGQwJ10sXG4gICAgICAgICAgXS5tYXAoKFtsYWJlbCwgcGN0LCBjb2xvcl0pID0+IChcbiAgICAgICAgICAgIDxkaXYga2V5PXtsYWJlbH0+XG4gICAgICAgICAgICAgIDxkaXYgc3R5bGU9e3sgZGlzcGxheTogJ2ZsZXgnLCBqdXN0aWZ5Q29udGVudDogJ3NwYWNlLWJldHdlZW4nLCBtYXJnaW5Cb3R0b206ICcwLjM1cmVtJywgZm9udFNpemU6ICcwLjg1cmVtJyB9fT5cbiAgICAgICAgICAgICAgICA8c3Bhbj57bGFiZWx9PC9zcGFuPlxuICAgICAgICAgICAgICAgIDxzcGFuIHN0eWxlPXt7IGZvbnRGYW1pbHk6ICd2YXIoLS1mb250LW1vbm8pJyB9fT57cGN0fSU8L3NwYW4+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInByb2dyZXNzLWJhclwiPlxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicHJvZ3Jlc3MtYmFyLWZpbGxcIiBzdHlsZT17eyB3aWR0aDogYCR7cGN0fSVgLCBiYWNrZ3JvdW5kOiBjb2xvciB9fSAvPlxuICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICkpfVxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImdsYXNzLWNhcmRcIiBzdHlsZT17eyBwYWRkaW5nOiAnMS4yNXJlbScgfX0+XG4gICAgICAgIDxoMyBzdHlsZT17eyBtYXJnaW5Cb3R0b206ICcxcmVtJyB9fT5FY28tRnJpZW5kbHkgQWx0ZXJuYXRpdmVzPC9oMz5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJncmlkLTJcIj5cbiAgICAgICAgICB7ZC5hbHRlcm5hdGl2ZXMubWFwKChhbHQpID0+IChcbiAgICAgICAgICAgIDxkaXYga2V5PXthbHQuY3VycmVudH0gc3R5bGU9e3sgcGFkZGluZzogJzFyZW0nLCBiYWNrZ3JvdW5kOiAncmdiYSgyNTUsMjU1LDI1NSwwLjA1NSknLCBib3JkZXJSYWRpdXM6IDE2LCBib3JkZXI6ICcxcHggc29saWQgcmdiYSgzNCwxOTcsOTQsMC4xNiknIH19PlxuICAgICAgICAgICAgICA8ZGl2IHN0eWxlPXt7IGZvbnRTaXplOiAnMC43NXJlbScsIGNvbG9yOiAndmFyKC0tdGV4dC1tdXRlZCknLCBtYXJnaW5Cb3R0b206ICcwLjI1cmVtJyB9fT5SZXBsYWNlPC9kaXY+XG4gICAgICAgICAgICAgIDxzdHJvbmc+e2FsdC5jdXJyZW50fTwvc3Ryb25nPlxuICAgICAgICAgICAgICA8ZGl2IHN0eWxlPXt7IG1hcmdpbjogJzAuNXJlbSAwJywgY29sb3I6ICd2YXIoLS1hY2NlbnQtY3lhbiknIH19PlVzZSB7YWx0LmFsdGVybmF0aXZlfTwvZGl2PlxuICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJiYWRnZSBiYWRnZS1zdWNjZXNzXCI+e2FsdC5zYXZpbmd9PC9zcGFuPlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgKSl9XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gICk7XG59XG4iXSwiZmlsZSI6IkQ6L1FTL2Zyb250ZW5kL3NyYy9wYWdlcy9TdXN0YWluYWJpbGl0eVBhZ2UuanN4In0=

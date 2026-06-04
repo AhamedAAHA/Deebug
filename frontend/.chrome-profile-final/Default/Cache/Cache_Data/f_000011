@@ -1,0 +1,265 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/dashboard/DashboardCharts.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=53eb6c5c"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  LineChart,
+  Line,
+  Legend
+} from "/node_modules/.vite/deps/recharts.js?v=53eb6c5c";
+import { costBreakdownChart, materialBarChart, progressChart } from "/src/data/mockData.js";
+import { formatCompactCurrency } from "/src/utils/formatters.js";
+import "/src/styles/components.css?t=1780438674320";
+const tooltipStyle = {
+  background: "rgba(20,26,44,0.96)",
+  color: "#f7f9ff",
+  border: "1px solid rgba(165,177,210,0.16)",
+  borderRadius: 14,
+  boxShadow: "0 18px 44px rgba(0,0,0,0.28)"
+};
+const axisTick = { fill: "#a7afc3", fontSize: 11 };
+const gridStroke = "rgba(165,177,210,0.1)";
+export function CostPieChart() {
+  return /* @__PURE__ */ jsxDEV("div", { className: "chart-container glass-card", children: [
+    /* @__PURE__ */ jsxDEV("h3", { className: "chart-title", children: "Cost Breakdown" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+      lineNumber: 43,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(ResponsiveContainer, { width: "100%", height: 260, children: /* @__PURE__ */ jsxDEV(PieChart, { children: [
+      /* @__PURE__ */ jsxDEV(
+        Pie,
+        {
+          data: costBreakdownChart,
+          cx: "50%",
+          cy: "50%",
+          innerRadius: 55,
+          outerRadius: 90,
+          paddingAngle: 3,
+          dataKey: "value",
+          children: costBreakdownChart.map(
+            (entry) => /* @__PURE__ */ jsxDEV(Cell, { fill: entry.color, stroke: "transparent" }, entry.name, false, {
+              fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+              lineNumber: 56,
+              columnNumber: 13
+            }, this)
+          )
+        },
+        void 0,
+        false,
+        {
+          fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+          lineNumber: 46,
+          columnNumber: 11
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV(Tooltip, { formatter: (v) => formatCompactCurrency(v), contentStyle: tooltipStyle }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 59,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+      lineNumber: 45,
+      columnNumber: 9
+    }, this) }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+      lineNumber: 44,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "chart-legend", children: costBreakdownChart.map(
+      (item) => /* @__PURE__ */ jsxDEV("span", { className: "legend-item", children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "legend-dot", style: { background: item.color } }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+          lineNumber: 65,
+          columnNumber: 13
+        }, this),
+        item.name
+      ] }, item.name, true, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 64,
+        columnNumber: 9
+      }, this)
+    ) }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+      lineNumber: 62,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+    lineNumber: 42,
+    columnNumber: 5
+  }, this);
+}
+_c = CostPieChart;
+export function MaterialBarChart() {
+  return /* @__PURE__ */ jsxDEV("div", { className: "chart-container glass-card", children: [
+    /* @__PURE__ */ jsxDEV("h3", { className: "chart-title", children: "Material Quantities" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+      lineNumber: 77,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(ResponsiveContainer, { width: "100%", height: 260, children: /* @__PURE__ */ jsxDEV(BarChart, { data: materialBarChart, children: [
+      /* @__PURE__ */ jsxDEV(CartesianGrid, { strokeDasharray: "3 3", stroke: gridStroke }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 80,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(XAxis, { dataKey: "material", tick: axisTick }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 81,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(YAxis, { tick: axisTick }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 82,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(Tooltip, { contentStyle: tooltipStyle }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 83,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(Bar, { dataKey: "qty", fill: "url(#barGrad)", radius: [8, 8, 0, 0] }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 84,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV("defs", { children: /* @__PURE__ */ jsxDEV("linearGradient", { id: "barGrad", x1: "0", y1: "0", x2: "0", y2: "1", children: [
+        /* @__PURE__ */ jsxDEV("stop", { offset: "0%", stopColor: "#7166ee" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+          lineNumber: 87,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("stop", { offset: "100%", stopColor: "#65d8d0" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+          lineNumber: 88,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 86,
+        columnNumber: 13
+      }, this) }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 85,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+      lineNumber: 79,
+      columnNumber: 9
+    }, this) }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+      lineNumber: 78,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+    lineNumber: 76,
+    columnNumber: 5
+  }, this);
+}
+_c2 = MaterialBarChart;
+export function ProgressLineChart() {
+  return /* @__PURE__ */ jsxDEV("div", { className: "chart-container glass-card chart-container--wide", children: [
+    /* @__PURE__ */ jsxDEV("h3", { className: "chart-title", children: "Project Progress" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+      lineNumber: 100,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(ResponsiveContainer, { width: "100%", height: 260, children: /* @__PURE__ */ jsxDEV(LineChart, { data: progressChart, children: [
+      /* @__PURE__ */ jsxDEV(CartesianGrid, { strokeDasharray: "3 3", stroke: gridStroke }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 103,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(XAxis, { dataKey: "month", tick: axisTick }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 104,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(YAxis, { tick: axisTick, unit: "%" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 105,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(Tooltip, { contentStyle: tooltipStyle }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 106,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(Legend, {}, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 107,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(Line, { type: "monotone", dataKey: "planned", stroke: "#7166ee", strokeWidth: 2.5, dot: { r: 4 }, name: "Planned %" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 108,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(Line, { type: "monotone", dataKey: "actual", stroke: "#65d8d0", strokeWidth: 2.5, dot: { r: 4 }, name: "Actual %", connectNulls: false }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+        lineNumber: 109,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+      lineNumber: 102,
+      columnNumber: 9
+    }, this) }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+      lineNumber: 101,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx",
+    lineNumber: 99,
+    columnNumber: 5
+  }, this);
+}
+_c3 = ProgressLineChart;
+var _c, _c2, _c3;
+$RefreshReg$(_c, "CostPieChart");
+$RefreshReg$(_c2, "MaterialBarChart");
+$RefreshReg$(_c3, "ProgressLineChart");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("D:/QS/frontend/src/components/dashboard/DashboardCharts.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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LE1BQ3RDLHVCQUFDLFNBQU0sTUFBTUEsVUFBVSxNQUFLLE9BQTVCO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBK0I7QUFBQSxNQUMvQix1QkFBQyxXQUFRLGNBQWNOLGdCQUF2QjtBQUFBO0FBQUE7QUFBQTtBQUFBLGFBQW9DO0FBQUEsTUFDcEMsdUJBQUMsWUFBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLGFBQU87QUFBQSxNQUNQLHVCQUFDLFFBQUssTUFBSyxZQUFXLFNBQVEsV0FBVSxRQUFPLFdBQVUsYUFBYSxLQUFLLEtBQUssRUFBRW9CLEdBQUcsRUFBRSxHQUFHLE1BQUssZUFBL0Y7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUEwRztBQUFBLE1BQzFHLHVCQUFDLFFBQUssTUFBSyxZQUFXLFNBQVEsVUFBUyxRQUFPLFdBQVUsYUFBYSxLQUFLLEtBQUssRUFBRUEsR0FBRyxFQUFFLEdBQUcsTUFBSyxZQUFXLGNBQWMsU0FBdkg7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUE2SDtBQUFBLFNBUC9IO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FRQSxLQVRGO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FVQTtBQUFBLE9BWkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQWFBO0FBRUo7QUFBQ0MsTUFqQmVGO0FBQWlCLElBQUFILElBQUFFLEtBQUFHO0FBQUEsYUFBQUwsSUFBQTtBQUFBLGFBQUFFLEtBQUE7QUFBQSxhQUFBRyxLQUFBIiwibmFtZXMiOlsiUGllQ2hhcnQiLCJQaWUiLCJDZWxsIiwiUmVzcG9uc2l2ZUNvbnRhaW5lciIsIlRvb2x0aXAiLCJCYXJDaGFydCIsIkJhciIsIlhBeGlzIiwiWUF4aXMiLCJDYXJ0ZXNpYW5HcmlkIiwiTGluZUNoYXJ0IiwiTGluZSIsIkxlZ2VuZCIsImNvc3RCcmVha2Rvd25DaGFydCIsIm1hdGVyaWFsQmFyQ2hhcnQiLCJwcm9ncmVzc0NoYXJ0IiwiZm9ybWF0Q29tcGFjdEN1cnJlbmN5IiwidG9vbHRpcFN0eWxlIiwiYmFja2dyb3VuZCIsImNvbG9yIiwiYm9yZGVyIiwiYm9yZGVyUmFkaXVzIiwiYm94U2hhZG93IiwiYXhpc1RpY2siLCJmaWxsIiwiZm9udFNpemUiLCJncmlkU3Ryb2tlIiwiQ29zdFBpZUNoYXJ0IiwibWFwIiwiZW50cnkiLCJuYW1lIiwidiIsIml0ZW0iLCJfYyIsIk1hdGVyaWFsQmFyQ2hhcnQiLCJfYzIiLCJQcm9ncmVzc0xpbmVDaGFydCIsInIiLCJfYzMiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiRGFzaGJvYXJkQ2hhcnRzLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge1xuICBQaWVDaGFydCwgUGllLCBDZWxsLCBSZXNwb25zaXZlQ29udGFpbmVyLCBUb29sdGlwLFxuICBCYXJDaGFydCwgQmFyLCBYQXhpcywgWUF4aXMsIENhcnRlc2lhbkdyaWQsXG4gIExpbmVDaGFydCwgTGluZSwgTGVnZW5kLFxufSBmcm9tICdyZWNoYXJ0cyc7XG5pbXBvcnQgeyBjb3N0QnJlYWtkb3duQ2hhcnQsIG1hdGVyaWFsQmFyQ2hhcnQsIHByb2dyZXNzQ2hhcnQgfSBmcm9tICcuLi8uLi9kYXRhL21vY2tEYXRhJztcbmltcG9ydCB7IGZvcm1hdENvbXBhY3RDdXJyZW5jeSB9IGZyb20gJy4uLy4uL3V0aWxzL2Zvcm1hdHRlcnMnO1xuaW1wb3J0ICcuLi8uLi9zdHlsZXMvY29tcG9uZW50cy5jc3MnO1xuXG5jb25zdCB0b29sdGlwU3R5bGUgPSB7XG4gIGJhY2tncm91bmQ6ICdyZ2JhKDIwLDI2LDQ0LDAuOTYpJyxcbiAgY29sb3I6ICcjZjdmOWZmJyxcbiAgYm9yZGVyOiAnMXB4IHNvbGlkIHJnYmEoMTY1LDE3NywyMTAsMC4xNiknLFxuICBib3JkZXJSYWRpdXM6IDE0LFxuICBib3hTaGFkb3c6ICcwIDE4cHggNDRweCByZ2JhKDAsMCwwLDAuMjgpJyxcbn07XG5cbmNvbnN0IGF4aXNUaWNrID0geyBmaWxsOiAnI2E3YWZjMycsIGZvbnRTaXplOiAxMSB9O1xuY29uc3QgZ3JpZFN0cm9rZSA9ICdyZ2JhKDE2NSwxNzcsMjEwLDAuMSknO1xuXG5leHBvcnQgZnVuY3Rpb24gQ29zdFBpZUNoYXJ0KCkge1xuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwiY2hhcnQtY29udGFpbmVyIGdsYXNzLWNhcmRcIj5cbiAgICAgIDxoMyBjbGFzc05hbWU9XCJjaGFydC10aXRsZVwiPkNvc3QgQnJlYWtkb3duPC9oMz5cbiAgICAgIDxSZXNwb25zaXZlQ29udGFpbmVyIHdpZHRoPVwiMTAwJVwiIGhlaWdodD17MjYwfT5cbiAgICAgICAgPFBpZUNoYXJ0PlxuICAgICAgICAgIDxQaWVcbiAgICAgICAgICAgIGRhdGE9e2Nvc3RCcmVha2Rvd25DaGFydH1cbiAgICAgICAgICAgIGN4PVwiNTAlXCJcbiAgICAgICAgICAgIGN5PVwiNTAlXCJcbiAgICAgICAgICAgIGlubmVyUmFkaXVzPXs1NX1cbiAgICAgICAgICAgIG91dGVyUmFkaXVzPXs5MH1cbiAgICAgICAgICAgIHBhZGRpbmdBbmdsZT17M31cbiAgICAgICAgICAgIGRhdGFLZXk9XCJ2YWx1ZVwiXG4gICAgICAgICAgPlxuICAgICAgICAgICAge2Nvc3RCcmVha2Rvd25DaGFydC5tYXAoKGVudHJ5KSA9PiAoXG4gICAgICAgICAgICAgIDxDZWxsIGtleT17ZW50cnkubmFtZX0gZmlsbD17ZW50cnkuY29sb3J9IHN0cm9rZT1cInRyYW5zcGFyZW50XCIgLz5cbiAgICAgICAgICAgICkpfVxuICAgICAgICAgIDwvUGllPlxuICAgICAgICAgIDxUb29sdGlwIGZvcm1hdHRlcj17KHYpID0+IGZvcm1hdENvbXBhY3RDdXJyZW5jeSh2KX0gY29udGVudFN0eWxlPXt0b29sdGlwU3R5bGV9IC8+XG4gICAgICAgIDwvUGllQ2hhcnQ+XG4gICAgICA8L1Jlc3BvbnNpdmVDb250YWluZXI+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImNoYXJ0LWxlZ2VuZFwiPlxuICAgICAgICB7Y29zdEJyZWFrZG93bkNoYXJ0Lm1hcCgoaXRlbSkgPT4gKFxuICAgICAgICAgIDxzcGFuIGtleT17aXRlbS5uYW1lfSBjbGFzc05hbWU9XCJsZWdlbmQtaXRlbVwiPlxuICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwibGVnZW5kLWRvdFwiIHN0eWxlPXt7IGJhY2tncm91bmQ6IGl0ZW0uY29sb3IgfX0gLz5cbiAgICAgICAgICAgIHtpdGVtLm5hbWV9XG4gICAgICAgICAgPC9zcGFuPlxuICAgICAgICApKX1cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICApO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gTWF0ZXJpYWxCYXJDaGFydCgpIHtcbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT1cImNoYXJ0LWNvbnRhaW5lciBnbGFzcy1jYXJkXCI+XG4gICAgICA8aDMgY2xhc3NOYW1lPVwiY2hhcnQtdGl0bGVcIj5NYXRlcmlhbCBRdWFudGl0aWVzPC9oMz5cbiAgICAgIDxSZXNwb25zaXZlQ29udGFpbmVyIHdpZHRoPVwiMTAwJVwiIGhlaWdodD17MjYwfT5cbiAgICAgICAgPEJhckNoYXJ0IGRhdGE9e21hdGVyaWFsQmFyQ2hhcnR9PlxuICAgICAgICAgIDxDYXJ0ZXNpYW5HcmlkIHN0cm9rZURhc2hhcnJheT1cIjMgM1wiIHN0cm9rZT17Z3JpZFN0cm9rZX0gLz5cbiAgICAgICAgICA8WEF4aXMgZGF0YUtleT1cIm1hdGVyaWFsXCIgdGljaz17YXhpc1RpY2t9IC8+XG4gICAgICAgICAgPFlBeGlzIHRpY2s9e2F4aXNUaWNrfSAvPlxuICAgICAgICAgIDxUb29sdGlwIGNvbnRlbnRTdHlsZT17dG9vbHRpcFN0eWxlfSAvPlxuICAgICAgICAgIDxCYXIgZGF0YUtleT1cInF0eVwiIGZpbGw9XCJ1cmwoI2JhckdyYWQpXCIgcmFkaXVzPXtbOCwgOCwgMCwgMF19IC8+XG4gICAgICAgICAgPGRlZnM+XG4gICAgICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9XCJiYXJHcmFkXCIgeDE9XCIwXCIgeTE9XCIwXCIgeDI9XCIwXCIgeTI9XCIxXCI+XG4gICAgICAgICAgICAgIDxzdG9wIG9mZnNldD1cIjAlXCIgc3RvcENvbG9yPVwiIzcxNjZlZVwiIC8+XG4gICAgICAgICAgICAgIDxzdG9wIG9mZnNldD1cIjEwMCVcIiBzdG9wQ29sb3I9XCIjNjVkOGQwXCIgLz5cbiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+XG4gICAgICAgICAgPC9kZWZzPlxuICAgICAgICA8L0JhckNoYXJ0PlxuICAgICAgPC9SZXNwb25zaXZlQ29udGFpbmVyPlxuICAgIDwvZGl2PlxuICApO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gUHJvZ3Jlc3NMaW5lQ2hhcnQoKSB7XG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9XCJjaGFydC1jb250YWluZXIgZ2xhc3MtY2FyZCBjaGFydC1jb250YWluZXItLXdpZGVcIj5cbiAgICAgIDxoMyBjbGFzc05hbWU9XCJjaGFydC10aXRsZVwiPlByb2plY3QgUHJvZ3Jlc3M8L2gzPlxuICAgICAgPFJlc3BvbnNpdmVDb250YWluZXIgd2lkdGg9XCIxMDAlXCIgaGVpZ2h0PXsyNjB9PlxuICAgICAgICA8TGluZUNoYXJ0IGRhdGE9e3Byb2dyZXNzQ2hhcnR9PlxuICAgICAgICAgIDxDYXJ0ZXNpYW5HcmlkIHN0cm9rZURhc2hhcnJheT1cIjMgM1wiIHN0cm9rZT17Z3JpZFN0cm9rZX0gLz5cbiAgICAgICAgICA8WEF4aXMgZGF0YUtleT1cIm1vbnRoXCIgdGljaz17YXhpc1RpY2t9IC8+XG4gICAgICAgICAgPFlBeGlzIHRpY2s9e2F4aXNUaWNrfSB1bml0PVwiJVwiIC8+XG4gICAgICAgICAgPFRvb2x0aXAgY29udGVudFN0eWxlPXt0b29sdGlwU3R5bGV9IC8+XG4gICAgICAgICAgPExlZ2VuZCAvPlxuICAgICAgICAgIDxMaW5lIHR5cGU9XCJtb25vdG9uZVwiIGRhdGFLZXk9XCJwbGFubmVkXCIgc3Ryb2tlPVwiIzcxNjZlZVwiIHN0cm9rZVdpZHRoPXsyLjV9IGRvdD17eyByOiA0IH19IG5hbWU9XCJQbGFubmVkICVcIiAvPlxuICAgICAgICAgIDxMaW5lIHR5cGU9XCJtb25vdG9uZVwiIGRhdGFLZXk9XCJhY3R1YWxcIiBzdHJva2U9XCIjNjVkOGQwXCIgc3Ryb2tlV2lkdGg9ezIuNX0gZG90PXt7IHI6IDQgfX0gbmFtZT1cIkFjdHVhbCAlXCIgY29ubmVjdE51bGxzPXtmYWxzZX0gLz5cbiAgICAgICAgPC9MaW5lQ2hhcnQ+XG4gICAgICA8L1Jlc3BvbnNpdmVDb250YWluZXI+XG4gICAgPC9kaXY+XG4gICk7XG59XG4iXSwiZmlsZSI6IkQ6L1FTL2Zyb250ZW5kL3NyYy9jb21wb25lbnRzL2Rhc2hib2FyZC9EYXNoYm9hcmRDaGFydHMuanN4In0=

@@ -1,0 +1,344 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/three/bim/BIMToolbar.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=53eb6c5c"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import { CONSTRUCTION_STAGES } from "/src/utils/bimClassification.js";
+const CAMERAS = [
+  { id: "orbit", label: "Orbit" },
+  { id: "walkthrough", label: "Walk" },
+  { id: "fps", label: "FPS" },
+  { id: "drone", label: "Drone" },
+  { id: "floorplan", label: "Plan" },
+  { id: "isometric", label: "ISO" }
+];
+const DISPLAY_MODES = [
+  { id: "architectural", label: "Architectural" },
+  { id: "structural", label: "Structural", discipline: "structural" },
+  { id: "mep", label: "MEP", discipline: "mep" },
+  { id: "wireframe", label: "Wireframe" },
+  { id: "xray", label: "X-Ray" },
+  { id: "costHeat", label: "Cost Heat" },
+  { id: "progressHeat", label: "Progress Heat" }
+];
+export default function BIMToolbar({ bimModel, state, onChange }) {
+  const floors = bimModel?.floors || [];
+  const toggleFloor = (floorId) => {
+    const next = new Set(state.hiddenFloors || []);
+    if (next.has(floorId)) next.delete(floorId);
+    else
+      next.add(floorId);
+    onChange({ hiddenFloors: next });
+  };
+  const setMode = (mode) => {
+    const m = DISPLAY_MODES.find((d) => d.id === mode);
+    onChange({
+      displayMode: mode === "structural" || mode === "mep" ? "architectural" : mode,
+      bimDiscipline: m?.discipline || "architectural"
+    });
+  };
+  return /* @__PURE__ */ jsxDEV("div", { className: "bim-toolbar", children: [
+    /* @__PURE__ */ jsxDEV("div", { className: "bim-toolbar-group", children: [
+      /* @__PURE__ */ jsxDEV("span", { className: "bim-toolbar-label", children: "Camera" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 62,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "bim-toolbar-btns", children: CAMERAS.map(
+        (c) => /* @__PURE__ */ jsxDEV("button", { type: "button", className: state.cameraMode === c.id ? "active" : "", onClick: () => onChange({ cameraMode: c.id }), children: c.label }, c.id, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 65,
+          columnNumber: 11
+        }, this)
+      ) }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 63,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+      lineNumber: 61,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "bim-toolbar-group", children: [
+      /* @__PURE__ */ jsxDEV("span", { className: "bim-toolbar-label", children: "BIM View" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 73,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "bim-toolbar-btns", children: DISPLAY_MODES.map(
+        (m) => /* @__PURE__ */ jsxDEV(
+          "button",
+          {
+            type: "button",
+            className: state.displayMode === m.id || m.discipline && state.bimDiscipline === m.discipline ? "active" : "",
+            onClick: () => setMode(m.id),
+            children: m.label
+          },
+          m.id,
+          false,
+          {
+            fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+            lineNumber: 76,
+            columnNumber: 11
+          },
+          this
+        )
+      ) }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 74,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+      lineNumber: 72,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "bim-toolbar-group", children: [
+      /* @__PURE__ */ jsxDEV("span", { className: "bim-toolbar-label", children: "Floors" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 89,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "bim-toolbar-btns", children: [
+        /* @__PURE__ */ jsxDEV("button", { type: "button", className: !state.isolatedFloor ? "active" : "", onClick: () => onChange({ isolatedFloor: null }), children: "All" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 91,
+          columnNumber: 11
+        }, this),
+        floors.map(
+          (f) => /* @__PURE__ */ jsxDEV("button", { type: "button", className: state.isolatedFloor === f.id ? "active" : "", onClick: () => onChange({ isolatedFloor: f.id }), children: f.label.split(" ")[0] }, f.id, false, {
+            fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+            lineNumber: 93,
+            columnNumber: 11
+          }, this)
+        ),
+        /* @__PURE__ */ jsxDEV("button", { type: "button", className: state.exploded ? "active" : "", onClick: () => onChange({ exploded: !state.exploded }), children: "Explode" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 97,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 90,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "bim-floor-toggles", children: floors.map(
+        (f) => /* @__PURE__ */ jsxDEV("label", { className: "bim-floor-check", children: [
+          /* @__PURE__ */ jsxDEV("input", { type: "checkbox", checked: !state.hiddenFloors?.has(f.id), onChange: () => toggleFloor(f.id) }, void 0, false, {
+            fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+            lineNumber: 102,
+            columnNumber: 15
+          }, this),
+          f.label
+        ] }, f.id, true, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 101,
+          columnNumber: 11
+        }, this)
+      ) }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 99,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+      lineNumber: 88,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "bim-toolbar-group", children: [
+      /* @__PURE__ */ jsxDEV("span", { className: "bim-toolbar-label", children: "Tools" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 110,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "bim-toolbar-btns", children: [
+        /* @__PURE__ */ jsxDEV("button", { type: "button", className: state.sectionEnabled ? "active" : "", onClick: () => onChange({ sectionEnabled: !state.sectionEnabled }), children: "Section Cut" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 112,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("button", { type: "button", className: state.showLabels ? "active" : "", onClick: () => onChange({ showLabels: !state.showLabels }), children: "QS Labels" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 113,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("button", { type: "button", className: state.showPlanOverlay ? "active" : "", onClick: () => onChange({ showPlanOverlay: !state.showPlanOverlay }), children: "Plan Lines" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 114,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 111,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+      lineNumber: 109,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "bim-toolbar-group bim-toolbar-construction", children: [
+      /* @__PURE__ */ jsxDEV("span", { className: "bim-toolbar-label", children: "Construction" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 119,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(
+        "input",
+        {
+          type: "range",
+          min: 0,
+          max: 100,
+          value: Math.round((state.constructionProgress ?? 1) * 100),
+          onChange: (e) => onChange({ constructionProgress: parseInt(e.target.value, 10) / 100 }),
+          className: "bim-construction-range"
+        },
+        void 0,
+        false,
+        {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 120,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV("div", { className: "bim-construction-stages", children: CONSTRUCTION_STAGES.map(
+        (s) => /* @__PURE__ */ jsxDEV("button", { type: "button", title: s.label, className: (state.constructionProgress ?? 1) >= s.progress ? "done" : "", onClick: () => onChange({ constructionProgress: s.progress }) }, s.id, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 130,
+          columnNumber: 11
+        }, this)
+      ) }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 128,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+      lineNumber: 118,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+    lineNumber: 60,
+    columnNumber: 5
+  }, this);
+}
+_c = BIMToolbar;
+export function BIMInspector({ element, onClose }) {
+  if (!element) {
+    return /* @__PURE__ */ jsxDEV("div", { className: "bim-inspector bim-inspector--empty", children: /* @__PURE__ */ jsxDEV("p", { children: "Select any wall, column, parking bay, stair, or lift in the 3D model." }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+      lineNumber: 142,
+      columnNumber: 9
+    }, this) }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+      lineNumber: 141,
+      columnNumber: 7
+    }, this);
+  }
+  const qs = element.qs || {};
+  const rows = Object.entries(qs).filter(([k]) => k !== "layer");
+  return /* @__PURE__ */ jsxDEV("div", { className: "bim-inspector", children: [
+    /* @__PURE__ */ jsxDEV("div", { className: "bim-inspector-head", children: [
+      /* @__PURE__ */ jsxDEV("div", { children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "bim-inspector-cat", children: element.category }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 154,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("h4", { children: qs.id || element.id }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 155,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "bim-inspector-layer", children: element.layer }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 156,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 153,
+        columnNumber: 9
+      }, this),
+      onClose && /* @__PURE__ */ jsxDEV("button", { type: "button", className: "bim-inspector-close", onClick: onClose, children: "Close" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 158,
+        columnNumber: 21
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+      lineNumber: 152,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("dl", { className: "bim-inspector-dl", children: rows.map(
+      ([key, val]) => /* @__PURE__ */ jsxDEV("div", { children: [
+        /* @__PURE__ */ jsxDEV("dt", { children: key.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase()) }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 163,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("dd", { children: typeof val === "number" && key.includes("cost") ? `LKR ${val.toLocaleString()}` : String(val) }, void 0, false, {
+          fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+          lineNumber: 164,
+          columnNumber: 13
+        }, this)
+      ] }, key, true, {
+        fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+        lineNumber: 162,
+        columnNumber: 9
+      }, this)
+    ) }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+      lineNumber: 160,
+      columnNumber: 7
+    }, this),
+    element.subType && /* @__PURE__ */ jsxDEV("p", { className: "bim-inspector-note", children: [
+      "Type: ",
+      element.subType,
+      " / Floor: ",
+      element.floorId
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+      lineNumber: 168,
+      columnNumber: 27
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx",
+    lineNumber: 151,
+    columnNumber: 5
+  }, this);
+}
+_c2 = BIMInspector;
+var _c, _c2;
+$RefreshReg$(_c, "BIMToolbar");
+$RefreshReg$(_c2, "BIMInspector");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("D:/QS/frontend/src/components/three/bim/BIMToolbar.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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LFlBQVksS0FBSyxFQUFFQSxRQUFRLE1BQU0sQ0FBQ2hCLE1BQU1BLEVBQUVpQixZQUFZLENBQUMsS0FBeEU7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQUEwRTtBQUFBLFFBQzFFLHVCQUFDLFFBQUksaUJBQU9GLFFBQVEsWUFBWUQsSUFBSUksU0FBUyxNQUFNLElBQUksT0FBT0gsSUFBSUksZUFBZSxDQUFDLEtBQUtDLE9BQU9MLEdBQUcsS0FBakc7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQUFtRztBQUFBLFdBRjNGRCxLQUFWO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFHQTtBQUFBLElBQ0QsS0FOSDtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBT0E7QUFBQSxJQUNDVixRQUFRaUIsV0FBVyx1QkFBQyxPQUFFLFdBQVUsc0JBQXFCO0FBQUE7QUFBQSxNQUFPakIsUUFBUWlCO0FBQUFBLE1BQVE7QUFBQSxNQUFXakIsUUFBUW5DO0FBQUFBLFNBQTVFO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FBb0Y7QUFBQSxPQWpCMUc7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQWtCQTtBQUVKO0FBQUNxRCxNQWpDZW5CO0FBQVksSUFBQUQsSUFBQW9CO0FBQUEsYUFBQXBCLElBQUE7QUFBQSxhQUFBb0IsS0FBQSIsIm5hbWVzIjpbIkNPTlNUUlVDVElPTl9TVEFHRVMiLCJDQU1FUkFTIiwiaWQiLCJsYWJlbCIsIkRJU1BMQVlfTU9ERVMiLCJkaXNjaXBsaW5lIiwiQklNVG9vbGJhciIsImJpbU1vZGVsIiwic3RhdGUiLCJvbkNoYW5nZSIsImZsb29ycyIsInRvZ2dsZUZsb29yIiwiZmxvb3JJZCIsIm5leHQiLCJTZXQiLCJoaWRkZW5GbG9vcnMiLCJoYXMiLCJkZWxldGUiLCJhZGQiLCJzZXRNb2RlIiwibW9kZSIsIm0iLCJmaW5kIiwiZCIsImRpc3BsYXlNb2RlIiwiYmltRGlzY2lwbGluZSIsIm1hcCIsImMiLCJjYW1lcmFNb2RlIiwiaXNvbGF0ZWRGbG9vciIsImYiLCJzcGxpdCIsImV4cGxvZGVkIiwic2VjdGlvbkVuYWJsZWQiLCJzaG93TGFiZWxzIiwic2hvd1BsYW5PdmVybGF5IiwiTWF0aCIsInJvdW5kIiwiY29uc3RydWN0aW9uUHJvZ3Jlc3MiLCJlIiwicGFyc2VJbnQiLCJ0YXJnZXQiLCJ2YWx1ZSIsInMiLCJwcm9ncmVzcyIsIl9jIiwiQklNSW5zcGVjdG9yIiwiZWxlbWVudCIsIm9uQ2xvc2UiLCJxcyIsInJvd3MiLCJPYmplY3QiLCJlbnRyaWVzIiwiZmlsdGVyIiwiayIsImNhdGVnb3J5IiwibGF5ZXIiLCJrZXkiLCJ2YWwiLCJyZXBsYWNlIiwidG9VcHBlckNhc2UiLCJpbmNsdWRlcyIsInRvTG9jYWxlU3RyaW5nIiwiU3RyaW5nIiwic3ViVHlwZSIsIl9jMiJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJCSU1Ub29sYmFyLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDT05TVFJVQ1RJT05fU1RBR0VTIH0gZnJvbSAnLi4vLi4vLi4vdXRpbHMvYmltQ2xhc3NpZmljYXRpb24nO1xuXG5jb25zdCBDQU1FUkFTID0gW1xuICB7IGlkOiAnb3JiaXQnLCBsYWJlbDogJ09yYml0JyB9LFxuICB7IGlkOiAnd2Fsa3Rocm91Z2gnLCBsYWJlbDogJ1dhbGsnIH0sXG4gIHsgaWQ6ICdmcHMnLCBsYWJlbDogJ0ZQUycgfSxcbiAgeyBpZDogJ2Ryb25lJywgbGFiZWw6ICdEcm9uZScgfSxcbiAgeyBpZDogJ2Zsb29ycGxhbicsIGxhYmVsOiAnUGxhbicgfSxcbiAgeyBpZDogJ2lzb21ldHJpYycsIGxhYmVsOiAnSVNPJyB9LFxuXTtcblxuY29uc3QgRElTUExBWV9NT0RFUyA9IFtcbiAgeyBpZDogJ2FyY2hpdGVjdHVyYWwnLCBsYWJlbDogJ0FyY2hpdGVjdHVyYWwnIH0sXG4gIHsgaWQ6ICdzdHJ1Y3R1cmFsJywgbGFiZWw6ICdTdHJ1Y3R1cmFsJywgZGlzY2lwbGluZTogJ3N0cnVjdHVyYWwnIH0sXG4gIHsgaWQ6ICdtZXAnLCBsYWJlbDogJ01FUCcsIGRpc2NpcGxpbmU6ICdtZXAnIH0sXG4gIHsgaWQ6ICd3aXJlZnJhbWUnLCBsYWJlbDogJ1dpcmVmcmFtZScgfSxcbiAgeyBpZDogJ3hyYXknLCBsYWJlbDogJ1gtUmF5JyB9LFxuICB7IGlkOiAnY29zdEhlYXQnLCBsYWJlbDogJ0Nvc3QgSGVhdCcgfSxcbiAgeyBpZDogJ3Byb2dyZXNzSGVhdCcsIGxhYmVsOiAnUHJvZ3Jlc3MgSGVhdCcgfSxcbl07XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIEJJTVRvb2xiYXIoeyBiaW1Nb2RlbCwgc3RhdGUsIG9uQ2hhbmdlIH0pIHtcbiAgY29uc3QgZmxvb3JzID0gYmltTW9kZWw/LmZsb29ycyB8fCBbXTtcblxuICBjb25zdCB0b2dnbGVGbG9vciA9IChmbG9vcklkKSA9PiB7XG4gICAgY29uc3QgbmV4dCA9IG5ldyBTZXQoc3RhdGUuaGlkZGVuRmxvb3JzIHx8IFtdKTtcbiAgICBpZiAobmV4dC5oYXMoZmxvb3JJZCkpIG5leHQuZGVsZXRlKGZsb29ySWQpO1xuICAgIGVsc2UgbmV4dC5hZGQoZmxvb3JJZCk7XG4gICAgb25DaGFuZ2UoeyBoaWRkZW5GbG9vcnM6IG5leHQgfSk7XG4gIH07XG5cbiAgY29uc3Qgc2V0TW9kZSA9IChtb2RlKSA9PiB7XG4gICAgY29uc3QgbSA9IERJU1BMQVlfTU9ERVMuZmluZCgoZCkgPT4gZC5pZCA9PT0gbW9kZSk7XG4gICAgb25DaGFuZ2Uoe1xuICAgICAgZGlzcGxheU1vZGU6IG1vZGUgPT09ICdzdHJ1Y3R1cmFsJyB8fCBtb2RlID09PSAnbWVwJyA/ICdhcmNoaXRlY3R1cmFsJyA6IG1vZGUsXG4gICAgICBiaW1EaXNjaXBsaW5lOiBtPy5kaXNjaXBsaW5lIHx8ICdhcmNoaXRlY3R1cmFsJyxcbiAgICB9KTtcbiAgfTtcblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwiYmltLXRvb2xiYXJcIj5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmltLXRvb2xiYXItZ3JvdXBcIj5cbiAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwiYmltLXRvb2xiYXItbGFiZWxcIj5DYW1lcmE8L3NwYW4+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmltLXRvb2xiYXItYnRuc1wiPlxuICAgICAgICAgIHtDQU1FUkFTLm1hcCgoYykgPT4gKFxuICAgICAgICAgICAgPGJ1dHRvbiBrZXk9e2MuaWR9IHR5cGU9XCJidXR0b25cIiBjbGFzc05hbWU9e3N0YXRlLmNhbWVyYU1vZGUgPT09IGMuaWQgPyAnYWN0aXZlJyA6ICcnfSBvbkNsaWNrPXsoKSA9PiBvbkNoYW5nZSh7IGNhbWVyYU1vZGU6IGMuaWQgfSl9PlxuICAgICAgICAgICAgICB7Yy5sYWJlbH1cbiAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgICkpfVxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImJpbS10b29sYmFyLWdyb3VwXCI+XG4gICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cImJpbS10b29sYmFyLWxhYmVsXCI+QklNIFZpZXc8L3NwYW4+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmltLXRvb2xiYXItYnRuc1wiPlxuICAgICAgICAgIHtESVNQTEFZX01PREVTLm1hcCgobSkgPT4gKFxuICAgICAgICAgICAgPGJ1dHRvblxuICAgICAgICAgICAgICBrZXk9e20uaWR9XG4gICAgICAgICAgICAgIHR5cGU9XCJidXR0b25cIlxuICAgICAgICAgICAgICBjbGFzc05hbWU9e3N0YXRlLmRpc3BsYXlNb2RlID09PSBtLmlkIHx8IChtLmRpc2NpcGxpbmUgJiYgc3RhdGUuYmltRGlzY2lwbGluZSA9PT0gbS5kaXNjaXBsaW5lKSA/ICdhY3RpdmUnIDogJyd9XG4gICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHNldE1vZGUobS5pZCl9XG4gICAgICAgICAgICA+XG4gICAgICAgICAgICAgIHttLmxhYmVsfVxuICAgICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICAgKSl9XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmltLXRvb2xiYXItZ3JvdXBcIj5cbiAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwiYmltLXRvb2xiYXItbGFiZWxcIj5GbG9vcnM8L3NwYW4+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmltLXRvb2xiYXItYnRuc1wiPlxuICAgICAgICAgIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzTmFtZT17IXN0YXRlLmlzb2xhdGVkRmxvb3IgPyAnYWN0aXZlJyA6ICcnfSBvbkNsaWNrPXsoKSA9PiBvbkNoYW5nZSh7IGlzb2xhdGVkRmxvb3I6IG51bGwgfSl9PkFsbDwvYnV0dG9uPlxuICAgICAgICAgIHtmbG9vcnMubWFwKChmKSA9PiAoXG4gICAgICAgICAgICA8YnV0dG9uIGtleT17Zi5pZH0gdHlwZT1cImJ1dHRvblwiIGNsYXNzTmFtZT17c3RhdGUuaXNvbGF0ZWRGbG9vciA9PT0gZi5pZCA/ICdhY3RpdmUnIDogJyd9IG9uQ2xpY2s9eygpID0+IG9uQ2hhbmdlKHsgaXNvbGF0ZWRGbG9vcjogZi5pZCB9KX0+XG4gICAgICAgICAgICAgIHtmLmxhYmVsLnNwbGl0KCcgJylbMF19XG4gICAgICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgICApKX1cbiAgICAgICAgICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzc05hbWU9e3N0YXRlLmV4cGxvZGVkID8gJ2FjdGl2ZScgOiAnJ30gb25DbGljaz17KCkgPT4gb25DaGFuZ2UoeyBleHBsb2RlZDogIXN0YXRlLmV4cGxvZGVkIH0pfT5FeHBsb2RlPC9idXR0b24+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImJpbS1mbG9vci10b2dnbGVzXCI+XG4gICAgICAgICAge2Zsb29ycy5tYXAoKGYpID0+IChcbiAgICAgICAgICAgIDxsYWJlbCBrZXk9e2YuaWR9IGNsYXNzTmFtZT1cImJpbS1mbG9vci1jaGVja1wiPlxuICAgICAgICAgICAgICA8aW5wdXQgdHlwZT1cImNoZWNrYm94XCIgY2hlY2tlZD17IXN0YXRlLmhpZGRlbkZsb29ycz8uaGFzKGYuaWQpfSBvbkNoYW5nZT17KCkgPT4gdG9nZ2xlRmxvb3IoZi5pZCl9IC8+XG4gICAgICAgICAgICAgIHtmLmxhYmVsfVxuICAgICAgICAgICAgPC9sYWJlbD5cbiAgICAgICAgICApKX1cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cblxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJiaW0tdG9vbGJhci1ncm91cFwiPlxuICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJiaW0tdG9vbGJhci1sYWJlbFwiPlRvb2xzPC9zcGFuPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImJpbS10b29sYmFyLWJ0bnNcIj5cbiAgICAgICAgICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzc05hbWU9e3N0YXRlLnNlY3Rpb25FbmFibGVkID8gJ2FjdGl2ZScgOiAnJ30gb25DbGljaz17KCkgPT4gb25DaGFuZ2UoeyBzZWN0aW9uRW5hYmxlZDogIXN0YXRlLnNlY3Rpb25FbmFibGVkIH0pfT5TZWN0aW9uIEN1dDwvYnV0dG9uPlxuICAgICAgICAgIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzTmFtZT17c3RhdGUuc2hvd0xhYmVscyA/ICdhY3RpdmUnIDogJyd9IG9uQ2xpY2s9eygpID0+IG9uQ2hhbmdlKHsgc2hvd0xhYmVsczogIXN0YXRlLnNob3dMYWJlbHMgfSl9PlFTIExhYmVsczwvYnV0dG9uPlxuICAgICAgICAgIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzTmFtZT17c3RhdGUuc2hvd1BsYW5PdmVybGF5ID8gJ2FjdGl2ZScgOiAnJ30gb25DbGljaz17KCkgPT4gb25DaGFuZ2UoeyBzaG93UGxhbk92ZXJsYXk6ICFzdGF0ZS5zaG93UGxhbk92ZXJsYXkgfSl9PlBsYW4gTGluZXM8L2J1dHRvbj5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cblxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJiaW0tdG9vbGJhci1ncm91cCBiaW0tdG9vbGJhci1jb25zdHJ1Y3Rpb25cIj5cbiAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwiYmltLXRvb2xiYXItbGFiZWxcIj5Db25zdHJ1Y3Rpb248L3NwYW4+XG4gICAgICAgIDxpbnB1dFxuICAgICAgICAgIHR5cGU9XCJyYW5nZVwiXG4gICAgICAgICAgbWluPXswfVxuICAgICAgICAgIG1heD17MTAwfVxuICAgICAgICAgIHZhbHVlPXtNYXRoLnJvdW5kKChzdGF0ZS5jb25zdHJ1Y3Rpb25Qcm9ncmVzcyA/PyAxKSAqIDEwMCl9XG4gICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBvbkNoYW5nZSh7IGNvbnN0cnVjdGlvblByb2dyZXNzOiBwYXJzZUludChlLnRhcmdldC52YWx1ZSwgMTApIC8gMTAwIH0pfVxuICAgICAgICAgIGNsYXNzTmFtZT1cImJpbS1jb25zdHJ1Y3Rpb24tcmFuZ2VcIlxuICAgICAgICAvPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImJpbS1jb25zdHJ1Y3Rpb24tc3RhZ2VzXCI+XG4gICAgICAgICAge0NPTlNUUlVDVElPTl9TVEFHRVMubWFwKChzKSA9PiAoXG4gICAgICAgICAgICA8YnV0dG9uIGtleT17cy5pZH0gdHlwZT1cImJ1dHRvblwiIHRpdGxlPXtzLmxhYmVsfSBjbGFzc05hbWU9eyhzdGF0ZS5jb25zdHJ1Y3Rpb25Qcm9ncmVzcyA/PyAxKSA+PSBzLnByb2dyZXNzID8gJ2RvbmUnIDogJyd9IG9uQ2xpY2s9eygpID0+IG9uQ2hhbmdlKHsgY29uc3RydWN0aW9uUHJvZ3Jlc3M6IHMucHJvZ3Jlc3MgfSl9IC8+XG4gICAgICAgICAgKSl9XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gICk7XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBCSU1JbnNwZWN0b3IoeyBlbGVtZW50LCBvbkNsb3NlIH0pIHtcbiAgaWYgKCFlbGVtZW50KSB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYmltLWluc3BlY3RvciBiaW0taW5zcGVjdG9yLS1lbXB0eVwiPlxuICAgICAgICA8cD5TZWxlY3QgYW55IHdhbGwsIGNvbHVtbiwgcGFya2luZyBiYXksIHN0YWlyLCBvciBsaWZ0IGluIHRoZSAzRCBtb2RlbC48L3A+XG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG5cbiAgY29uc3QgcXMgPSBlbGVtZW50LnFzIHx8IHt9O1xuICBjb25zdCByb3dzID0gT2JqZWN0LmVudHJpZXMocXMpLmZpbHRlcigoW2tdKSA9PiBrICE9PSAnbGF5ZXInKTtcblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwiYmltLWluc3BlY3RvclwiPlxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJiaW0taW5zcGVjdG9yLWhlYWRcIj5cbiAgICAgICAgPGRpdj5cbiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJiaW0taW5zcGVjdG9yLWNhdFwiPntlbGVtZW50LmNhdGVnb3J5fTwvc3Bhbj5cbiAgICAgICAgICA8aDQ+e3FzLmlkIHx8IGVsZW1lbnQuaWR9PC9oND5cbiAgICAgICAgICA8cCBjbGFzc05hbWU9XCJiaW0taW5zcGVjdG9yLWxheWVyXCI+e2VsZW1lbnQubGF5ZXJ9PC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAge29uQ2xvc2UgJiYgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCIgY2xhc3NOYW1lPVwiYmltLWluc3BlY3Rvci1jbG9zZVwiIG9uQ2xpY2s9e29uQ2xvc2V9PkNsb3NlPC9idXR0b24+fVxuICAgICAgPC9kaXY+XG4gICAgICA8ZGwgY2xhc3NOYW1lPVwiYmltLWluc3BlY3Rvci1kbFwiPlxuICAgICAgICB7cm93cy5tYXAoKFtrZXksIHZhbF0pID0+IChcbiAgICAgICAgICA8ZGl2IGtleT17a2V5fT5cbiAgICAgICAgICAgIDxkdD57a2V5LnJlcGxhY2UoLyhbQS1aXSkvZywgJyAkMScpLnJlcGxhY2UoL14uLywgKHMpID0+IHMudG9VcHBlckNhc2UoKSl9PC9kdD5cbiAgICAgICAgICAgIDxkZD57dHlwZW9mIHZhbCA9PT0gJ251bWJlcicgJiYga2V5LmluY2x1ZGVzKCdjb3N0JykgPyBgTEtSICR7dmFsLnRvTG9jYWxlU3RyaW5nKCl9YCA6IFN0cmluZyh2YWwpfTwvZGQ+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICkpfVxuICAgICAgPC9kbD5cbiAgICAgIHtlbGVtZW50LnN1YlR5cGUgJiYgPHAgY2xhc3NOYW1lPVwiYmltLWluc3BlY3Rvci1ub3RlXCI+VHlwZToge2VsZW1lbnQuc3ViVHlwZX0gLyBGbG9vcjoge2VsZW1lbnQuZmxvb3JJZH08L3A+fVxuICAgIDwvZGl2PlxuICApO1xufVxuIl0sImZpbGUiOiJEOi9RUy9mcm9udGVuZC9zcmMvY29tcG9uZW50cy90aHJlZS9iaW0vQklNVG9vbGJhci5qc3gifQ==

@@ -1,0 +1,339 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/CostEstimationPage.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=53eb6c5c"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("D:/QS/frontend/src/pages/CostEstimationPage.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=53eb6c5c"; const useState = __vite__cjsImport3_react["useState"]; const useMemo = __vite__cjsImport3_react["useMemo"];
+import { materialPrices, costPrediction, quantityCalculations } from "/src/data/mockData.js";
+import { formatCurrency } from "/src/utils/formatters.js";
+import { recalculateMaterialCost } from "/src/utils/calculations.js";
+const rowStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  padding: "0.72rem",
+  background: "rgba(255,255,255,0.055)",
+  border: "1px solid rgba(165,177,210,0.13)",
+  borderRadius: 14
+};
+export default function CostEstimationPage() {
+  _s();
+  const [prices, setPrices] = useState(materialPrices);
+  const materialTotal = useMemo(() => recalculateMaterialCost(prices), [prices]);
+  const inflationImpact = materialTotal * 0.08;
+  const expectedFinal = materialTotal + inflationImpact;
+  const updateRate = (id, rate) => {
+    setPrices((prev) => prev.map((p) => p.id === id ? { ...p, rate: Number(rate) || 0 } : p));
+  };
+  return /* @__PURE__ */ jsxDEV("div", { className: "page", children: [
+    /* @__PURE__ */ jsxDEV("header", { className: "page-header", children: [
+      /* @__PURE__ */ jsxDEV("h1", { className: "page-title", children: "Cost Estimation" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+        lineNumber: 47,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("p", { className: "page-subtitle", children: "LKR material rates with instant cost recalculation." }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+        lineNumber: 48,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+      lineNumber: 46,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "prediction-grid", style: { marginBottom: "1.5rem" }, children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "prediction-card glass-card", children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "prediction-card-label", children: "Current Estimate" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 53,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "prediction-card-value", children: formatCurrency(materialTotal) }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 54,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+        lineNumber: 52,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "prediction-card glass-card", children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "prediction-card-label", children: "Inflation Impact (+8%)" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 57,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "prediction-card-value", style: { color: "#b45309" }, children: [
+          "+",
+          formatCurrency(inflationImpact)
+        ] }, void 0, true, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 58,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+        lineNumber: 56,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "prediction-card glass-card", children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "prediction-card-label", children: "Expected Final Cost" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 61,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "prediction-card-value", style: { color: "var(--accent-cyan)" }, children: formatCurrency(expectedFinal) }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 62,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+        lineNumber: 60,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "prediction-card glass-card", children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "prediction-card-label", children: "Risk Level" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 65,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "prediction-card-value", children: /* @__PURE__ */ jsxDEV("span", { className: "badge badge-warning", children: costPrediction.riskLevel }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 66,
+          columnNumber: 50
+        }, this) }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 66,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { style: { fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "0.5rem" }, children: [
+          costPrediction.confidence,
+          "% confidence"
+        ] }, void 0, true, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 67,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+        lineNumber: 64,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+      lineNumber: 51,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "grid-2", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "glass-card", style: { padding: "1.25rem" }, children: [
+        /* @__PURE__ */ jsxDEV("h3", { style: { marginBottom: "1rem" }, children: "Editable Material Rates" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 73,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("table", { className: "data-table", children: [
+          /* @__PURE__ */ jsxDEV("thead", { children: /* @__PURE__ */ jsxDEV("tr", { children: [
+            /* @__PURE__ */ jsxDEV("th", { children: "Material" }, void 0, false, {
+              fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+              lineNumber: 77,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("th", { children: "Unit" }, void 0, false, {
+              fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+              lineNumber: 78,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("th", { children: "Usage" }, void 0, false, {
+              fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+              lineNumber: 79,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("th", { children: "Rate (LKR)" }, void 0, false, {
+              fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+              lineNumber: 80,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("th", { children: "Amount" }, void 0, false, {
+              fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+              lineNumber: 81,
+              columnNumber: 17
+            }, this)
+          ] }, void 0, true, {
+            fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+            lineNumber: 76,
+            columnNumber: 15
+          }, this) }, void 0, false, {
+            fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+            lineNumber: 75,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("tbody", { children: prices.map(
+            (m) => /* @__PURE__ */ jsxDEV("tr", { children: [
+              /* @__PURE__ */ jsxDEV("td", { children: m.name }, void 0, false, {
+                fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+                lineNumber: 87,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { children: m.unit }, void 0, false, {
+                fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+                lineNumber: 88,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { children: m.usage.toLocaleString("en-LK") }, void 0, false, {
+                fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+                lineNumber: 89,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { children: /* @__PURE__ */ jsxDEV(
+                "input",
+                {
+                  className: "input",
+                  type: "number",
+                  value: m.rate,
+                  onChange: (e) => updateRate(m.id, e.target.value),
+                  style: { width: 100, padding: "0.35rem 0.5rem" }
+                },
+                void 0,
+                false,
+                {
+                  fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+                  lineNumber: 91,
+                  columnNumber: 21
+                },
+                this
+              ) }, void 0, false, {
+                fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+                lineNumber: 90,
+                columnNumber: 19
+              }, this),
+              /* @__PURE__ */ jsxDEV("td", { className: "amount-cell", children: formatCurrency(m.rate * m.usage) }, void 0, false, {
+                fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+                lineNumber: 99,
+                columnNumber: 19
+              }, this)
+            ] }, m.id, true, {
+              fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+              lineNumber: 86,
+              columnNumber: 15
+            }, this)
+          ) }, void 0, false, {
+            fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+            lineNumber: 84,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("tfoot", { children: /* @__PURE__ */ jsxDEV("tr", { children: [
+            /* @__PURE__ */ jsxDEV("td", { colSpan: 4, style: { textAlign: "right", fontWeight: 700 }, children: "Material Subtotal" }, void 0, false, {
+              fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+              lineNumber: 105,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "amount-cell", style: { fontWeight: 700 }, children: formatCurrency(materialTotal) }, void 0, false, {
+              fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+              lineNumber: 106,
+              columnNumber: 17
+            }, this)
+          ] }, void 0, true, {
+            fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+            lineNumber: 104,
+            columnNumber: 15
+          }, this) }, void 0, false, {
+            fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+            lineNumber: 103,
+            columnNumber: 13
+          }, this)
+        ] }, void 0, true, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 74,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+        lineNumber: 72,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "glass-card", style: { padding: "1.25rem" }, children: [
+        /* @__PURE__ */ jsxDEV("h3", { style: { marginBottom: "1rem" }, children: "AI Quantity Calculation" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 113,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { style: { display: "flex", flexDirection: "column", gap: "0.75rem" }, children: [
+          ["Wall Area", `${quantityCalculations.wallArea} m2`],
+          ["Floor Area", `${quantityCalculations.floorArea} m2`],
+          ["Concrete Volume", `${quantityCalculations.concreteVolume} m3`],
+          ["Brick Quantity", quantityCalculations.brickQuantity.toLocaleString("en-LK")],
+          ["Paint Quantity", `${quantityCalculations.paintQuantity} L`],
+          ["Tile Quantity", `${quantityCalculations.tileQuantity} m2`],
+          ["Steel Quantity", `${quantityCalculations.steelQuantity} MT`]
+        ].map(
+          ([label, val]) => /* @__PURE__ */ jsxDEV("div", { style: rowStyle, children: [
+            /* @__PURE__ */ jsxDEV("span", { style: { color: "var(--text-secondary)" }, children: label }, void 0, false, {
+              fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+              lineNumber: 125,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("span", { style: { fontFamily: "var(--font-mono)", fontWeight: 700 }, children: val }, void 0, false, {
+              fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+              lineNumber: 126,
+              columnNumber: 17
+            }, this)
+          ] }, label, true, {
+            fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+            lineNumber: 124,
+            columnNumber: 13
+          }, this)
+        ) }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+          lineNumber: 114,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+        lineNumber: 112,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+      lineNumber: 71,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/pages/CostEstimationPage.jsx",
+    lineNumber: 45,
+    columnNumber: 5
+  }, this);
+}
+_s(CostEstimationPage, "yq/Le4J/v4mVh2ICI8Bvht1S4r4=");
+_c = CostEstimationPage;
+var _c;
+$RefreshReg$(_c, "CostEstimationPage");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("D:/QS/frontend/src/pages/CostEstimationPage.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("D:/QS/frontend/src/pages/CostEstimationPage.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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QUE7QUFBQTtBQUFBLG1CQUF1RTtBQUFBLGVBRi9ERCxPQUFWO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBR0E7QUFBQSxRQUNELEtBZEg7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQWVBO0FBQUEsV0FqQkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQWtCQTtBQUFBLFNBM0RGO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0E0REE7QUFBQSxPQXRGRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBdUZBO0FBRUo7QUFBQ3ZDLEdBcEd1QkQsb0JBQWtCO0FBQUEsS0FBbEJBO0FBQWtCLElBQUEyQztBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJ1c2VTdGF0ZSIsInVzZU1lbW8iLCJtYXRlcmlhbFByaWNlcyIsImNvc3RQcmVkaWN0aW9uIiwicXVhbnRpdHlDYWxjdWxhdGlvbnMiLCJmb3JtYXRDdXJyZW5jeSIsInJlY2FsY3VsYXRlTWF0ZXJpYWxDb3N0Iiwicm93U3R5bGUiLCJkaXNwbGF5IiwianVzdGlmeUNvbnRlbnQiLCJwYWRkaW5nIiwiYmFja2dyb3VuZCIsImJvcmRlciIsImJvcmRlclJhZGl1cyIsIkNvc3RFc3RpbWF0aW9uUGFnZSIsIl9zIiwicHJpY2VzIiwic2V0UHJpY2VzIiwibWF0ZXJpYWxUb3RhbCIsImluZmxhdGlvbkltcGFjdCIsImV4cGVjdGVkRmluYWwiLCJ1cGRhdGVSYXRlIiwiaWQiLCJyYXRlIiwicHJldiIsIm1hcCIsInAiLCJOdW1iZXIiLCJtYXJnaW5Cb3R0b20iLCJjb2xvciIsInJpc2tMZXZlbCIsImZvbnRTaXplIiwibWFyZ2luVG9wIiwiY29uZmlkZW5jZSIsIm0iLCJuYW1lIiwidW5pdCIsInVzYWdlIiwidG9Mb2NhbGVTdHJpbmciLCJlIiwidGFyZ2V0IiwidmFsdWUiLCJ3aWR0aCIsInRleHRBbGlnbiIsImZvbnRXZWlnaHQiLCJmbGV4RGlyZWN0aW9uIiwiZ2FwIiwid2FsbEFyZWEiLCJmbG9vckFyZWEiLCJjb25jcmV0ZVZvbHVtZSIsImJyaWNrUXVhbnRpdHkiLCJwYWludFF1YW50aXR5IiwidGlsZVF1YW50aXR5Iiwic3RlZWxRdWFudGl0eSIsImxhYmVsIiwidmFsIiwiZm9udEZhbWlseSIsIl9jIl0sImlnbm9yZUxpc3QiOltdLCJzb3VyY2VzIjpbIkNvc3RFc3RpbWF0aW9uUGFnZS5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdXNlU3RhdGUsIHVzZU1lbW8gfSBmcm9tICdyZWFjdCc7XG5pbXBvcnQgeyBtYXRlcmlhbFByaWNlcywgY29zdFByZWRpY3Rpb24sIHF1YW50aXR5Q2FsY3VsYXRpb25zIH0gZnJvbSAnLi4vZGF0YS9tb2NrRGF0YSc7XG5pbXBvcnQgeyBmb3JtYXRDdXJyZW5jeSB9IGZyb20gJy4uL3V0aWxzL2Zvcm1hdHRlcnMnO1xuaW1wb3J0IHsgcmVjYWxjdWxhdGVNYXRlcmlhbENvc3QgfSBmcm9tICcuLi91dGlscy9jYWxjdWxhdGlvbnMnO1xuXG5jb25zdCByb3dTdHlsZSA9IHtcbiAgZGlzcGxheTogJ2ZsZXgnLFxuICBqdXN0aWZ5Q29udGVudDogJ3NwYWNlLWJldHdlZW4nLFxuICBwYWRkaW5nOiAnMC43MnJlbScsXG4gIGJhY2tncm91bmQ6ICdyZ2JhKDI1NSwyNTUsMjU1LDAuMDU1KScsXG4gIGJvcmRlcjogJzFweCBzb2xpZCByZ2JhKDE2NSwxNzcsMjEwLDAuMTMpJyxcbiAgYm9yZGVyUmFkaXVzOiAxNCxcbn07XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIENvc3RFc3RpbWF0aW9uUGFnZSgpIHtcbiAgY29uc3QgW3ByaWNlcywgc2V0UHJpY2VzXSA9IHVzZVN0YXRlKG1hdGVyaWFsUHJpY2VzKTtcbiAgY29uc3QgbWF0ZXJpYWxUb3RhbCA9IHVzZU1lbW8oKCkgPT4gcmVjYWxjdWxhdGVNYXRlcmlhbENvc3QocHJpY2VzKSwgW3ByaWNlc10pO1xuICBjb25zdCBpbmZsYXRpb25JbXBhY3QgPSBtYXRlcmlhbFRvdGFsICogMC4wODtcbiAgY29uc3QgZXhwZWN0ZWRGaW5hbCA9IG1hdGVyaWFsVG90YWwgKyBpbmZsYXRpb25JbXBhY3Q7XG5cbiAgY29uc3QgdXBkYXRlUmF0ZSA9IChpZCwgcmF0ZSkgPT4ge1xuICAgIHNldFByaWNlcygocHJldikgPT4gcHJldi5tYXAoKHApID0+IChwLmlkID09PSBpZCA/IHsgLi4ucCwgcmF0ZTogTnVtYmVyKHJhdGUpIHx8IDAgfSA6IHApKSk7XG4gIH07XG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT1cInBhZ2VcIj5cbiAgICAgIDxoZWFkZXIgY2xhc3NOYW1lPVwicGFnZS1oZWFkZXJcIj5cbiAgICAgICAgPGgxIGNsYXNzTmFtZT1cInBhZ2UtdGl0bGVcIj5Db3N0IEVzdGltYXRpb248L2gxPlxuICAgICAgICA8cCBjbGFzc05hbWU9XCJwYWdlLXN1YnRpdGxlXCI+TEtSIG1hdGVyaWFsIHJhdGVzIHdpdGggaW5zdGFudCBjb3N0IHJlY2FsY3VsYXRpb24uPC9wPlxuICAgICAgPC9oZWFkZXI+XG5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwicHJlZGljdGlvbi1ncmlkXCIgc3R5bGU9e3sgbWFyZ2luQm90dG9tOiAnMS41cmVtJyB9fT5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwcmVkaWN0aW9uLWNhcmQgZ2xhc3MtY2FyZFwiPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicHJlZGljdGlvbi1jYXJkLWxhYmVsXCI+Q3VycmVudCBFc3RpbWF0ZTwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicHJlZGljdGlvbi1jYXJkLXZhbHVlXCI+e2Zvcm1hdEN1cnJlbmN5KG1hdGVyaWFsVG90YWwpfTwvZGl2PlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwcmVkaWN0aW9uLWNhcmQgZ2xhc3MtY2FyZFwiPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicHJlZGljdGlvbi1jYXJkLWxhYmVsXCI+SW5mbGF0aW9uIEltcGFjdCAoKzglKTwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicHJlZGljdGlvbi1jYXJkLXZhbHVlXCIgc3R5bGU9e3sgY29sb3I6ICcjYjQ1MzA5JyB9fT4re2Zvcm1hdEN1cnJlbmN5KGluZmxhdGlvbkltcGFjdCl9PC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInByZWRpY3Rpb24tY2FyZCBnbGFzcy1jYXJkXCI+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwcmVkaWN0aW9uLWNhcmQtbGFiZWxcIj5FeHBlY3RlZCBGaW5hbCBDb3N0PC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwcmVkaWN0aW9uLWNhcmQtdmFsdWVcIiBzdHlsZT17eyBjb2xvcjogJ3ZhcigtLWFjY2VudC1jeWFuKScgfX0+e2Zvcm1hdEN1cnJlbmN5KGV4cGVjdGVkRmluYWwpfTwvZGl2PlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwcmVkaWN0aW9uLWNhcmQgZ2xhc3MtY2FyZFwiPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicHJlZGljdGlvbi1jYXJkLWxhYmVsXCI+UmlzayBMZXZlbDwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicHJlZGljdGlvbi1jYXJkLXZhbHVlXCI+PHNwYW4gY2xhc3NOYW1lPVwiYmFkZ2UgYmFkZ2Utd2FybmluZ1wiPntjb3N0UHJlZGljdGlvbi5yaXNrTGV2ZWx9PC9zcGFuPjwvZGl2PlxuICAgICAgICAgIDxkaXYgc3R5bGU9e3sgZm9udFNpemU6ICcwLjc1cmVtJywgY29sb3I6ICd2YXIoLS10ZXh0LW11dGVkKScsIG1hcmdpblRvcDogJzAuNXJlbScgfX0+e2Nvc3RQcmVkaWN0aW9uLmNvbmZpZGVuY2V9JSBjb25maWRlbmNlPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ3JpZC0yXCI+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ2xhc3MtY2FyZFwiIHN0eWxlPXt7IHBhZGRpbmc6ICcxLjI1cmVtJyB9fT5cbiAgICAgICAgICA8aDMgc3R5bGU9e3sgbWFyZ2luQm90dG9tOiAnMXJlbScgfX0+RWRpdGFibGUgTWF0ZXJpYWwgUmF0ZXM8L2gzPlxuICAgICAgICAgIDx0YWJsZSBjbGFzc05hbWU9XCJkYXRhLXRhYmxlXCI+XG4gICAgICAgICAgICA8dGhlYWQ+XG4gICAgICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgICAgICA8dGg+TWF0ZXJpYWw8L3RoPlxuICAgICAgICAgICAgICAgIDx0aD5Vbml0PC90aD5cbiAgICAgICAgICAgICAgICA8dGg+VXNhZ2U8L3RoPlxuICAgICAgICAgICAgICAgIDx0aD5SYXRlIChMS1IpPC90aD5cbiAgICAgICAgICAgICAgICA8dGg+QW1vdW50PC90aD5cbiAgICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICAgIDwvdGhlYWQ+XG4gICAgICAgICAgICA8dGJvZHk+XG4gICAgICAgICAgICAgIHtwcmljZXMubWFwKChtKSA9PiAoXG4gICAgICAgICAgICAgICAgPHRyIGtleT17bS5pZH0+XG4gICAgICAgICAgICAgICAgICA8dGQ+e20ubmFtZX08L3RkPlxuICAgICAgICAgICAgICAgICAgPHRkPnttLnVuaXR9PC90ZD5cbiAgICAgICAgICAgICAgICAgIDx0ZD57bS51c2FnZS50b0xvY2FsZVN0cmluZygnZW4tTEsnKX08L3RkPlxuICAgICAgICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJpbnB1dFwiXG4gICAgICAgICAgICAgICAgICAgICAgdHlwZT1cIm51bWJlclwiXG4gICAgICAgICAgICAgICAgICAgICAgdmFsdWU9e20ucmF0ZX1cbiAgICAgICAgICAgICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHVwZGF0ZVJhdGUobS5pZCwgZS50YXJnZXQudmFsdWUpfVxuICAgICAgICAgICAgICAgICAgICAgIHN0eWxlPXt7IHdpZHRoOiAxMDAsIHBhZGRpbmc6ICcwLjM1cmVtIDAuNXJlbScgfX1cbiAgICAgICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwiYW1vdW50LWNlbGxcIj57Zm9ybWF0Q3VycmVuY3kobS5yYXRlICogbS51c2FnZSl9PC90ZD5cbiAgICAgICAgICAgICAgICA8L3RyPlxuICAgICAgICAgICAgICApKX1cbiAgICAgICAgICAgIDwvdGJvZHk+XG4gICAgICAgICAgICA8dGZvb3Q+XG4gICAgICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgICAgICA8dGQgY29sU3Bhbj17NH0gc3R5bGU9e3sgdGV4dEFsaWduOiAncmlnaHQnLCBmb250V2VpZ2h0OiA3MDAgfX0+TWF0ZXJpYWwgU3VidG90YWw8L3RkPlxuICAgICAgICAgICAgICAgIDx0ZCBjbGFzc05hbWU9XCJhbW91bnQtY2VsbFwiIHN0eWxlPXt7IGZvbnRXZWlnaHQ6IDcwMCB9fT57Zm9ybWF0Q3VycmVuY3kobWF0ZXJpYWxUb3RhbCl9PC90ZD5cbiAgICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICAgIDwvdGZvb3Q+XG4gICAgICAgICAgPC90YWJsZT5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJnbGFzcy1jYXJkXCIgc3R5bGU9e3sgcGFkZGluZzogJzEuMjVyZW0nIH19PlxuICAgICAgICAgIDxoMyBzdHlsZT17eyBtYXJnaW5Cb3R0b206ICcxcmVtJyB9fT5BSSBRdWFudGl0eSBDYWxjdWxhdGlvbjwvaDM+XG4gICAgICAgICAgPGRpdiBzdHlsZT17eyBkaXNwbGF5OiAnZmxleCcsIGZsZXhEaXJlY3Rpb246ICdjb2x1bW4nLCBnYXA6ICcwLjc1cmVtJyB9fT5cbiAgICAgICAgICAgIHtbXG4gICAgICAgICAgICAgIFsnV2FsbCBBcmVhJywgYCR7cXVhbnRpdHlDYWxjdWxhdGlvbnMud2FsbEFyZWF9IG0yYF0sXG4gICAgICAgICAgICAgIFsnRmxvb3IgQXJlYScsIGAke3F1YW50aXR5Q2FsY3VsYXRpb25zLmZsb29yQXJlYX0gbTJgXSxcbiAgICAgICAgICAgICAgWydDb25jcmV0ZSBWb2x1bWUnLCBgJHtxdWFudGl0eUNhbGN1bGF0aW9ucy5jb25jcmV0ZVZvbHVtZX0gbTNgXSxcbiAgICAgICAgICAgICAgWydCcmljayBRdWFudGl0eScsIHF1YW50aXR5Q2FsY3VsYXRpb25zLmJyaWNrUXVhbnRpdHkudG9Mb2NhbGVTdHJpbmcoJ2VuLUxLJyldLFxuICAgICAgICAgICAgICBbJ1BhaW50IFF1YW50aXR5JywgYCR7cXVhbnRpdHlDYWxjdWxhdGlvbnMucGFpbnRRdWFudGl0eX0gTGBdLFxuICAgICAgICAgICAgICBbJ1RpbGUgUXVhbnRpdHknLCBgJHtxdWFudGl0eUNhbGN1bGF0aW9ucy50aWxlUXVhbnRpdHl9IG0yYF0sXG4gICAgICAgICAgICAgIFsnU3RlZWwgUXVhbnRpdHknLCBgJHtxdWFudGl0eUNhbGN1bGF0aW9ucy5zdGVlbFF1YW50aXR5fSBNVGBdLFxuICAgICAgICAgICAgXS5tYXAoKFtsYWJlbCwgdmFsXSkgPT4gKFxuICAgICAgICAgICAgICA8ZGl2IGtleT17bGFiZWx9IHN0eWxlPXtyb3dTdHlsZX0+XG4gICAgICAgICAgICAgICAgPHNwYW4gc3R5bGU9e3sgY29sb3I6ICd2YXIoLS10ZXh0LXNlY29uZGFyeSknIH19PntsYWJlbH08L3NwYW4+XG4gICAgICAgICAgICAgICAgPHNwYW4gc3R5bGU9e3sgZm9udEZhbWlseTogJ3ZhcigtLWZvbnQtbW9ubyknLCBmb250V2VpZ2h0OiA3MDAgfX0+e3ZhbH08L3NwYW4+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgKSl9XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gICk7XG59XG4iXSwiZmlsZSI6IkQ6L1FTL2Zyb250ZW5kL3NyYy9wYWdlcy9Db3N0RXN0aW1hdGlvblBhZ2UuanN4In0=

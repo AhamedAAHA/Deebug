@@ -1,0 +1,234 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/icons/Icons.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=53eb6c5c"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("D:/QS/frontend/src/components/icons/Icons.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+const svgProps = { fill: "none", stroke: "currentColor", strokeWidth: 1.8, viewBox: "0 0 24 24" };
+export function IconDashboard({ className }) {
+  return /* @__PURE__ */ jsxDEV("svg", { className, ...svgProps, children: [
+    /* @__PURE__ */ jsxDEV("rect", { x: "3", y: "3", width: "7", height: "9", rx: "1" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 25,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("rect", { x: "14", y: "3", width: "7", height: "5", rx: "1" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 26,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("rect", { x: "14", y: "12", width: "7", height: "9", rx: "1" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 27,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("rect", { x: "3", y: "16", width: "7", height: "5", rx: "1" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 28,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+    lineNumber: 24,
+    columnNumber: 5
+  }, this);
+}
+_c = IconDashboard;
+export function IconUpload({ className }) {
+  return /* @__PURE__ */ jsxDEV("svg", { className, ...svgProps, children: [
+    /* @__PURE__ */ jsxDEV("path", { d: "M12 16V4M12 4l4 4M12 4L8 8", strokeLinecap: "round" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 36,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("path", { d: "M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 37,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+    lineNumber: 35,
+    columnNumber: 5
+  }, this);
+}
+_c2 = IconUpload;
+export function IconBoq({ className }) {
+  return /* @__PURE__ */ jsxDEV("svg", { className, ...svgProps, children: [
+    /* @__PURE__ */ jsxDEV("path", { d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 45,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("rect", { x: "9", y: "3", width: "6", height: "4", rx: "1" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 46,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("path", { d: "M9 12h6M9 16h6" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 47,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+    lineNumber: 44,
+    columnNumber: 5
+  }, this);
+}
+_c3 = IconBoq;
+export function Icon3D({ className }) {
+  return /* @__PURE__ */ jsxDEV("svg", { className, ...svgProps, children: [
+    /* @__PURE__ */ jsxDEV("path", { d: "M12 3l9 5v8l-9 5-9-5V8l9-5z" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 55,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("path", { d: "M12 12l9-5M12 12v10M12 12L3 7" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 56,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+    lineNumber: 54,
+    columnNumber: 5
+  }, this);
+}
+_c4 = Icon3D;
+export function IconCost({ className }) {
+  return /* @__PURE__ */ jsxDEV("svg", { className, ...svgProps, children: [
+    /* @__PURE__ */ jsxDEV("circle", { cx: "12", cy: "12", r: "9" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 64,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("path", { d: "M12 7v10M9 10h4.5a1.5 1.5 0 010 3H9" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 65,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+    lineNumber: 63,
+    columnNumber: 5
+  }, this);
+}
+_c5 = IconCost;
+export function IconRevision({ className }) {
+  return /* @__PURE__ */ jsxDEV("svg", { className, ...svgProps, children: [
+    /* @__PURE__ */ jsxDEV("path", { d: "M4 6h16M4 12h10M4 18h14" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 73,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("path", { d: "M18 10l3 2-3 2v-4z", fill: "currentColor", stroke: "none" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 74,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+    lineNumber: 72,
+    columnNumber: 5
+  }, this);
+}
+_c6 = IconRevision;
+export function IconQuote({ className }) {
+  return /* @__PURE__ */ jsxDEV("svg", { className, ...svgProps, children: [
+    /* @__PURE__ */ jsxDEV("path", { d: "M8 8h8v12H8z" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 82,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("path", { d: "M10 6V4h4v2M6 12h4M6 16h6" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 83,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+    lineNumber: 81,
+    columnNumber: 5
+  }, this);
+}
+_c7 = IconQuote;
+export function IconLeaf({ className }) {
+  return /* @__PURE__ */ jsxDEV("svg", { className, ...svgProps, children: [
+    /* @__PURE__ */ jsxDEV("path", { d: "M12 22c-4-4-8-8-8-14a8 8 0 0116 0c0 6-4 10-8 14z" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 91,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("path", { d: "M12 12v10" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 92,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+    lineNumber: 90,
+    columnNumber: 5
+  }, this);
+}
+_c8 = IconLeaf;
+export function IconSite({ className }) {
+  return /* @__PURE__ */ jsxDEV("svg", { className, ...svgProps, children: [
+    /* @__PURE__ */ jsxDEV("rect", { x: "3", y: "5", width: "18", height: "14", rx: "2" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 100,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("circle", { cx: "8.5", cy: "10", r: "2" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 101,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("path", { d: "M21 17l-5-5-4 4-3-3-6 6" }, void 0, false, {
+      fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+      lineNumber: 102,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/components/icons/Icons.jsx",
+    lineNumber: 99,
+    columnNumber: 5
+  }, this);
+}
+_c9 = IconSite;
+var _c, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9;
+$RefreshReg$(_c, "IconDashboard");
+$RefreshReg$(_c2, "IconUpload");
+$RefreshReg$(_c3, "IconBoq");
+$RefreshReg$(_c4, "Icon3D");
+$RefreshReg$(_c5, "IconCost");
+$RefreshReg$(_c6, "IconRevision");
+$RefreshReg$(_c7, "IconQuote");
+$RefreshReg$(_c8, "IconLeaf");
+$RefreshReg$(_c9, "IconSite");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("D:/QS/frontend/src/components/icons/Icons.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("D:/QS/frontend/src/components/icons/Icons.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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QSxJQUM5Qix1QkFBQyxVQUFLLEdBQUUsNkJBQVI7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQUFpQztBQUFBLE9BSG5DO0FBQUE7QUFBQTtBQUFBO0FBQUEsU0FJQTtBQUVKO0FBQUN1QixNQVJlRDtBQUFRLElBQUFmLElBQUFFLEtBQUFFLEtBQUFFLEtBQUFFLEtBQUFFLEtBQUFFLEtBQUFFLEtBQUFFO0FBQUEsYUFBQWhCLElBQUE7QUFBQSxhQUFBRSxLQUFBO0FBQUEsYUFBQUUsS0FBQTtBQUFBLGFBQUFFLEtBQUE7QUFBQSxhQUFBRSxLQUFBO0FBQUEsYUFBQUUsS0FBQTtBQUFBLGFBQUFFLEtBQUE7QUFBQSxhQUFBRSxLQUFBO0FBQUEsYUFBQUUsS0FBQSIsIm5hbWVzIjpbInN2Z1Byb3BzIiwiZmlsbCIsInN0cm9rZSIsInN0cm9rZVdpZHRoIiwidmlld0JveCIsIkljb25EYXNoYm9hcmQiLCJjbGFzc05hbWUiLCJfYyIsIkljb25VcGxvYWQiLCJfYzIiLCJJY29uQm9xIiwiX2MzIiwiSWNvbjNEIiwiX2M0IiwiSWNvbkNvc3QiLCJfYzUiLCJJY29uUmV2aXNpb24iLCJfYzYiLCJJY29uUXVvdGUiLCJfYzciLCJJY29uTGVhZiIsIl9jOCIsIkljb25TaXRlIiwiX2M5Il0sImlnbm9yZUxpc3QiOltdLCJzb3VyY2VzIjpbIkljb25zLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBzdmdQcm9wcyA9IHsgZmlsbDogJ25vbmUnLCBzdHJva2U6ICdjdXJyZW50Q29sb3InLCBzdHJva2VXaWR0aDogMS44LCB2aWV3Qm94OiAnMCAwIDI0IDI0JyB9O1xyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIEljb25EYXNoYm9hcmQoeyBjbGFzc05hbWUgfSkge1xyXG4gIHJldHVybiAoXHJcbiAgICA8c3ZnIGNsYXNzTmFtZT17Y2xhc3NOYW1lfSB7Li4uc3ZnUHJvcHN9PlxyXG4gICAgICA8cmVjdCB4PVwiM1wiIHk9XCIzXCIgd2lkdGg9XCI3XCIgaGVpZ2h0PVwiOVwiIHJ4PVwiMVwiIC8+XHJcbiAgICAgIDxyZWN0IHg9XCIxNFwiIHk9XCIzXCIgd2lkdGg9XCI3XCIgaGVpZ2h0PVwiNVwiIHJ4PVwiMVwiIC8+XHJcbiAgICAgIDxyZWN0IHg9XCIxNFwiIHk9XCIxMlwiIHdpZHRoPVwiN1wiIGhlaWdodD1cIjlcIiByeD1cIjFcIiAvPlxyXG4gICAgICA8cmVjdCB4PVwiM1wiIHk9XCIxNlwiIHdpZHRoPVwiN1wiIGhlaWdodD1cIjVcIiByeD1cIjFcIiAvPlxyXG4gICAgPC9zdmc+XHJcbiAgKTtcclxufVxyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIEljb25VcGxvYWQoeyBjbGFzc05hbWUgfSkge1xyXG4gIHJldHVybiAoXHJcbiAgICA8c3ZnIGNsYXNzTmFtZT17Y2xhc3NOYW1lfSB7Li4uc3ZnUHJvcHN9PlxyXG4gICAgICA8cGF0aCBkPVwiTTEyIDE2VjRNMTIgNGw0IDRNMTIgNEw4IDhcIiBzdHJva2VMaW5lY2FwPVwicm91bmRcIiAvPlxyXG4gICAgICA8cGF0aCBkPVwiTTQgMTZ2MmEyIDIgMCAwMDIgMmgxMmEyIDIgMCAwMDItMnYtMlwiIC8+XHJcbiAgICA8L3N2Zz5cclxuICApO1xyXG59XHJcblxyXG5leHBvcnQgZnVuY3Rpb24gSWNvbkJvcSh7IGNsYXNzTmFtZSB9KSB7XHJcbiAgcmV0dXJuIChcclxuICAgIDxzdmcgY2xhc3NOYW1lPXtjbGFzc05hbWV9IHsuLi5zdmdQcm9wc30+XHJcbiAgICAgIDxwYXRoIGQ9XCJNOSA1SDdhMiAyIDAgMDAtMiAydjEyYTIgMiAwIDAwMiAyaDEwYTIgMiAwIDAwMi0yVjdhMiAyIDAgMDAtMi0yaC0yXCIgLz5cclxuICAgICAgPHJlY3QgeD1cIjlcIiB5PVwiM1wiIHdpZHRoPVwiNlwiIGhlaWdodD1cIjRcIiByeD1cIjFcIiAvPlxyXG4gICAgICA8cGF0aCBkPVwiTTkgMTJoNk05IDE2aDZcIiAvPlxyXG4gICAgPC9zdmc+XHJcbiAgKTtcclxufVxyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIEljb24zRCh7IGNsYXNzTmFtZSB9KSB7XHJcbiAgcmV0dXJuIChcclxuICAgIDxzdmcgY2xhc3NOYW1lPXtjbGFzc05hbWV9IHsuLi5zdmdQcm9wc30+XHJcbiAgICAgIDxwYXRoIGQ9XCJNMTIgM2w5IDV2OGwtOSA1LTktNVY4bDktNXpcIiAvPlxyXG4gICAgICA8cGF0aCBkPVwiTTEyIDEybDktNU0xMiAxMnYxME0xMiAxMkwzIDdcIiAvPlxyXG4gICAgPC9zdmc+XHJcbiAgKTtcclxufVxyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIEljb25Db3N0KHsgY2xhc3NOYW1lIH0pIHtcclxuICByZXR1cm4gKFxyXG4gICAgPHN2ZyBjbGFzc05hbWU9e2NsYXNzTmFtZX0gey4uLnN2Z1Byb3BzfT5cclxuICAgICAgPGNpcmNsZSBjeD1cIjEyXCIgY3k9XCIxMlwiIHI9XCI5XCIgLz5cclxuICAgICAgPHBhdGggZD1cIk0xMiA3djEwTTkgMTBoNC41YTEuNSAxLjUgMCAwMTAgM0g5XCIgLz5cclxuICAgIDwvc3ZnPlxyXG4gICk7XHJcbn1cclxuXHJcbmV4cG9ydCBmdW5jdGlvbiBJY29uUmV2aXNpb24oeyBjbGFzc05hbWUgfSkge1xyXG4gIHJldHVybiAoXHJcbiAgICA8c3ZnIGNsYXNzTmFtZT17Y2xhc3NOYW1lfSB7Li4uc3ZnUHJvcHN9PlxyXG4gICAgICA8cGF0aCBkPVwiTTQgNmgxNk00IDEyaDEwTTQgMThoMTRcIiAvPlxyXG4gICAgICA8cGF0aCBkPVwiTTE4IDEwbDMgMi0zIDJ2LTR6XCIgZmlsbD1cImN1cnJlbnRDb2xvclwiIHN0cm9rZT1cIm5vbmVcIiAvPlxyXG4gICAgPC9zdmc+XHJcbiAgKTtcclxufVxyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIEljb25RdW90ZSh7IGNsYXNzTmFtZSB9KSB7XHJcbiAgcmV0dXJuIChcclxuICAgIDxzdmcgY2xhc3NOYW1lPXtjbGFzc05hbWV9IHsuLi5zdmdQcm9wc30+XHJcbiAgICAgIDxwYXRoIGQ9XCJNOCA4aDh2MTJIOHpcIiAvPlxyXG4gICAgICA8cGF0aCBkPVwiTTEwIDZWNGg0djJNNiAxMmg0TTYgMTZoNlwiIC8+XHJcbiAgICA8L3N2Zz5cclxuICApO1xyXG59XHJcblxyXG5leHBvcnQgZnVuY3Rpb24gSWNvbkxlYWYoeyBjbGFzc05hbWUgfSkge1xyXG4gIHJldHVybiAoXHJcbiAgICA8c3ZnIGNsYXNzTmFtZT17Y2xhc3NOYW1lfSB7Li4uc3ZnUHJvcHN9PlxyXG4gICAgICA8cGF0aCBkPVwiTTEyIDIyYy00LTQtOC04LTgtMTRhOCA4IDAgMDExNiAwYzAgNi00IDEwLTggMTR6XCIgLz5cclxuICAgICAgPHBhdGggZD1cIk0xMiAxMnYxMFwiIC8+XHJcbiAgICA8L3N2Zz5cclxuICApO1xyXG59XHJcblxyXG5leHBvcnQgZnVuY3Rpb24gSWNvblNpdGUoeyBjbGFzc05hbWUgfSkge1xyXG4gIHJldHVybiAoXHJcbiAgICA8c3ZnIGNsYXNzTmFtZT17Y2xhc3NOYW1lfSB7Li4uc3ZnUHJvcHN9PlxyXG4gICAgICA8cmVjdCB4PVwiM1wiIHk9XCI1XCIgd2lkdGg9XCIxOFwiIGhlaWdodD1cIjE0XCIgcng9XCIyXCIgLz5cclxuICAgICAgPGNpcmNsZSBjeD1cIjguNVwiIGN5PVwiMTBcIiByPVwiMlwiIC8+XHJcbiAgICAgIDxwYXRoIGQ9XCJNMjEgMTdsLTUtNS00IDQtMy0zLTYgNlwiIC8+XHJcbiAgICA8L3N2Zz5cclxuICApO1xyXG59XHJcbiJdLCJmaWxlIjoiRDovUVMvZnJvbnRlbmQvc3JjL2NvbXBvbmVudHMvaWNvbnMvSWNvbnMuanN4In0=

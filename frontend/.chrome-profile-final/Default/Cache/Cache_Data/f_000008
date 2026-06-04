@@ -1,0 +1,292 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/VisualizationPage.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=53eb6c5c"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("D:/QS/frontend/src/pages/VisualizationPage.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import { Link } from "/node_modules/.vite/deps/react-router-dom.js?v=53eb6c5c";
+import VisualizationHub from "/src/components/three/VisualizationHub.jsx?t=1780438722634";
+import { buildingElements } from "/src/data/mockData.js";
+import { getLatestDrawing } from "/src/utils/drawingSession.js?t=1780439286329";
+import { analyzeVisualization } from "/src/utils/vizAnalytics.js";
+import "/src/styles/visualization.css?t=1780438722634";
+export default function VisualizationPage() {
+  const drawing = getLatestDrawing();
+  const hasExtractedModel = drawing?.modelAvailable === true && Array.isArray(drawing.buildingElements);
+  const elements = drawing ? hasExtractedModel ? drawing.buildingElements : [] : buildingElements;
+  const analytics = elements.length ? analyzeVisualization(elements, drawing) : null;
+  return /* @__PURE__ */ jsxDEV("div", { className: "page page-viz", children: [
+    /* @__PURE__ */ jsxDEV("header", { className: "page-header viz-page-header", children: [
+      /* @__PURE__ */ jsxDEV("div", { children: [
+        /* @__PURE__ */ jsxDEV("h1", { className: "page-title", children: "3D Building Visualization" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 37,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "page-subtitle", children: drawing ? `Digital twin preview - ${drawing.fileName}` : "Interactive BIM workspace - upload a DWG to begin" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 38,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 36,
+        columnNumber: 9
+      }, this),
+      hasExtractedModel && /* @__PURE__ */ jsxDEV("div", { className: "viz-header-badges", children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "badge badge-info", children: "CAD Linked" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 46,
+          columnNumber: 13
+        }, this),
+        drawing.extractionAvailable && /* @__PURE__ */ jsxDEV("span", { className: "badge badge-success", children: "BOQ Synced" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 47,
+          columnNumber: 45
+        }, this),
+        drawing.bimModel?.elements?.length > 0 && /* @__PURE__ */ jsxDEV("span", { className: "badge badge-success", children: "BIM Twin Active" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 49,
+          columnNumber: 11
+        }, this),
+        analytics?.isCeilingPlan && /* @__PURE__ */ jsxDEV("span", { className: "badge badge-warning", children: "Ceiling Plan" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 51,
+          columnNumber: 42
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 45,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+      lineNumber: 35,
+      columnNumber: 7
+    }, this),
+    !drawing && /* @__PURE__ */ jsxDEV("div", { className: "glass-card viz-callout", children: /* @__PURE__ */ jsxDEV("p", { children: [
+      "Showing the sample structural model. ",
+      /* @__PURE__ */ jsxDEV(Link, { to: "/upload", children: "Upload a DWG drawing" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 58,
+        columnNumber: 51
+      }, this),
+      " to load your project geometry."
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+      lineNumber: 58,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+      lineNumber: 57,
+      columnNumber: 7
+    }, this),
+    drawing && !hasExtractedModel && /* @__PURE__ */ jsxDEV("div", { className: "glass-card viz-callout viz-callout-warning", children: [
+      /* @__PURE__ */ jsxDEV("h3", { children: "DWG preview unavailable" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 64,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV("p", { children: drawing.cadParseError || `${drawing.fileName} could not be parsed. Try AutoCAD 2013 DWG format.` }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 65,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(Link, { to: "/upload", className: "btn btn-primary btn-sm", style: { marginTop: "0.75rem" }, children: "Re-upload drawing" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 66,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+      lineNumber: 63,
+      columnNumber: 7
+    }, this),
+    drawing && hasExtractedModel && !drawing.bimModel?.elements?.length && /* @__PURE__ */ jsxDEV("div", { className: "glass-card viz-callout viz-callout-warning", style: { marginBottom: "1rem" }, children: [
+      /* @__PURE__ */ jsxDEV("p", { children: [
+        /* @__PURE__ */ jsxDEV("strong", { children: "BIM Digital Twin:" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 73,
+          columnNumber: 13
+        }, this),
+        " Re-upload your DWG to generate a CAD-exact 3D reconstruction with walls, parking, ramps, stairs, and lifts matched to your floor plan."
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 72,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV(Link, { to: "/upload", className: "btn btn-primary btn-sm", style: { marginTop: "0.5rem" }, children: "Re-upload DWG" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 76,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+      lineNumber: 71,
+      columnNumber: 7
+    }, this),
+    drawing && hasExtractedModel && drawing.bimModel?.elements?.length > 0 && /* @__PURE__ */ jsxDEV("div", { className: "glass-card viz-callout", style: { marginBottom: "1rem", borderColor: "rgba(123,112,239,0.24)" }, children: /* @__PURE__ */ jsxDEV("p", { children: [
+      /* @__PURE__ */ jsxDEV("strong", { children: "CAD-exact BIM mode active" }, void 0, false, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 83,
+        columnNumber: 13
+      }, this),
+      " - ",
+      drawing.bimModel.elements.length.toLocaleString(),
+      " elements reconstructed from ",
+      drawing.cadPreviewMeta?.segmentCount?.toLocaleString() || "source",
+      " linework segments. Use section cut, floor explode, and QS labels in the toolbar below."
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+      lineNumber: 82,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+      lineNumber: 81,
+      columnNumber: 7
+    }, this),
+    drawing && hasExtractedModel && analytics && /* @__PURE__ */ jsxDEV("div", { className: "viz-status-bar glass-card", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "viz-status-item", children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "viz-status-label", children: "Linework segments" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 93,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("strong", { children: drawing.cadPreviewMeta?.segmentCount || drawing.cadPreviewMeta?.renderedEntityCount || elements.length }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 94,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 92,
+        columnNumber: 11
+      }, this),
+      drawing.cadPreviewMeta?.bimElementCount > 0 && /* @__PURE__ */ jsxDEV("div", { className: "viz-status-item", children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "viz-status-label", children: "BIM elements" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 98,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("strong", { children: drawing.cadPreviewMeta.bimElementCount }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 99,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 97,
+        columnNumber: 9
+      }, this),
+      drawing.bimModel?.floors?.length > 0 && /* @__PURE__ */ jsxDEV("div", { className: "viz-status-item", children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "viz-status-label", children: "Floors" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 104,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("strong", { children: drawing.bimModel.floors.map((f) => f.label).join(", ") }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 105,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 103,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "viz-status-item", children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "viz-status-label", children: "DWG entities" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 109,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("strong", { children: drawing.cadPreviewMeta?.sourceEntityCount ?? "source" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 110,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 108,
+        columnNumber: 11
+      }, this),
+      analytics.footprint && /* @__PURE__ */ jsxDEV("div", { className: "viz-status-item", children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "viz-status-label", children: "Plan footprint" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 114,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("strong", { children: [
+          analytics.footprint.area,
+          " m2"
+        ] }, void 0, true, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 115,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 113,
+        columnNumber: 9
+      }, this),
+      drawing.cadPreviewMeta?.truncated && /* @__PURE__ */ jsxDEV("div", { className: "viz-status-item viz-status-warn", children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "viz-status-label", children: "Note" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 120,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("strong", { children: "Some segments capped for performance" }, void 0, false, {
+          fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+          lineNumber: 121,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+        lineNumber: 119,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+      lineNumber: 91,
+      columnNumber: 7
+    }, this),
+    elements.length > 0 && /* @__PURE__ */ jsxDEV(VisualizationHub, { elements, drawing }, void 0, false, {
+      fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+      lineNumber: 128,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/QS/frontend/src/pages/VisualizationPage.jsx",
+    lineNumber: 34,
+    columnNumber: 5
+  }, this);
+}
+_c = VisualizationPage;
+var _c;
+$RefreshReg$(_c, "VisualizationPage");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("D:/QS/frontend/src/pages/VisualizationPage.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("D:/QS/frontend/src/pages/VisualizationPage.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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VUFBSyxXQUFVLG9CQUFtQixvQkFBbkM7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQUF1QztBQUFBLFFBQ3ZDLHVCQUFDLFlBQU8sb0RBQVI7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQUE0QztBQUFBLFdBRjlDO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFHQTtBQUFBLFNBL0JKO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FpQ0E7QUFBQSxJQUdEeEIsU0FBU0UsU0FBUyxLQUNqQix1QkFBQyxvQkFBaUIsVUFBb0IsV0FBdEM7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQUF1RDtBQUFBLE9BOUYzRDtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBZ0dBO0FBRUo7QUFBQ3VCLEtBekd1Qi9CO0FBQWlCLElBQUErQjtBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJMaW5rIiwiVmlzdWFsaXphdGlvbkh1YiIsImJ1aWxkaW5nRWxlbWVudHMiLCJnZXRMYXRlc3REcmF3aW5nIiwiYW5hbHl6ZVZpc3VhbGl6YXRpb24iLCJWaXN1YWxpemF0aW9uUGFnZSIsImRyYXdpbmciLCJoYXNFeHRyYWN0ZWRNb2RlbCIsIm1vZGVsQXZhaWxhYmxlIiwiQXJyYXkiLCJpc0FycmF5IiwiZWxlbWVudHMiLCJhbmFseXRpY3MiLCJsZW5ndGgiLCJmaWxlTmFtZSIsImV4dHJhY3Rpb25BdmFpbGFibGUiLCJiaW1Nb2RlbCIsImlzQ2VpbGluZ1BsYW4iLCJjYWRQYXJzZUVycm9yIiwibWFyZ2luVG9wIiwibWFyZ2luQm90dG9tIiwiYm9yZGVyQ29sb3IiLCJ0b0xvY2FsZVN0cmluZyIsImNhZFByZXZpZXdNZXRhIiwic2VnbWVudENvdW50IiwicmVuZGVyZWRFbnRpdHlDb3VudCIsImJpbUVsZW1lbnRDb3VudCIsImZsb29ycyIsIm1hcCIsImYiLCJsYWJlbCIsImpvaW4iLCJzb3VyY2VFbnRpdHlDb3VudCIsImZvb3RwcmludCIsImFyZWEiLCJ0cnVuY2F0ZWQiLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJWaXN1YWxpemF0aW9uUGFnZS5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTGluayB9IGZyb20gJ3JlYWN0LXJvdXRlci1kb20nO1xuaW1wb3J0IFZpc3VhbGl6YXRpb25IdWIgZnJvbSAnLi4vY29tcG9uZW50cy90aHJlZS9WaXN1YWxpemF0aW9uSHViJztcbmltcG9ydCB7IGJ1aWxkaW5nRWxlbWVudHMgfSBmcm9tICcuLi9kYXRhL21vY2tEYXRhJztcbmltcG9ydCB7IGdldExhdGVzdERyYXdpbmcgfSBmcm9tICcuLi91dGlscy9kcmF3aW5nU2Vzc2lvbic7XG5pbXBvcnQgeyBhbmFseXplVmlzdWFsaXphdGlvbiB9IGZyb20gJy4uL3V0aWxzL3ZpekFuYWx5dGljcyc7XG5pbXBvcnQgJy4uL3N0eWxlcy92aXN1YWxpemF0aW9uLmNzcyc7XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFZpc3VhbGl6YXRpb25QYWdlKCkge1xuICBjb25zdCBkcmF3aW5nID0gZ2V0TGF0ZXN0RHJhd2luZygpO1xuICBjb25zdCBoYXNFeHRyYWN0ZWRNb2RlbCA9IGRyYXdpbmc/Lm1vZGVsQXZhaWxhYmxlID09PSB0cnVlICYmIEFycmF5LmlzQXJyYXkoZHJhd2luZy5idWlsZGluZ0VsZW1lbnRzKTtcbiAgY29uc3QgZWxlbWVudHMgPSBkcmF3aW5nID8gKGhhc0V4dHJhY3RlZE1vZGVsID8gZHJhd2luZy5idWlsZGluZ0VsZW1lbnRzIDogW10pIDogYnVpbGRpbmdFbGVtZW50cztcbiAgY29uc3QgYW5hbHl0aWNzID0gZWxlbWVudHMubGVuZ3RoID8gYW5hbHl6ZVZpc3VhbGl6YXRpb24oZWxlbWVudHMsIGRyYXdpbmcpIDogbnVsbDtcblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwicGFnZSBwYWdlLXZpelwiPlxuICAgICAgPGhlYWRlciBjbGFzc05hbWU9XCJwYWdlLWhlYWRlciB2aXotcGFnZS1oZWFkZXJcIj5cbiAgICAgICAgPGRpdj5cbiAgICAgICAgICA8aDEgY2xhc3NOYW1lPVwicGFnZS10aXRsZVwiPjNEIEJ1aWxkaW5nIFZpc3VhbGl6YXRpb248L2gxPlxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInBhZ2Utc3VidGl0bGVcIj5cbiAgICAgICAgICAgIHtkcmF3aW5nXG4gICAgICAgICAgICAgID8gYERpZ2l0YWwgdHdpbiBwcmV2aWV3IC0gJHtkcmF3aW5nLmZpbGVOYW1lfWBcbiAgICAgICAgICAgICAgOiAnSW50ZXJhY3RpdmUgQklNIHdvcmtzcGFjZSAtIHVwbG9hZCBhIERXRyB0byBiZWdpbid9XG4gICAgICAgICAgPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAge2hhc0V4dHJhY3RlZE1vZGVsICYmIChcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInZpei1oZWFkZXItYmFkZ2VzXCI+XG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJiYWRnZSBiYWRnZS1pbmZvXCI+Q0FEIExpbmtlZDwvc3Bhbj5cbiAgICAgICAgICAgIHtkcmF3aW5nLmV4dHJhY3Rpb25BdmFpbGFibGUgJiYgPHNwYW4gY2xhc3NOYW1lPVwiYmFkZ2UgYmFkZ2Utc3VjY2Vzc1wiPkJPUSBTeW5jZWQ8L3NwYW4+fVxuICAgICAgICAgICAge2RyYXdpbmcuYmltTW9kZWw/LmVsZW1lbnRzPy5sZW5ndGggPiAwICYmIChcbiAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwiYmFkZ2UgYmFkZ2Utc3VjY2Vzc1wiPkJJTSBUd2luIEFjdGl2ZTwvc3Bhbj5cbiAgICAgICAgICAgICl9XG4gICAgICAgICAgICB7YW5hbHl0aWNzPy5pc0NlaWxpbmdQbGFuICYmIDxzcGFuIGNsYXNzTmFtZT1cImJhZGdlIGJhZGdlLXdhcm5pbmdcIj5DZWlsaW5nIFBsYW48L3NwYW4+fVxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICApfVxuICAgICAgPC9oZWFkZXI+XG5cbiAgICAgIHshZHJhd2luZyAmJiAoXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ2xhc3MtY2FyZCB2aXotY2FsbG91dFwiPlxuICAgICAgICAgIDxwPlNob3dpbmcgdGhlIHNhbXBsZSBzdHJ1Y3R1cmFsIG1vZGVsLiA8TGluayB0bz1cIi91cGxvYWRcIj5VcGxvYWQgYSBEV0cgZHJhd2luZzwvTGluaz4gdG8gbG9hZCB5b3VyIHByb2plY3QgZ2VvbWV0cnkuPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICl9XG5cbiAgICAgIHtkcmF3aW5nICYmICFoYXNFeHRyYWN0ZWRNb2RlbCAmJiAoXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ2xhc3MtY2FyZCB2aXotY2FsbG91dCB2aXotY2FsbG91dC13YXJuaW5nXCI+XG4gICAgICAgICAgPGgzPkRXRyBwcmV2aWV3IHVuYXZhaWxhYmxlPC9oMz5cbiAgICAgICAgICA8cD57ZHJhd2luZy5jYWRQYXJzZUVycm9yIHx8IGAke2RyYXdpbmcuZmlsZU5hbWV9IGNvdWxkIG5vdCBiZSBwYXJzZWQuIFRyeSBBdXRvQ0FEIDIwMTMgRFdHIGZvcm1hdC5gfTwvcD5cbiAgICAgICAgICA8TGluayB0bz1cIi91cGxvYWRcIiBjbGFzc05hbWU9XCJidG4gYnRuLXByaW1hcnkgYnRuLXNtXCIgc3R5bGU9e3sgbWFyZ2luVG9wOiAnMC43NXJlbScgfX0+UmUtdXBsb2FkIGRyYXdpbmc8L0xpbms+XG4gICAgICAgIDwvZGl2PlxuICAgICAgKX1cblxuICAgICAge2RyYXdpbmcgJiYgaGFzRXh0cmFjdGVkTW9kZWwgJiYgIWRyYXdpbmcuYmltTW9kZWw/LmVsZW1lbnRzPy5sZW5ndGggJiYgKFxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImdsYXNzLWNhcmQgdml6LWNhbGxvdXQgdml6LWNhbGxvdXQtd2FybmluZ1wiIHN0eWxlPXt7IG1hcmdpbkJvdHRvbTogJzFyZW0nIH19PlxuICAgICAgICAgIDxwPlxuICAgICAgICAgICAgPHN0cm9uZz5CSU0gRGlnaXRhbCBUd2luOjwvc3Ryb25nPiBSZS11cGxvYWQgeW91ciBEV0cgdG8gZ2VuZXJhdGUgYSBDQUQtZXhhY3QgM0QgcmVjb25zdHJ1Y3Rpb25cbiAgICAgICAgICAgIHdpdGggd2FsbHMsIHBhcmtpbmcsIHJhbXBzLCBzdGFpcnMsIGFuZCBsaWZ0cyBtYXRjaGVkIHRvIHlvdXIgZmxvb3IgcGxhbi5cbiAgICAgICAgICA8L3A+XG4gICAgICAgICAgPExpbmsgdG89XCIvdXBsb2FkXCIgY2xhc3NOYW1lPVwiYnRuIGJ0bi1wcmltYXJ5IGJ0bi1zbVwiIHN0eWxlPXt7IG1hcmdpblRvcDogJzAuNXJlbScgfX0+UmUtdXBsb2FkIERXRzwvTGluaz5cbiAgICAgICAgPC9kaXY+XG4gICAgICApfVxuXG4gICAgICB7ZHJhd2luZyAmJiBoYXNFeHRyYWN0ZWRNb2RlbCAmJiBkcmF3aW5nLmJpbU1vZGVsPy5lbGVtZW50cz8ubGVuZ3RoID4gMCAmJiAoXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ2xhc3MtY2FyZCB2aXotY2FsbG91dFwiIHN0eWxlPXt7IG1hcmdpbkJvdHRvbTogJzFyZW0nLCBib3JkZXJDb2xvcjogJ3JnYmEoMTIzLDExMiwyMzksMC4yNCknIH19PlxuICAgICAgICAgIDxwPlxuICAgICAgICAgICAgPHN0cm9uZz5DQUQtZXhhY3QgQklNIG1vZGUgYWN0aXZlPC9zdHJvbmc+IC0ge2RyYXdpbmcuYmltTW9kZWwuZWxlbWVudHMubGVuZ3RoLnRvTG9jYWxlU3RyaW5nKCl9IGVsZW1lbnRzXG4gICAgICAgICAgICByZWNvbnN0cnVjdGVkIGZyb20ge2RyYXdpbmcuY2FkUHJldmlld01ldGE/LnNlZ21lbnRDb3VudD8udG9Mb2NhbGVTdHJpbmcoKSB8fCAnc291cmNlJ30gbGluZXdvcmsgc2VnbWVudHMuXG4gICAgICAgICAgICBVc2Ugc2VjdGlvbiBjdXQsIGZsb29yIGV4cGxvZGUsIGFuZCBRUyBsYWJlbHMgaW4gdGhlIHRvb2xiYXIgYmVsb3cuXG4gICAgICAgICAgPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICl9XG5cbiAgICAgIHtkcmF3aW5nICYmIGhhc0V4dHJhY3RlZE1vZGVsICYmIGFuYWx5dGljcyAmJiAoXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidml6LXN0YXR1cy1iYXIgZ2xhc3MtY2FyZFwiPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidml6LXN0YXR1cy1pdGVtXCI+XG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ2aXotc3RhdHVzLWxhYmVsXCI+TGluZXdvcmsgc2VnbWVudHM8L3NwYW4+XG4gICAgICAgICAgICA8c3Ryb25nPntkcmF3aW5nLmNhZFByZXZpZXdNZXRhPy5zZWdtZW50Q291bnQgfHwgZHJhd2luZy5jYWRQcmV2aWV3TWV0YT8ucmVuZGVyZWRFbnRpdHlDb3VudCB8fCBlbGVtZW50cy5sZW5ndGh9PC9zdHJvbmc+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAge2RyYXdpbmcuY2FkUHJldmlld01ldGE/LmJpbUVsZW1lbnRDb3VudCA+IDAgJiYgKFxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ2aXotc3RhdHVzLWl0ZW1cIj5cbiAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidml6LXN0YXR1cy1sYWJlbFwiPkJJTSBlbGVtZW50czwvc3Bhbj5cbiAgICAgICAgICAgICAgPHN0cm9uZz57ZHJhd2luZy5jYWRQcmV2aWV3TWV0YS5iaW1FbGVtZW50Q291bnR9PC9zdHJvbmc+XG4gICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICApfVxuICAgICAgICAgIHtkcmF3aW5nLmJpbU1vZGVsPy5mbG9vcnM/Lmxlbmd0aCA+IDAgJiYgKFxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ2aXotc3RhdHVzLWl0ZW1cIj5cbiAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidml6LXN0YXR1cy1sYWJlbFwiPkZsb29yczwvc3Bhbj5cbiAgICAgICAgICAgICAgPHN0cm9uZz57ZHJhd2luZy5iaW1Nb2RlbC5mbG9vcnMubWFwKChmKSA9PiBmLmxhYmVsKS5qb2luKCcsICcpfTwvc3Ryb25nPlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgKX1cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInZpei1zdGF0dXMtaXRlbVwiPlxuICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidml6LXN0YXR1cy1sYWJlbFwiPkRXRyBlbnRpdGllczwvc3Bhbj5cbiAgICAgICAgICAgIDxzdHJvbmc+e2RyYXdpbmcuY2FkUHJldmlld01ldGE/LnNvdXJjZUVudGl0eUNvdW50ID8/ICdzb3VyY2UnfTwvc3Ryb25nPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIHthbmFseXRpY3MuZm9vdHByaW50ICYmIChcbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidml6LXN0YXR1cy1pdGVtXCI+XG4gICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInZpei1zdGF0dXMtbGFiZWxcIj5QbGFuIGZvb3RwcmludDwvc3Bhbj5cbiAgICAgICAgICAgICAgPHN0cm9uZz57YW5hbHl0aWNzLmZvb3RwcmludC5hcmVhfSBtMjwvc3Ryb25nPlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgKX1cbiAgICAgICAgICB7ZHJhd2luZy5jYWRQcmV2aWV3TWV0YT8udHJ1bmNhdGVkICYmIChcbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidml6LXN0YXR1cy1pdGVtIHZpei1zdGF0dXMtd2FyblwiPlxuICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ2aXotc3RhdHVzLWxhYmVsXCI+Tm90ZTwvc3Bhbj5cbiAgICAgICAgICAgICAgPHN0cm9uZz5Tb21lIHNlZ21lbnRzIGNhcHBlZCBmb3IgcGVyZm9ybWFuY2U8L3N0cm9uZz5cbiAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICl9XG4gICAgICAgIDwvZGl2PlxuICAgICAgKX1cblxuICAgICAge2VsZW1lbnRzLmxlbmd0aCA+IDAgJiYgKFxuICAgICAgICA8VmlzdWFsaXphdGlvbkh1YiBlbGVtZW50cz17ZWxlbWVudHN9IGRyYXdpbmc9e2RyYXdpbmd9IC8+XG4gICAgICApfVxuICAgIDwvZGl2PlxuICApO1xufVxuIl0sImZpbGUiOiJEOi9RUy9mcm9udGVuZC9zcmMvcGFnZXMvVmlzdWFsaXphdGlvblBhZ2UuanN4In0=
