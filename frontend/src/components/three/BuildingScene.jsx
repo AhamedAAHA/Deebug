@@ -394,7 +394,16 @@ export default function BuildingScene({
           </div>
         </div>
 
-        <Canvas shadows gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}>
+        <Canvas
+          shadows
+          gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+          onCreated={({ gl }) => {
+            gl.domElement.addEventListener('webglcontextlost', (e) => {
+              e.preventDefault();
+              console.warn('[DaiBoq] WebGL context lost — refresh the page or try a smaller DWG.');
+            });
+          }}
+        >
           <SceneContent
             elements={elements}
             wireframeLines={wireframeLines}

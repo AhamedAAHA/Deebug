@@ -410,20 +410,27 @@ function layerLabel(entity) {
   return `${entity?.layer || ''} ${entity?.name || ''}`.toLowerCase();
 }
 
+function isFinitePoint(p) {
+  return Array.isArray(p) && p.length >= 3 && p.every((v) => Number.isFinite(v));
+}
+
 export function getBimBounds(bimModel) {
   const pts = [];
   (bimModel?.elements || []).forEach((el) => {
     if (el.geomType === 'segment') {
-      pts.push(el.start, el.end);
-    } else if (el.center) {
+      if (isFinitePoint(el.start)) pts.push(el.start);
+      if (isFinitePoint(el.end)) pts.push(el.end);
+    } else if (el.center && isFinitePoint(el.center)) {
       pts.push(el.center);
-      if (el.height) {
+      if (Number.isFinite(el.height)) {
         pts.push([el.center[0], el.center[1] + el.height / 2, el.center[2]]);
         pts.push([el.center[0], el.center[1] - el.height / 2, el.center[2]]);
       }
-    } else if (el.shape?.length) {
-      const baseY = el.center?.[1] ?? 0;
-      el.shape.forEach((p) => pts.push([p.x, baseY, p.z]));
+    } else if (el.shape?.length && isFinitePoint(el.center)) {
+      const baseY = el.center[1];
+      el.shape.forEach((p) => {
+        if (Number.isFinite(p.x) && Number.isFinite(p.z)) pts.push([p.x, baseY, p.z]);
+      });
     }
   });
   if (!pts.length) {
@@ -438,8 +445,9 @@ export function getBimBounds(bimModel) {
     Math.max(...ys) - Math.min(...ys),
     10,
   );
+  const safeSpan = Number.isFinite(span) && span > 0 ? span : 20;
   return {
-    span,
+    span: safeSpan,
     centerX: (Math.min(...xs) + Math.max(...xs)) / 2,
     centerY: (Math.min(...ys) + Math.max(...ys)) / 2,
     centerZ: (Math.min(...zs) + Math.max(...zs)) / 2,
