@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" role="img" aria-labelledby="title desc">
+  <title id="title">DaiBoq</title>
+  <desc id="desc">Transparent DaiBoq wordmark in warm ivory.</desc>
+  <defs>
+    <linearGradient id="ivory" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff6df"/>
+      <stop offset="0.55" stop-color="#f3ead8"/>
+      <stop offset="1" stop-color="#d9cdb8"/>
+    </linearGradient>
+    <filter id="softGlow" x="-10%" y="-20%" width="120%" height="140%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g fill="url(#ivory)" filter="url(#softGlow)" stroke="url(#ivory)" stroke-width="6">
+    <path d="M36 54h118c43 0 70 27 70 70v58c0 43-27 70-70 70H36V54Zm32 31v136h83c25 0 40-15 40-40v-55c0-26-15-41-40-41H68Z"/>
+    <path d="M259 103h74c37 0 55 18 55 52v97h-31v-22c-10 17-27 25-52 25h-17c-32 0-51-17-51-45 0-29 20-44 57-44h61v-11c0-18-10-27-31-27h-65v-25Zm38 88c-18 0-27 6-27 19 0 14 9 20 27 20h20c33 0 38-16 38-31v-8h-58Z"/>
+    <path d="M430 51c17 0 25 8 25 24s-8 24-25 24c-16 0-24-8-24-24s8-24 24-24Zm-16 103c0-16 0-31-16-34v-17c31 0 46 14 46 43v106h-30V154Z"/>
+    <path d="M480 54h111c39 0 63 22 63 58 0 23-10 40-30 49 25 8 38 27 38 56 0 35-24 55-64 55H480V54Zm31 30v73h81c20 0 31-13 31-36 0-14-11-37-34-37h-78Zm0 101v40h89c20 0 31-10 31-29 0-18-11-28-31-28h-89Z"/>
+    <path d="M260 157h41c16 0 25 9 25 25v49c0 16-9 25-25 25h-41c-16 0-25-9-25-25v-49c0-16 9-25 25-25Zm13 25c-8 0-12 4-12 12v31c0 8 4 12 12 12h15c8 0 12-4 12-12v-31c0-8-4-12-12-12h-15Z" opacity=".42"/>
+    <path d="M536 157h58c32 0 52 19 52 50 0 30-20 49-52 49h-58v-99Zm29 26v30h30c12 0 20-6 20-15 0-10-8-15-20-15h-30Z" opacity=".42"/>
+  </g>
+  <rect x="405" y="52" width="37" height="37" rx="14" fill="url(#ivory)"/>
+</svg>
