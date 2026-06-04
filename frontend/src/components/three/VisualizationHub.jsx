@@ -37,6 +37,8 @@ export default function VisualizationHub({ elements, drawing }) {
     sectionY: 5,
     cameraMode: 'orbit',
     showPlanOverlay: true,
+    autoRotate: true,
+    showcaseMode: true,
   }));
 
   const patchBimToolbar = useCallback((patch) => {
@@ -158,6 +160,20 @@ export default function VisualizationHub({ elements, drawing }) {
                 isFullscreen={isFullscreen}
               />
               <div className="viz-controls">
+                <button
+                  type="button"
+                  className={`btn btn-sm ${bimToolbar.autoRotate ? 'btn-primary' : 'btn-ghost'}`}
+                  onClick={() => patchBimToolbar({ autoRotate: !bimToolbar.autoRotate })}
+                >
+                  {bimToolbar.autoRotate ? '⏸ Auto orbit' : '↻ Auto orbit'}
+                </button>
+                <button
+                  type="button"
+                  className={`btn btn-sm ${bimToolbar.showcaseMode ? 'btn-primary' : 'btn-ghost'}`}
+                  onClick={() => patchBimToolbar({ showcaseMode: !bimToolbar.showcaseMode })}
+                >
+                  {bimToolbar.showcaseMode ? '✨ Showcase on' : '✨ Showcase'}
+                </button>
                 <button type="button" className="btn btn-ghost btn-sm" onClick={() => setIsFullscreen((f) => !f)}>
                   {isFullscreen ? 'Exit full screen' : 'Full screen'}
                 </button>

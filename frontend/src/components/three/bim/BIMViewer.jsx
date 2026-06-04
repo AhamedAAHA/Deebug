@@ -1,4 +1,4 @@
-import { useRef, useMemo, useState, useEffect, Suspense } from 'react';
+import { useRef, useMemo, useState, useEffect, Suspense, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import {
   OrbitControls,
@@ -14,6 +14,9 @@ import * as THREE from 'three';
 import BIMModel from './BIMModel';
 import { getBimBounds, explodeOffset } from '../../../utils/bimReconstruction';
 import { CONSTRUCTION_STAGES } from '../../../utils/bimClassification';
+import ShowcaseEffects from '../ShowcaseEffects';
+
+const IS_PROD = import.meta.env.PROD;
 
 function ClippingManager({ enabled, planeY, children }) {
   const { gl } = useThree();
@@ -74,6 +77,11 @@ function SceneInner({
   sectionY,
   cameraMode,
   showPlanOverlay,
+  autoRotate,
+  showcaseMode,
+  userInteracting,
+  onControlsStart,
+  onControlsEnd,
 }) {
   const { span, centerX, centerY, centerZ } = useMemo(() => getBimBounds(bimModel), [bimModel]);
   const groundSize = Math.ceil(span * 2.2);
@@ -110,8 +118,8 @@ function SceneInner({
       <directionalLight
         position={[span, span * 1.5, span * 0.5]}
         intensity={1.6}
-        castShadow
-        shadow-mapSize={[2048, 2048]}
+        castShadow={!IS_PROD}
+        shadow-mapSize={IS_PROD ? [1024, 1024] : [2048, 2048]}
         shadow-camera-far={80}
         shadow-camera-left={-span}
         shadow-camera-right={span}
@@ -137,9 +145,11 @@ function SceneInner({
         </group>
       </ClippingManager>
       <Suspense fallback={null}>
-        <Environment preset="warehouse" />
+        {!IS_PROD && <Environment preset="warehouse" />}
       </Suspense>
       <ContactShadows opacity={0.45} scale={groundSize} blur={2.8} far={span * 2} position={[0, -0.02, 0]} />
+
+      <ShowcaseEffects extent={span * 1.1} enabled={showcaseMode} stars position={modelOffset} />
 
       <Grid
         args={[groundSize, groundSize / 2]}
@@ -154,6 +164,10 @@ function SceneInner({
         <OrbitControls
           target={[0, 0, 0]}
           enablePan
+          autoRotate={autoRotate && !userInteracting}
+          autoRotateSpeed={showcaseMode ? 0.9 : 0.5}
+          onStart={onControlsStart}
+          onEnd={onControlsEnd}
           maxPolarAngle={cameraMode === 'floorplan' ? 0.01 : Math.PI / 2.1}
           minDistance={4}
           maxDistance={span * 3}
@@ -164,6 +178,10 @@ function SceneInner({
         <OrbitControls
           target={[0, 0, 0]}
           enablePan
+          autoRotate={autoRotate && !userInteracting && cameraMode === 'isometric'}
+          autoRotateSpeed={0.55}
+          onStart={onControlsStart}
+          onEnd={onControlsEnd}
           maxPolarAngle={cameraMode === 'floorplan' ? 0.05 : Math.PI / 2.05}
           minDistance={3}
           maxDistance={span * 3}
@@ -197,7 +215,26 @@ export default function BIMViewer({
     sectionY = 5,
     cameraMode = 'orbit',
     showPlanOverlay = true,
+    autoRotate = true,
+    showcaseMode = true,
   } = toolbarState || {};
+
+  const [userInteracting, setUserInteracting] = useState(false);
+  const resumeRotateRef = useRef(null);
+
+  const onControlsStart = useCallback(() => {
+    setUserInteracting(true);
+    if (resumeRotateRef.current) clearTimeout(resumeRotateRef.current);
+  }, []);
+
+  const onControlsEnd = useCallback(() => {
+    if (resumeRotateRef.current) clearTimeout(resumeRotateRef.current);
+    resumeRotateRef.current = setTimeout(() => setUserInteracting(false), 3500);
+  }, []);
+
+  useEffect(() => () => {
+    if (resumeRotateRef.current) clearTimeout(resumeRotateRef.current);
+  }, []);
 
   const selectedEl = useMemo(() => {
     if (!selected) return null;
@@ -206,7 +243,22 @@ export default function BIMViewer({
 
   return (
     <div className={`bim-viewer ${isFullscreen ? 'bim-viewer--fs' : ''}`}>
-      <Canvas shadows gl={{ antialias: true, localClippingEnabled: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.1 }}>
+      <Canvas
+        shadows={!IS_PROD}
+        dpr={IS_PROD ? [1, 1.25] : [1, 2]}
+        gl={{
+          antialias: !IS_PROD,
+          localClippingEnabled: true,
+          powerPreference: 'default',
+          failIfMajorPerformanceCaveat: false,
+        }}
+        onCreated={({ gl }) => {
+          gl.domElement.addEventListener('webglcontextlost', (e) => {
+            e.preventDefault();
+          });
+          gl.domElement.addEventListener('webglcontextrestored', () => gl.resetState());
+        }}
+      >
         <SceneInner
           bimModel={bimModel}
           selectedId={selectedEl?.id}
@@ -222,8 +274,20 @@ export default function BIMViewer({
           sectionY={sectionY}
           cameraMode={cameraMode}
           showPlanOverlay={showPlanOverlay}
+          autoRotate={autoRotate}
+          showcaseMode={showcaseMode}
+          userInteracting={userInteracting}
+          onControlsStart={onControlsStart}
+          onControlsEnd={onControlsEnd}
         />
       </Canvas>
+
+      {showcaseMode && (
+        <div className="viz-showcase-badge" aria-hidden>
+          <span className="viz-showcase-badge__pulse" />
+          Digital Twin Showcase
+        </div>
+      )}
 
       {sectionEnabled && (
         <div className="bim-section-slider">

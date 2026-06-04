@@ -1,10 +1,81 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { assistantResponses } from '../../data/mockData';
 import { getAssistantAnswer } from '../../utils/calculations';
 import { askAssistant } from '../../utils/api';
-import '../../styles/assistant.css';
+
+const FORCE_STYLE_ID = 'deebug-ai-force-position';
+
+const FORCE_CSS = `
+body .deebug-ai-dock {
+  position: fixed !important;
+  top: auto !important;
+  left: auto !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  z-index: 2147483647 !important;
+  display: flex !important;
+  flex-direction: column-reverse !important;
+  align-items: flex-end !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  width: 380px !important;
+  max-width: calc(100vw - 32px) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none !important;
+  transform: none !important;
+  inset: auto 16px 16px auto !important;
+}
+body .deebug-ai-dock .deebug-ai-fab,
+body .deebug-ai-dock .deebug-ai-panel {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  pointer-events: auto !important;
+}
+@media (max-width: 768px) {
+  body .deebug-ai-dock {
+    right: 12px !important;
+    bottom: 12px !important;
+    left: auto !important;
+    width: min(340px, calc(100vw - 24px)) !important;
+    inset: auto 12px 12px auto !important;
+  }
+}
+`;
+
+function applyDockPosition(el) {
+  if (!el) return;
+  el.style.cssText = [
+    'position:fixed',
+    'top:auto',
+    'left:auto',
+    'right:16px',
+    'bottom:16px',
+    'z-index:2147483647',
+    'display:flex',
+    'flex-direction:column-reverse',
+    'align-items:flex-end',
+    'gap:12px',
+    'width:380px',
+    'max-width:calc(100vw - 32px)',
+    'height:auto',
+    'margin:0',
+    'padding:0',
+    'pointer-events:none',
+    'transform:none',
+  ].join(';');
+}
 
 export default function VoiceAssistant() {
+  const dockRef = useCallback(applyDockPosition, []);
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
@@ -17,6 +88,16 @@ export default function VoiceAssistant() {
   const [listening, setListening] = useState(false);
   const [loading, setLoading] = useState(false);
   const requestIdRef = useRef(0);
+
+  useEffect(() => {
+    document.getElementById('deebug-assistant-root')?.remove();
+
+    if (document.getElementById(FORCE_STYLE_ID)) return;
+    const tag = document.createElement('style');
+    tag.id = FORCE_STYLE_ID;
+    tag.textContent = FORCE_CSS;
+    document.head.appendChild(tag);
+  }, []);
 
   const sendMessage = async (text) => {
     if (!text.trim() || loading) return;
@@ -38,6 +119,10 @@ export default function VoiceAssistant() {
       answer = apiResult.answer;
       liveAi = Boolean(apiResult.liveAi);
       engine = apiResult.engine || (liveAi ? 'openai' : 'mock');
+    } else if (apiResult?.message) {
+      const key = getAssistantAnswer(text);
+      answer = `${apiResult.message} Using offline guide: ${assistantResponses[key].replace(/\*\*/g, '')}`;
+      engine = 'local';
     } else {
       const key = getAssistantAnswer(text);
       answer = assistantResponses[key].replace(/\*\*/g, '');
@@ -90,17 +175,25 @@ export default function VoiceAssistant() {
   };
 
   return (
-    <>
+    <div ref={dockRef} className="deebug-ai-dock" aria-live="polite">
       <button
         type="button"
-        className={`assistant-fab ${open ? 'open' : ''}`}
+        className={`deebug-ai-fab assistant-fab ${open ? 'open' : ''}`}
         onClick={() => setOpen(!open)}
-        aria-label="QS Assistant"
+        aria-expanded={open}
+        aria-controls={open ? 'deebug-ai-panel' : undefined}
+        aria-label={open ? 'Close assistant' : 'Open QS assistant'}
       >
         {open ? 'Close' : 'AI'}
       </button>
+
       {open && (
-        <div className="assistant-panel glass-card">
+        <div
+          id="deebug-ai-panel"
+          className="deebug-ai-panel assistant-panel glass-card"
+          role="dialog"
+          aria-label="QS Assistant"
+        >
           <div className="assistant-header">
             <span className="assistant-avatar">AI</span>
             <div>
@@ -148,6 +241,6 @@ export default function VoiceAssistant() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

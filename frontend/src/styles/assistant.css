@@ -1,8 +1,30 @@
-.assistant-fab {
+/* DeeBug AI dock — panel stacks above FAB at bottom-right */
+.deebug-ai-dock {
   position: fixed;
-  right: 1.5rem;
-  bottom: 1.5rem;
-  z-index: 300;
+  right: 16px;
+  bottom: 16px;
+  left: auto;
+  top: auto;
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 12px;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  height: auto;
+  pointer-events: none;
+}
+
+.deebug-ai-dock .deebug-ai-fab,
+.deebug-ai-dock .deebug-ai-panel {
+  position: relative;
+  flex: 0 0 auto;
+  pointer-events: auto;
+}
+
+.deebug-ai-fab,
+.assistant-fab {
   width: 58px;
   height: 58px;
   border: none;
@@ -16,14 +38,57 @@
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
+.deebug-ai-fab:hover,
 .assistant-fab:hover {
   transform: translateY(-4px) scale(1.04);
 }
 
+.deebug-ai-fab.open,
 .assistant-fab.open {
   color: var(--accent-indigo);
   border: 1px solid rgba(123, 112, 239, 0.24);
   background: rgba(255, 255, 255, 0.78);
+}
+
+.deebug-ai-panel,
+.assistant-panel {
+  display: flex;
+  width: 100%;
+  max-height: min(460px, calc(100vh - 120px));
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 20px;
+  animation: assistant-panel-in 0.28s ease;
+}
+
+@keyframes assistant-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .deebug-ai-dock {
+    right: 12px;
+    bottom: 12px;
+    left: auto;
+    width: min(340px, calc(100vw - 24px));
+  }
+
+  .deebug-ai-panel,
+  .assistant-panel {
+    max-height: min(65vh, calc(100vh - 100px));
+  }
+
+  .assistant-messages {
+    min-height: 96px;
+    max-height: 180px;
+  }
 }
 
 .assistant-engine-badge {
@@ -42,19 +107,6 @@
 .assistant-msg--loading {
   opacity: 0.7;
   font-style: italic;
-}
-
-.assistant-panel {
-  position: fixed;
-  right: 1.5rem;
-  bottom: 5.6rem;
-  z-index: 299;
-  display: flex;
-  width: 390px;
-  max-width: calc(100vw - 2rem);
-  max-height: 500px;
-  flex-direction: column;
-  animation: fadeIn 0.3s ease;
 }
 
 .assistant-header {
@@ -91,9 +143,9 @@
 
 .assistant-messages {
   display: flex;
-  min-height: 210px;
-  max-height: 290px;
-  flex: 1;
+  min-height: 120px;
+  max-height: 220px;
+  flex: 0 1 auto;
   flex-direction: column;
   gap: 0.75rem;
   overflow-y: auto;
@@ -163,7 +215,7 @@
   transform: translateY(-1px);
 }
 
-/* Dark enterprise theme layer */
+.deebug-ai-fab,
 .assistant-fab,
 .assistant-avatar {
   color: #06111a;
@@ -171,6 +223,7 @@
   box-shadow: 0 20px 48px rgba(53, 231, 255, 0.24);
 }
 
+.deebug-ai-fab.open,
 .assistant-fab.open {
   color: var(--accent-cyan);
   border-color: rgba(53, 231, 255, 0.24);

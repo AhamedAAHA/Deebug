@@ -95,15 +95,31 @@ export async function syncBoqToServer({ items, quantities, projectId = 'default'
 }
 
 export async function askAssistant(question) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), IS_REMOTE_API ? 60_000 : 30_000);
   try {
     const res = await fetch(`${API_BASE}/ai/assistant`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question }),
+      signal: controller.signal,
     });
-    if (!res.ok) throw new Error();
+    clearTimeout(timer);
+    if (!res.ok) {
+      const message = await parseErrorMessage(res);
+      return { success: false, message: message || `Assistant request failed (${res.status})` };
+    }
     return res.json();
-  } catch {
-    return null;
+  } catch (err) {
+    clearTimeout(timer);
+    if (err?.name === 'AbortError') {
+      return { success: false, message: 'Assistant request timed out. Try again.' };
+    }
+    return {
+      success: false,
+      message: IS_REMOTE_API
+        ? 'Could not reach the AI API. Check Render is live and CORS (BOQMIND_CORS_ORIGINS).'
+        : 'Could not reach the backend. Start it with: cd backend && mvn spring-boot:run',
+    };
   }
 }

@@ -5,9 +5,21 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   optimizeDeps: {
-    exclude: ['@mlightcad/libredwg-web'],
+    include: ['@mlightcad/libredwg-web'],
   },
   assetsInclude: ['**/*.wasm'],
+  build: {
+    target: 'es2020',
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('@mlightcad/libredwg-web')) {
+            return 'libredwg-web';
+          }
+        },
+      },
+    },
+  },
   server: {
     port: 5173,
     proxy: {

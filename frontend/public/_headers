@@ -1,0 +1,6 @@
+/libredwg/libredwg-web.wasm
+  Content-Type: application/wasm
+  Cross-Origin-Resource-Policy: cross-origin
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

@@ -671,6 +671,75 @@
   border: 1px solid rgba(34, 211, 238, 0.35);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.66);
+  transform: rotate(var(--viz-heading, 0rad));
+  transition: transform 0.12s linear;
+}
+
+.viz-compass--live .viz-compass-ring {
+  border-color: rgba(53, 231, 255, 0.55);
+  box-shadow: 0 0 16px rgba(53, 231, 255, 0.25);
+}
+
+.viz-compass-orbit-hint {
+  position: absolute;
+  bottom: -0.35rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.48rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-cyan);
+  opacity: 0.85;
+}
+
+.viz-showcase-badge {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(53, 231, 255, 0.28);
+  background: rgba(8, 13, 25, 0.72);
+  color: var(--accent-cyan);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+}
+
+.viz-showcase-badge__pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(53, 231, 255, 0.9);
+  animation: viz-showcase-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes viz-showcase-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.viz-canvas-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(ellipse at center, transparent 42%, rgba(5, 8, 20, 0.45) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.viz-canvas-wrap:has(.viz-showcase-badge)::after {
+  opacity: 1;
 }
 
 .viz-scale-bar {

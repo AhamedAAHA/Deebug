@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo, Suspense } from 'react';
+import { useRef, useState, useMemo, Suspense, useEffect, useCallback } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import {
   OrbitControls,
@@ -13,7 +13,10 @@ import { heatmapColor, estimateElementCost } from '../../utils/vizAnalytics';
 import { PlanWireframeByType } from './PlanWireframe';
 import SvgPlanFloor from './SvgPlanFloor';
 import SiteVolumes from './SiteVolumes';
+import ShowcaseEffects from './ShowcaseEffects';
 import '../../styles/visualization.css';
+
+const IS_PROD = import.meta.env.PROD;
 
 function safePositive(n, fallback = 1) {
   return Number.isFinite(n) && n > 0 ? n : fallback;
@@ -215,17 +218,6 @@ function BuildingModel({
   );
 }
 
-function RotatingCamera({ radius, targetY, enabled }) {
-  useFrame(({ camera, clock }) => {
-    if (!enabled || !camera) return;
-    const t = clock.getElapsedTime() * 0.06;
-    camera.position.x = Math.sin(t) * radius;
-    camera.position.z = Math.cos(t) * radius;
-    camera.lookAt(0, targetY, 0);
-  });
-  return null;
-}
-
 function SceneContent({
   elements,
   wireframeLines,
@@ -236,6 +228,11 @@ function SceneContent({
   selected,
   onSelect,
   autoRotate,
+  showcaseMode,
+  userInteracting,
+  controlsRef,
+  onControlsStart,
+  onControlsEnd,
   assembleProgress,
   started,
 }) {
@@ -295,13 +292,13 @@ function SceneContent({
       <directionalLight
         position={[scene.radius * 0.6, scene.radius * 1.2, scene.radius * 0.4]}
         intensity={viewMode === 'site3d' ? 1.8 : 1.4}
-        castShadow
-        shadow-mapSize={[2048, 2048]}
+        castShadow={!IS_PROD}
+        shadow-mapSize={IS_PROD ? [1024, 1024] : [2048, 2048]}
       />
       <directionalLight position={[-scene.radius, scene.radius * 0.5, -scene.radius]} intensity={0.55} color="#c9c3ff" />
       <pointLight position={[0, scene.targetY + 8, 0]} intensity={0.75} color="#7c6df4" distance={scene.groundSize * 1.5} />
       <Suspense fallback={null}>
-        <Environment preset="city" />
+        {!IS_PROD && <Environment preset="city" />}
         <BuildingModel
           elements={elements}
           wireframeLines={wireframeLines}
@@ -317,15 +314,20 @@ function SceneContent({
         />
         <ContactShadows position={[0, 0, 0]} opacity={0.5} scale={scene.groundSize} blur={2.5} far={40} />
       </Suspense>
+      <ShowcaseEffects extent={scene.radius} enabled={showcaseMode} stars={viewMode !== 'plan'} />
       <OrbitControls
+        ref={controlsRef}
         enablePan
         enableZoom
+        autoRotate={autoRotate && !userInteracting}
+        autoRotateSpeed={showcaseMode ? 0.85 : 0.45}
+        onStart={onControlsStart}
+        onEnd={onControlsEnd}
         target={[0, scene.targetY, 0]}
         minDistance={6}
         maxDistance={scene.radius * 2.5}
         maxPolarAngle={viewMode === 'plan' ? Math.PI / 2.05 : Math.PI / 2.15}
       />
-      <RotatingCamera radius={scene.radius} targetY={scene.targetY} enabled={autoRotate} />
       <GizmoHelper alignment="bottom-right" margin={[72, 72]}>
         <GizmoViewport axisColors={['#ef7f7f', '#54b782', '#7c6df4']} labelColor="#263344" />
       </GizmoHelper>
@@ -352,8 +354,26 @@ export default function BuildingScene({
   onViewModeChange,
 }) {
   const [assembleProgress, setAssembleProgress] = useState(0);
-  const [autoRotate, setAutoRotate] = useState(false);
+  const [autoRotate, setAutoRotate] = useState(true);
+  const [showcaseMode, setShowcaseMode] = useState(true);
+  const [userInteracting, setUserInteracting] = useState(false);
   const [started, setStarted] = useState(false);
+  const controlsRef = useRef();
+  const resumeRotateRef = useRef(null);
+
+  const onControlsStart = useCallback(() => {
+    setUserInteracting(true);
+    if (resumeRotateRef.current) clearTimeout(resumeRotateRef.current);
+  }, []);
+
+  const onControlsEnd = useCallback(() => {
+    if (resumeRotateRef.current) clearTimeout(resumeRotateRef.current);
+    resumeRotateRef.current = setTimeout(() => setUserInteracting(false), 3500);
+  }, []);
+
+  useEffect(() => () => {
+    if (resumeRotateRef.current) clearTimeout(resumeRotateRef.current);
+  }, []);
   const isCadPreview = (allElements || elements).some((e) => e.sourceLayer);
   const fileLabel = drawing?.fileName || 'Project model';
 
@@ -395,12 +415,21 @@ export default function BuildingScene({
         </div>
 
         <Canvas
-          shadows
-          gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+          shadows={!IS_PROD}
+          dpr={IS_PROD ? [1, 1.25] : [1, 2]}
+          gl={{
+            antialias: !IS_PROD,
+            alpha: true,
+            powerPreference: 'default',
+            failIfMajorPerformanceCaveat: false,
+          }}
           onCreated={({ gl }) => {
             gl.domElement.addEventListener('webglcontextlost', (e) => {
               e.preventDefault();
               console.warn('[DaiBoq] WebGL context lost — refresh the page or try a smaller DWG.');
+            });
+            gl.domElement.addEventListener('webglcontextrestored', () => {
+              gl.resetState();
             });
           }}
         >
@@ -414,17 +443,41 @@ export default function BuildingScene({
             selected={selected}
             onSelect={onSelect}
             autoRotate={autoRotate}
+            showcaseMode={showcaseMode}
+            userInteracting={userInteracting}
+            controlsRef={controlsRef}
+            onControlsStart={onControlsStart}
+            onControlsEnd={onControlsEnd}
             assembleProgress={assembleProgress}
             started={started}
           />
         </Canvas>
 
+        {showcaseMode && (
+          <div className="viz-showcase-badge" aria-hidden>
+            <span className="viz-showcase-badge__pulse" />
+            Digital Twin Showcase
+          </div>
+        )}
+
         <div className="viz-controls">
           <button type="button" className="btn btn-primary btn-sm" onClick={startAssembly}>
             ▶ Build Sequence
           </button>
-          <button type="button" className="btn btn-ghost btn-sm" onClick={() => setAutoRotate(!autoRotate)}>
-            {autoRotate ? '⏸ Orbit' : '↻ Orbit'}
+          <button
+            type="button"
+            className={`btn btn-sm ${autoRotate ? 'btn-primary' : 'btn-ghost'}`}
+            onClick={() => setAutoRotate(!autoRotate)}
+          >
+            {autoRotate ? '⏸ Auto orbit' : '↻ Auto orbit'}
+          </button>
+          <button
+            type="button"
+            className={`btn btn-sm ${showcaseMode ? 'btn-primary' : 'btn-ghost'}`}
+            onClick={() => setShowcaseMode(!showcaseMode)}
+            title="Scan beam, site beacons, starfield"
+          >
+            {showcaseMode ? '✨ Showcase on' : '✨ Showcase'}
           </button>
           <button type="button" className="btn btn-ghost btn-sm" onClick={resetView}>
             ⟲ Reset
@@ -457,9 +510,10 @@ export default function BuildingScene({
           </div>
         )}
 
-        <div className="viz-compass" aria-hidden>
+        <div className={`viz-compass ${autoRotate ? 'viz-compass--live' : ''}`} aria-hidden>
           <span>N</span>
           <div className="viz-compass-ring" />
+          {autoRotate && <span className="viz-compass-orbit-hint">AUTO</span>}
         </div>
 
         <div className="viz-scale-bar">
@@ -480,7 +534,7 @@ export default function BuildingScene({
         <p className="viz-hint">
           {isCadPreview
             ? 'Site 3D — extruded villa & boundaries. Use Build Sequence. Switch modes in panels below.'
-            : 'Scroll zoom · drag orbit · Full screen for immersive view.'}
+            : 'Auto orbit on · Showcase FX · drag to explore · pause orbit while dragging.'}
         </p>
       )}
     </div>

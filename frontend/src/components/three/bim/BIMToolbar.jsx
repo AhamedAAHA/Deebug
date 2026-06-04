@@ -96,6 +96,26 @@ export default function BIMToolbar({ bimModel, state, onChange }) {
         </div>
       </div>
 
+      <div className="bim-toolbar-group">
+        <span className="bim-toolbar-label">Showcase</span>
+        <div className="bim-toolbar-btns">
+          <button
+            type="button"
+            className={state.autoRotate !== false ? 'active' : ''}
+            onClick={() => onChange({ autoRotate: state.autoRotate === false })}
+          >
+            Auto orbit
+          </button>
+          <button
+            type="button"
+            className={state.showcaseMode !== false ? 'active' : ''}
+            onClick={() => onChange({ showcaseMode: state.showcaseMode === false })}
+          >
+            Scan &amp; FX
+          </button>
+        </div>
+      </div>
+
       <div className="bim-toolbar-group bim-toolbar-construction">
         <span className="bim-toolbar-label">Construction</span>
         <input

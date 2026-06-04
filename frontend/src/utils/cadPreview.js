@@ -1,7 +1,10 @@
 import { reconstructBimModel } from './bimReconstruction';
 const MAX_PREVIEW_ELEMENTS = 5000;
 const TARGET_SCENE_SIZE = 30;
+import { LibreDwg, Dwg_File_Type } from '@mlightcad/libredwg-web';
+
 const LIBREDWG_WASM_BASE = `${import.meta.env.BASE_URL}libredwg/`;
+let libredwgInstancePromise = null;
 const MAX_BLOCK_DEPTH = 6;
 
 function getCadExtension(fileName = '') {
@@ -538,9 +541,18 @@ function buildPreviewFromDatabase(database) {
 }
 
 async function loadLibreDwg() {
-  const { LibreDwg, Dwg_File_Type } = await import('@mlightcad/libredwg-web');
-  const libredwg = await LibreDwg.create(LIBREDWG_WASM_BASE);
-  return { libredwg, Dwg_File_Type };
+  if (!libredwgInstancePromise) {
+    libredwgInstancePromise = LibreDwg.create(LIBREDWG_WASM_BASE)
+      .then((libredwg) => ({ libredwg, Dwg_File_Type }))
+      .catch((err) => {
+        libredwgInstancePromise = null;
+        const hint = import.meta.env.PROD
+          ? ' DWG parser failed to load on this deployment — hard-refresh (Ctrl+Shift+R) or redeploy the frontend.'
+          : '';
+        throw new Error(`${err?.message || err}${hint}`);
+      });
+  }
+  return libredwgInstancePromise;
 }
 
 function yieldToMain() {

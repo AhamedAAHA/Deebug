@@ -1,0 +1,4 @@
+# Cloudflare Pages: static assets before SPA fallback (fixes libredwg chunk 404)
+/assets/*  /assets/:splat  200
+/libredwg/*  /libredwg/:splat  200
+/*  /index.html  200
