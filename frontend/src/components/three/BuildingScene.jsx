@@ -15,6 +15,10 @@ import SvgPlanFloor from './SvgPlanFloor';
 import SiteVolumes from './SiteVolumes';
 import '../../styles/visualization.css';
 
+function safePositive(n, fallback = 1) {
+  return Number.isFinite(n) && n > 0 ? n : fallback;
+}
+
 const TYPE_COLORS = {
   slab: '#8fb2ff',
   wall: '#c6ccd8',
@@ -59,7 +63,15 @@ function AnimatedElement({
   const targetY = element.position[1];
   const isColumn = element.type === 'column';
   const isWall = element.type === 'wall' || element.type === 'cad';
-  const displaySize = useMemo(() => getDisplaySize(element, viewMode), [element, viewMode]);
+  const displaySize = useMemo(() => {
+    const size = getDisplaySize(element, viewMode);
+    return size.map((v) => (Number.isFinite(v) && v > 0 ? v : 0.1));
+  }, [element, viewMode]);
+
+  const position = useMemo(() => {
+    const p = element.position || [0, 0, 0];
+    return p.map((v) => (Number.isFinite(v) ? v : 0));
+  }, [element.position]);
 
   const localProgress = useMemo(() => {
     const p = Math.max(0, Math.min(1, (assembleProgress - floorDelay) / 0.35));
@@ -94,7 +106,7 @@ function AnimatedElement({
   return (
     <mesh
       ref={meshRef}
-      position={element.position}
+      position={position}
       rotation={element.rotation}
       castShadow={viewMode !== 'plan'}
       receiveShadow
@@ -121,8 +133,9 @@ function AnimatedElement({
 
 function SiteEnvelope({ groundSize, footprint }) {
   if (!footprint) return null;
-  const w = Math.min(footprint.width * 1.1, groundSize * 0.9);
-  const d = Math.min(footprint.height * 1.1, groundSize * 0.9);
+  const w = Math.min(safePositive(footprint.width) * 1.1, safePositive(groundSize) * 0.9);
+  const d = Math.min(safePositive(footprint.height) * 1.1, safePositive(groundSize) * 0.9);
+  if (!Number.isFinite(w) || !Number.isFinite(d)) return null;
   return (
     <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
       <planeGeometry args={[w, d]} />
@@ -229,20 +242,31 @@ function SceneContent({
   const scene = useMemo(() => {
     const coords = [];
     elements.forEach((e) => {
-      coords.push(Math.abs(e.position[0]) + e.size[0] / 2);
-      coords.push(Math.abs(e.position[2]) + e.size[2] / 2);
+      const x = e.position?.[0];
+      const z = e.position?.[2];
+      const sx = e.size?.[0];
+      const sz = e.size?.[2];
+      if (Number.isFinite(x) && Number.isFinite(sx)) coords.push(Math.abs(x) + sx / 2);
+      if (Number.isFinite(z) && Number.isFinite(sz)) coords.push(Math.abs(z) + sz / 2);
     });
     (siteVolumes || []).forEach((v) => {
-      coords.push(Math.abs(v.center[0]));
-      coords.push(Math.abs(v.center[2]));
+      if (Number.isFinite(v.center?.[0])) coords.push(Math.abs(v.center[0]));
+      if (Number.isFinite(v.center?.[2])) coords.push(Math.abs(v.center[2]));
     });
-    const span = Math.max(...coords, 10);
+    const span = coords.length ? Math.max(...coords) : 10;
+    const safeSpan = safePositive(span, 10);
+    const siteHeights = (siteVolumes || [])
+      .map((v) => v.height)
+      .filter((h) => Number.isFinite(h) && h > 0);
+    const elementHeights = elements
+      .map((e) => e.position[1] + e.size[1] / 2)
+      .filter((h) => Number.isFinite(h));
     const maxY = viewMode === 'site3d'
-      ? Math.max(...(siteVolumes || []).map((v) => v.height), 4)
-      : Math.max(...elements.map((e) => e.position[1] + e.size[1] / 2), 2);
+      ? (siteHeights.length ? Math.max(...siteHeights) : 4)
+      : (elementHeights.length ? Math.max(...elementHeights) : 2);
     return {
-      groundSize: Math.ceil(span * 2.6),
-      radius: Math.max(22, span * 2.1),
+      groundSize: Math.ceil(safeSpan * 2.6),
+      radius: Math.max(22, safeSpan * 2.1),
       targetY: viewMode === 'plan' ? 1 : viewMode === 'site3d' ? maxY * 0.55 : maxY / 2 + 0.5,
     };
   }, [elements, siteVolumes, viewMode]);

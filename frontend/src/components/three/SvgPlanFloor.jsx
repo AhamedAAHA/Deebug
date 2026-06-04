@@ -13,7 +13,7 @@ export default function SvgPlanFloor({ svg, size = 30, opacity = 0.92 }) {
 
   useEffect(() => () => texture?.dispose(), [texture]);
 
-  if (!texture) return null;
+  if (!texture || !Number.isFinite(size) || size <= 0) return null;
 
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.03, 0]}>

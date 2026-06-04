@@ -686,7 +686,10 @@ export async function extractCadPreview(file, options = {}) {
       }),
     ]);
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unable to parse this DWG file.';
+    const raw = error instanceof Error ? error.message : String(error);
+    const message = /error code:\s*68|VALUEOUTOFBOUNDS/i.test(raw)
+      ? 'This DWG uses objects or a version LibreDWG cannot fully read (error 68). In AutoCAD use Save As → AutoCAD 2013 DWG, EXPLODE complex blocks, then re-upload.'
+      : raw || 'Unable to parse this DWG file.';
     console.error('[DaiBoq] DWG preview failed:', error);
     return {
       modelAvailable: false,
