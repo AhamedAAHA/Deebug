@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { assistantResponses } from '../../data/mockData';
 import { getAssistantAnswer } from '../../utils/calculations';
 import { askAssistant } from '../../utils/api';
@@ -75,7 +75,7 @@ function applyDockPosition(el) {
 }
 
 export default function VoiceAssistant() {
-  const dockRef = useCallback(applyDockPosition, []);
+  const dockRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
@@ -88,6 +88,10 @@ export default function VoiceAssistant() {
   const [listening, setListening] = useState(false);
   const [loading, setLoading] = useState(false);
   const requestIdRef = useRef(0);
+
+  useEffect(() => {
+    applyDockPosition(dockRef.current);
+  }, []);
 
   useEffect(() => {
     document.getElementById('deebug-assistant-root')?.remove();
@@ -191,6 +195,7 @@ export default function VoiceAssistant() {
         <div
           id="deebug-ai-panel"
           className="deebug-ai-panel assistant-panel glass-card"
+          style={{ position: 'relative', top: 'auto', left: 'auto', right: 'auto', bottom: 'auto' }}
           role="dialog"
           aria-label="QS Assistant"
         >
