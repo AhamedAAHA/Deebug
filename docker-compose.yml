@@ -1,0 +1,13 @@
+# Optional: run real MongoDB when embedded dev mode is not used.
+# Start: docker compose up -d
+# Then: set SPRING_PROFILES_ACTIVE=prod and run the backend.
+services:
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - boqmind-mongo-data:/data/db
+
+volumes:
+  boqmind-mongo-data:
