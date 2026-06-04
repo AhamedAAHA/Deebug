@@ -6,7 +6,7 @@ import { saveLatestDrawing } from '../../utils/drawingSession';
 import { extractCadPreview } from '../../utils/cadPreview';
 import { extractBoqFromCad } from '../../utils/boqExtraction';
 
-const UPLOAD_TIMEOUT_MS = 25_000;
+const UPLOAD_TIMEOUT_MS = import.meta.env.VITE_API_BASE_URL ? 90_000 : 25_000;
 const CAD_TIMEOUT_MS = 120_000;
 
 export default function DrawingUploader({

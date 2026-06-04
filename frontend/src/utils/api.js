@@ -1,5 +1,6 @@
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
-const UPLOAD_TIMEOUT_MS = 25_000;
+const IS_REMOTE_API = Boolean(import.meta.env.VITE_API_BASE_URL);
+const UPLOAD_TIMEOUT_MS = IS_REMOTE_API ? 90_000 : 25_000;
 
 async function parseErrorMessage(res) {
   try {
@@ -42,8 +43,12 @@ export async function uploadDrawing(file, projectId = 'default') {
     clearTimeout(timer);
     const message =
       err?.name === 'AbortError'
-        ? 'Server upload timed out. Check that the backend is running on port 8080.'
-        : 'Could not reach the upload server. Start the backend and MongoDB, then try again.';
+        ? IS_REMOTE_API
+          ? 'Server upload timed out. The backend may be waking up — wait a minute and try again.'
+          : 'Server upload timed out. Check that the backend is running on port 8080.'
+        : IS_REMOTE_API
+          ? 'Could not reach the upload server. Check CORS on Render (BOQMIND_CORS_ORIGINS) and that the API is live.'
+          : 'Could not reach the upload server. Start the backend and MongoDB, then try again.';
     return {
       success: false,
       fileName: file.name,
